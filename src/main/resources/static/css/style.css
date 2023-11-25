@@ -1,0 +1,98 @@
+html{
+    margin: 20px;
+    font-family: "Arial Black";
+}
+nav{
+    content-align: center;
+    margin-bottom: 20px;
+}
+.navbar{
+    padding-left: 20px;
+}
+.navbar-brand{
+    font-size: xxx-large;
+}
+.nav-link{
+    font-size: x-large;
+}
+.nav-item{
+    margin: 5px 10px;
+    padding: 5px 10px;
+    border: 1px;
+    border-color: grey;
+    border-style: solid;
+    border-radius: 10px;
+}
+.footer{
+    text-align: center;
+    background-color: slategrey;
+    color: black;
+    margin-top: 20px;
+}
+.error{
+    text-align: center;
+    color: black;
+}
+
+.card{
+    margin-top: 20px;
+}
+
+.card-img-top{
+    height:150px;
+}
+
+.activeFilter{
+    background-color: red;
+}
+.notActiveFilter{
+    background-color: #007bff;
+}
+.hidden{
+    visibility: hidden;
+}
+
+.itemDisplay, .allFilters
+{
+    margin-top: 10px;
+    background-color: darkgrey;
+    text-align: center;
+    color: black;
+}
+.allFilters{
+    padding-bottom: 10px;
+    padding-top: 5px;
+}
+
+.itemLink:hover{
+    text-decoration: none;
+}
+.itemDisplay:hover {
+    background-color: #007bff;
+}
+.artistName{
+    padding: 5px;
+}
+.venueName, .artistName
+{
+    font-size: large;
+    font-weight: bold;
+    color: black;
+}
+.venueCapacity
+{
+    font-size: medium;
+    color: black;
+    font-weight: normal;
+}
+
+.venueName p{
+    margin: 10px 0px 0px 0px;
+}
+.venueCapacity p{
+    margin: 5px 0px 10px 0px;
+}
+
+.filterButton{
+ width: 100%;
+}

@@ -25,7 +25,7 @@
                 <div class="content-center">
                     <div class="contentFound " th:if="${book}">
                         <div class="card" style="width: 18rem;">
-                            <img class="card-img-top placeholder" th:src="@{|/img/${book.title}.jpg|}" alt="Card image cap">
+                            <img class="card-img-top detail" th:src="@{|/img/${book.title}.jpg|}" alt="Card image cap">
                             <div class="card-body">
                                 <h5 class="card-title" th:text="${book.title}">Card title</h5>
                             </div>

@@ -57,9 +57,12 @@ nav{
     white-space: normal;
 }
 .card-img-top{
-     height:150px;
+     height:200px;
  }
-.card-body {
+.detail{
+    height:300px;
+}
+.overview-card {
     height: 300px; /* Adjust the maximum height as needed */
 }
 

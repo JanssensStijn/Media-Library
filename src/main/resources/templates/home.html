@@ -12,11 +12,50 @@
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
         <!-- eigen css file inladen -->
         <link rel="stylesheet" type="text/css" media="all" th:href="@{/css/style.css}"/>
+
     </head>
     <body>
         <div th:replace="~{fragments/header :: header}">Header</div>
-
-
+        <div class="container justify-content-center">
+            <div class="row justify-content-md-center">
+                <div class="col-md-12">
+                    <div class="row">
+                        <h1>Movies</h1>
+                    </div>
+                    <div class="row">
+                        <div class="scrollable-container">
+                            <div class="scrollable-cards">
+                                <div th:each="movie : ${movies}" class="card" th:if="${movie.id le 6}">
+                                    <a th:href="@{|/moviedetails/${movie.id}|}" >
+                                        <div class="card-body">
+                                            <img class="card-img-top" th:src="@{|/img/${movie.title}.jpg|}" alt="Card image cap">
+                                            <h5 class="card-title" th:text="${movie.title}"></h5>
+                                        </div>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <h1>Books</h1>
+                    </div>
+                    <div class="row">
+                        <div class="scrollable-container">
+                            <div class="scrollable-cards">
+                                <div th:each="book : ${books}" class="card" th:if="${book.id le 6}">
+                                    <a th:href="@{|/bookdetails/${book.id}|}" >
+                                        <div class="card-body">
+                                            <!--<img class="card-img-top" th:src="@{|/img/${book.title}.jpg|}" alt="Card image cap">-->
+                                            <h5 class="card-title" th:text="${book.title}"></h5>
+                                        </div>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
         <div th:replace="~{fragments/footer :: footer}">Footer</div>
     </body>
 </html>

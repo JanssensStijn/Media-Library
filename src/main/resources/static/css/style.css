@@ -36,10 +36,31 @@ nav{
 
 .card{
     margin-top: 20px;
+    background-color: darkgrey;
+}
+.card-title{
+    text-align: center;
+}
+.scrollable-container {
+     overflow-x: auto;
+ }
+
+.scrollable-cards {
+    display: inline-flex;
+    padding: 10px;
+    white-space: nowrap;
 }
 
+.card {
+    width: 200px;
+    margin-right: 10px;
+    white-space: normal;
+}
 .card-img-top{
-    height:150px;
+     height:150px;
+ }
+.card-body {
+    height: 300px; /* Adjust the maximum height as needed */
 }
 
 .activeFilter{
@@ -95,4 +116,17 @@ nav{
 
 .filterButton{
  width: 100%;
+}
+.appname{width: 50%; text-align: center;}
+
+@media (max-width: 767px) {
+    /* Apply styles only for screens smaller than 768px */
+    .navbar {
+        display: flex;
+        justify-content: space-between;
+    }
+
+    .navbar-brand {
+        flex-grow: 1;
+    }
 }

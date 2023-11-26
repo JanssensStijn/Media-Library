@@ -56,7 +56,7 @@ nav{
     margin-right: 10px;
     white-space: normal;
 }
-.card:hover{
+.hoverable:hover{
     background-color: #007bff;
 }
 
@@ -71,7 +71,7 @@ nav{
     height:300px;
 }
 .overview-card {
-    height: 300px; /* Adjust the maximum height as needed */
+    height: 350px; /* Adjust the maximum height as needed */
 }
 
 .activeFilter{

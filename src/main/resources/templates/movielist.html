@@ -18,7 +18,7 @@
 <div th:replace="~{fragments/header :: header}">Header</div>
 <div class="container justify-content-center">
     <div class="row justify-content-md-center">
-        <div class="col-md-6">
+        <div class="col-md-3">
             <div class="col-md-12">
                 <p style="text-align:center" th:text="|${numberOfMovies} movies found|">number of movies found</p>
             </div>
@@ -44,25 +44,13 @@
             </div>
         </div>
 
-        <div class="col-md-6">
+        <div class="col-md-9">
             <div class="row">
-                <div class="col-md-12" th:each="movie:${movies}">
-                    <a class="itemLink" th:href="@{|/moviedetails/${movie.id}|}">
-                        <div class="container itemDisplay">
-                            <div class="row">
-                                <div class="col-md-12">
-                                    <div class="row">
-                                        <div class="col-md-12 venueName">
-                                            <p th:text="${movie.title}"></p>
-                                        </div>
-                                    </div>
-                                    <div class="row">
-                                        <div class="col-md-12 venueCapacity">
-                                            <p th:text="|Year of release: ${movie.getYearOfRelease()}|"></p>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
+                <div th:each="movie : ${movies}" class="card hoverable">
+                    <a th:href="@{|/moviedetails/${movie.id}|}" >
+                        <div class="card-body overview-card">
+                            <img class="card-img-top" th:src="@{|/img/${movie.title}.jpg|}" alt="Card image cap">
+                            <h5 class="card-title" th:text="${movie.title}"></h5>
                         </div>
                     </a>
                 </div>

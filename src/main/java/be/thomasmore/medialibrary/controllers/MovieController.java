@@ -73,8 +73,4 @@ public class MovieController {
         return "movielist";
     }
 
-    /*@GetMapping({"/error"})
-    public String error(Model model) {
-        return "error";
-    }*/
 }

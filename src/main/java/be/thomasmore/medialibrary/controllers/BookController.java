@@ -71,8 +71,4 @@ public class BookController {
         return "booklist";
     }
 
-    /*@GetMapping({"/error"})
-    public String error(Model model) {
-        return "error";
-    }*/
 }

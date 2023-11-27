@@ -48,12 +48,6 @@
         </div>
 
         <div class="col-md-9">
-            <!-- Debugging -->
-            <div>
-                Authors: <span th:text="${authors}"></span><br>
-                Years of Release: <span th:text="${yearsOfRelease}"></span>
-            </div>
-
             <div class="row">
                 <div th:each="book : ${books}" class="card hoverable">
                     <a th:href="@{|/bookdetails/${book.id}|}" >

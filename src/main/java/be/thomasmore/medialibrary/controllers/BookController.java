@@ -1,6 +1,7 @@
 package be.thomasmore.medialibrary.controllers;
 
 import be.thomasmore.medialibrary.model.Book;
+import be.thomasmore.medialibrary.model.Movie;
 import be.thomasmore.medialibrary.repositories.BookRepository;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -11,8 +12,11 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
+import java.util.stream.StreamSupport;
 
 @Controller
 public class BookController {
@@ -42,30 +46,36 @@ public class BookController {
         return "bookdetails";
     }
 
-    @GetMapping({"/booklist", "/booklist/",})
-    public String booklist(Model model) {
-        final Iterable<Book> allBooks = bookRepository.findAll();
-        final long numberOfBooks = bookRepository.count();
-        model.addAttribute("numberOfBooks", numberOfBooks);
-        model.addAttribute("books", allBooks);
-        return "booklist";
-    }
-
-    @GetMapping({"/booklist/filter"})
+    @GetMapping({"/booklist", "/booklist/"})
     public String booklistWithFilter(Model model,
                                       @RequestParam(required = false) Integer id,
                                       @RequestParam(required = false) String title,
                                       @RequestParam(required = false) String author,
                                       @RequestParam(required = false) Integer yearOfRelease) {
 
-        final List<Book> allBooks = bookRepository.findByFilter(id, title, author, yearOfRelease);
+        final List<Book> filteredBooks = bookRepository.findByFilter(id, title, author, yearOfRelease);
+
+        final Iterable<Book> allBooks = bookRepository.findAll();
+        ArrayList<Integer> yearsOfRelease = StreamSupport.stream(allBooks.spliterator(), false)
+                .map(Book::getYearOfRelease)
+                .distinct().sorted()
+                .collect(Collectors.toCollection(ArrayList::new));
+        yearsOfRelease.add(0, null);
+
+        ArrayList<String> authors = StreamSupport.stream(allBooks.spliterator(), false)
+                .map(Book::getAuthor)
+                .distinct().sorted()
+                .collect(Collectors.toCollection(ArrayList::new));
+        authors.add(0, null);
 
         model.addAttribute("idFiltered" , id);
         model.addAttribute("authorFiltered" , author);
         model.addAttribute("titleFiltered" , title);
         model.addAttribute("yearOfReleaseFiltered", yearOfRelease);
-        model.addAttribute("numberOfBooks" , allBooks.size());
-        model.addAttribute("books", allBooks);
+        model.addAttribute("numberOfBooks" , filteredBooks.size());
+        model.addAttribute("authors", authors);
+        model.addAttribute("yearsOfRelease", yearsOfRelease);
+        model.addAttribute("books", filteredBooks);
         return "booklist";
     }
 

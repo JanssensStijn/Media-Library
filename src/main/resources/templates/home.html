@@ -10,6 +10,7 @@
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+        <script src="https://kit.fontawesome.com/2855cb807a.js" crossorigin="anonymous"></script>
         <!-- eigen css file inladen -->
         <link rel="stylesheet" type="text/css" media="all" th:href="@{/css/style.css}"/>
 
@@ -43,7 +44,7 @@
                         <div class="scrollable-container">
                             <div class="scrollable-cards">
                                 <div th:each="book : ${books}" class="card hoverable" th:if="${book.id le 6}"> <!--gelimiteerd tot 6 om sneller te kunnen laden-->
-                                    <a th:href="@{|/bookdetails/${book.id}|}" >
+                                    <a th:href="@{|/bookdetails/${book.id}|}">
                                         <div class="card-body overview-card">
                                             <img class="card-img-top" th:src="@{|/img/${book.title}.jpg|}" alt="Card image cap">
                                             <h5 class="card-title" th:text="${book.title}"></h5>

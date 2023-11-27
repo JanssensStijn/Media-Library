@@ -48,7 +48,6 @@ public class BookController {
         final long numberOfBooks = bookRepository.count();
         model.addAttribute("numberOfBooks", numberOfBooks);
         model.addAttribute("books", allBooks);
-        model.addAttribute("showFilter", false);
         return "booklist";
     }
 
@@ -67,7 +66,6 @@ public class BookController {
         model.addAttribute("yearOfReleaseFiltered", yearOfRelease);
         model.addAttribute("numberOfBooks" , allBooks.size());
         model.addAttribute("books", allBooks);
-        model.addAttribute("showFilter", true);
         return "booklist";
     }
 

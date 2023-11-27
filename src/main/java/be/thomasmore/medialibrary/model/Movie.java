@@ -10,18 +10,20 @@ public class Movie {
 
     private String imdb;
     private String title;
-    private String linkMoreInfo;
     private Integer yearOfRelease;
+    private String producer;
+    private String productionCompany;
 
     public Movie() {
     }
 
-    public Movie(int id,String imdb, String title, String linkMoreInfo, int yearOfRelease) {
+    public Movie(int id,String imdb, String title, int yearOfRelease, String producer, String productionCompany ) {
         this.id = id;
         this.imdb = imdb;
         this.title = title;
-        this.linkMoreInfo = linkMoreInfo;
         this.yearOfRelease = yearOfRelease;
+        this.producer = producer;
+        this.productionCompany = productionCompany;
     }
 
     public int getId() {
@@ -48,19 +50,27 @@ public class Movie {
         this.title = title;
     }
 
-    public String getLinkMoreInfo() {
-        return linkMoreInfo;
-    }
-
-    public void setLinkMoreInfo(String linkMoreInfo) {
-        this.linkMoreInfo = linkMoreInfo;
-    }
-
     public Integer getYearOfRelease() {
         return yearOfRelease;
     }
 
     public void setYearOfRelease(Integer yearOfRelease) {
         this.yearOfRelease = yearOfRelease;
+    }
+
+    public String getProducer() {
+        return producer;
+    }
+
+    public void setProducer(String producer) {
+        this.producer = producer;
+    }
+
+    public String getProductionCompany() {
+        return productionCompany;
+    }
+
+    public void setProductionCompany(String productionCompany) {
+        this.productionCompany = productionCompany;
     }
 }

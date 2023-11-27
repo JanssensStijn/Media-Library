@@ -1,18 +1,8 @@
 <!DOCTYPE html>
-<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
 
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Movies</title>
-    <!-- css en js file inladen voor bootstrap -->
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
-    <!-- eigen css file inladen -->
-    <link rel="stylesheet" type="text/css" media="all" th:href="@{/css/style.css}"/>
-</head>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head><title>Movies</title></head>
+
 <body>
 
 <div th:replace="~{fragments/header :: header}">Header</div>
@@ -22,25 +12,39 @@
             <div class="col-md-12">
                 <p style="text-align:center" th:text="|${numberOfMovies} movies found|">number of movies found</p>
             </div>
-            <div class="col-md-12 allFilters"  th:if="${showFilter}">
-                <a class="buttonLook filterButton" th:href="@{|/movielist|}">Hide Filter</a>
+            <div class="col-md-12 allFilters">
+                <a class="filterwidth" th:href="@{|/movielist|}">Hide Filter</a>
                 <form>
                     <h4>Movie filters</h4>
+                    <label for="title" class="filterName filterwidth">title</label>
+                    <input type="text" id="title" class="filterwidth" name="title" value="" th:value="${titleFiltered}">
+                    <label for="yearOfRelease" class="filterwidth">year of release:</label>
+                    <select name="yearOfRelease" id="yearOfRelease" class="filterwidth">
+                        <option th:each="item : ${yearsOfRelease}" th:value="${item}" th:text="${item}" th:selected="${item eq yearOfReleaseFiltered}">
+                        </option>
+                    </select>
+                    <label for="producer" class="filterwidth">producer:</label>
+                    <select name="producer" id="producer" class="filterwidth">
+                        <option th:each="item : ${producers}" th:value="${item}" th:text="${item}" th:selected="${item eq producerFiltered}">
+                        </option>
+                    </select>
+                    <label for="productionCompany" class="filterwidth">production company:</label>
+                    <select name="productionCompany" id="productionCompany" class="filterwidth">
+                        <option th:each="item : ${productionCompanies}" th:value="${item}" th:text="${item}"  th:selected="${item eq productionCompanyFiltered}">
+                        </option>
+                    </select>
+                    <!--
+                        <label for="datemax">Enter a date before 1980-01-01:</label>
+                        <input type="month" id="datemax" name="datemax" max="1979-12-31"><br><br>
+                        <label for="datemin">Enter a date after 2000-01-01:</label>
+                        <input type="month" id="datemin" name="datemin" min="2000-01-02">
+                    -->
                     <div class="oneFilter">
-                        <label for="title" class="filterName">title</label>
-                        <input type="text" id="title" name="title" value="" th:value="${titleFiltered}">
+                        <input type="submit" value="search" class="filterwidth">
                     </div>
-                    <div class="oneFilter">
-                        <label for="yearOfRelease" class="filterName">year of release</label>
-                        <input type="number" id="yearOfRelease" name="yearOfRelease" value="" th:value="${yearOfReleaseFiltered}" step="1" min="1888" placeholder="1888"> <!--first movie ever was in 1888 -->
-                    </div>
-                    <div class="oneFilter">
-                        <input type="submit" value="search" class="buttonLook filterButton">
-                    </div>
+
+
                 </form>
-            </div>
-            <div class="col-md-12 allFilters" th:unless="${showFilter}">
-                <a th:href="@{|/movielist/filter|}">Show Filter</a>
             </div>
         </div>
 

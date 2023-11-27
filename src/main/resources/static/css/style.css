@@ -2,27 +2,62 @@ html{
     margin: 20px;
     font-family: "Arial Black";
 }
+.cover-container {
+}
+.background2{
+    background-color: darkmagenta;
+}
+.cover-picture {
+    background-image: url('../img/Books.jpg');
+    background-size: cover;
+    background-position: center;
+    height: 150px;
+}
+
 nav{
     content-align: center;
     margin-bottom: 20px;
+    margin-top: -70px;
 }
 .navbar{
     padding-left: 20px;
 }
 .navbar-brand{
     font-size: xxx-large;
+    font-weight: bold;
+    color: black;
+    background-color: white;
+    margin: 5px 10px;
+    padding: 5px 10px;
+    border-radius: 10px;
 }
-.nav-link{
+.navbar-brand:hover {
+    color: black;
+    background-color: #007bff;
+}
+.nav-link, .navbar-toggler-icon{
     font-size: x-large;
+    font-weight: bold;
+    color: black;
 }
 .nav-item{
     margin: 5px 10px;
     padding: 5px 10px;
-    border: 1px;
-    border-color: grey;
-    border-style: solid;
     border-radius: 10px;
+    background-color: white;
 }
+
+.nav-item:hover, .nav-link:hover, .navbar-toggler:hover{
+    color: black;
+    background-color: #007bff;
+}
+.navbar-toggler, .navbar-toggler.a{
+    padding: 15px 15px;
+    border-radius: 10px;
+    background-color: white;
+}
+
+
 .footer{
     text-align: center;
     background-color: slategrey;
@@ -73,60 +108,17 @@ nav{
 .overview-card {
     height: 350px; /* Adjust the maximum height as needed */
 }
-
-.activeFilter{
-    background-color: red;
-}
-.notActiveFilter{
-    background-color: #007bff;
-}
 .hidden{
     visibility: hidden;
-}
-
-.itemDisplay, .allFilters
-{
-    margin-top: 10px;
-    background-color: darkgrey;
-    text-align: center;
-    color: black;
 }
 .allFilters{
     padding-bottom: 10px;
     padding-top: 5px;
-}
-
-.itemLink:hover{
-    text-decoration: none;
-}
-.itemDisplay:hover {
     background-color: #007bff;
 }
-.artistName{
-    padding: 5px;
-}
-.venueName, .artistName
-{
-    font-size: large;
-    font-weight: bold;
-    color: black;
-}
-.venueCapacity
-{
-    font-size: medium;
-    color: black;
-    font-weight: normal;
-}
 
-.venueName p{
-    margin: 10px 0px 0px 0px;
-}
-.venueCapacity p{
-    margin: 5px 0px 10px 0px;
-}
-
-.filterButton{
- width: 100%;
+.filterwidth{
+    width: 100%;
 }
 .appname{width: 50%; text-align: center;}
 

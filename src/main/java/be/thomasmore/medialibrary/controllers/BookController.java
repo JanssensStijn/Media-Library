@@ -1,7 +1,9 @@
 package be.thomasmore.medialibrary.controllers;
 
+import be.thomasmore.medialibrary.model.Author;
 import be.thomasmore.medialibrary.model.Book;
 import be.thomasmore.medialibrary.model.Movie;
+import be.thomasmore.medialibrary.repositories.AuthorRepository;
 import be.thomasmore.medialibrary.repositories.BookRepository;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -13,6 +15,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
@@ -23,6 +26,8 @@ public class BookController {
 
     @Autowired
     private BookRepository bookRepository;
+    @Autowired
+    private AuthorRepository authorRepository;
 
     @GetMapping({"/bookdetails/{id}", "/bookdetails", "/bookdetails/"})
     public String bookdetails(Model model, @PathVariable(required = false) Integer id) {
@@ -62,12 +67,7 @@ public class BookController {
                 .collect(Collectors.toCollection(ArrayList::new));
         yearsOfRelease.add(0, null);
 
-        ArrayList<String> authors = StreamSupport.stream(allBooks.spliterator(), false)
-                .map(Book::getAuthor)
-                .distinct().sorted()
-                .collect(Collectors.toCollection(ArrayList::new));
-        authors.add(0, null);
-
+        final List<Author> authors = (List<Author>) authorRepository.findAll();
         model.addAttribute("idFiltered" , id);
         model.addAttribute("authorFiltered" , author);
         model.addAttribute("titleFiltered" , title);

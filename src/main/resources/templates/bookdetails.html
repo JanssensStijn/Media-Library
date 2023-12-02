@@ -38,7 +38,8 @@
                                             <div class="col-sm-6">
                                                 Author:
                                             </div>
-                                            <div class="col-sm-6" th:text="${book.author}">
+                                            <div class="col-sm-6" th:each="author : ${book.getAuthors()}">
+                                                <span th:text="${author.name}"></span>
                                             </div>
                                         </div>
                                         <div class="row">

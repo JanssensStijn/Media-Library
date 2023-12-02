@@ -2,23 +2,21 @@ package be.thomasmore.medialibrary.model;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
+import jakarta.persistence.ManyToMany;
+
+import java.util.Collection;
 
 @Entity
 public class Book {
     @Id
     private int id;
     private String title;
-    private String author;
     private Integer yearOfRelease;
 
-    public Book() {
-    }
+    @ManyToMany
+    private Collection<Author> authors;
 
-    public Book(int id, String title, String author, Integer yearOfRelease) {
-        this.id = id;
-        this.title = title;
-        this.author = author;
-        this.yearOfRelease = yearOfRelease;
+    public Book() {
     }
 
     public int getId() {
@@ -37,19 +35,19 @@ public class Book {
         this.title = title;
     }
 
-    public String getAuthor() {
-        return author;
-    }
-
-    public void setAuthor(String author) {
-        this.author = author;
-    }
-
     public Integer getYearOfRelease() {
         return yearOfRelease;
     }
 
     public void setYearOfRelease(Integer yearOfRelease) {
         this.yearOfRelease = yearOfRelease;
+    }
+
+    public Collection<Author> getAuthors() {
+        return authors;
+    }
+
+    public void setAuthors(Collection<Author> authors) {
+        this.authors = authors;
     }
 }

@@ -25,14 +25,14 @@
                 <p style="text-align:center" th:text="|${numberOfBooks} books found|">number of books found</p>
             </div>
             <div class="col-md-12 allFilters">
-                <a class="buttonLook filterButton" th:href="@{|/booklist|}">Hide Filter</a>
                 <form>
                     <h4>book filters</h4>
                     <label for="title" class="filterName filterwidth">title</label>
                     <input type="text" id="title" class="filterwidth" name="title" value="" th:value="${titleFiltered}">
                     <label for="author" class="filterwidth">author:</label>
                     <select name="author" id="author" class="filterwidth">
-                        <option th:each="item : ${authors}" th:value="${item}" th:text="${item}"  th:selected="${item eq authorFiltered}">
+                        <option th:value="null" th:text="Any" th:selected="${authorFiltered eq null}"></option>
+                        <option th:each="item : ${authors}" th:value="${item.name}" th:text="${item.name}"  th:selected="${item.name eq authorFiltered}">
                         </option>
                     </select>
                     <label for="yearOfRelease" class="filterwidth">year of release:</label>

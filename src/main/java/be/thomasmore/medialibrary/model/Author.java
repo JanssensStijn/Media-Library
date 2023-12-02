@@ -17,7 +17,7 @@ public class Author {
         private String nationality;
 
         private String bio;
-        @ManyToMany(mappedBy = "authors")
+        @ManyToMany(mappedBy = "authors", fetch = FetchType.LAZY)
         private Collection<Book> books;
 
         public Author() {

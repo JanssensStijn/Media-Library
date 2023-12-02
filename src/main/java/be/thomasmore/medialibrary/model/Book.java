@@ -1,6 +1,7 @@
 package be.thomasmore.medialibrary.model;
 
 import jakarta.persistence.Entity;
+import jakarta.persistence.FetchType;
 import jakarta.persistence.Id;
 import jakarta.persistence.ManyToMany;
 
@@ -13,7 +14,7 @@ public class Book {
     private String title;
     private Integer yearOfRelease;
 
-    @ManyToMany
+    @ManyToMany (fetch = FetchType.LAZY)
     private Collection<Author> authors;
 
     public Book() {

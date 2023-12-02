@@ -63,18 +63,6 @@ public class MovieController {
                 .collect(Collectors.toCollection(ArrayList::new));
         yearsOfRelease.add(0, null);
 
-        ArrayList<String> producers = StreamSupport.stream(allMovies.spliterator(), false)
-                .map(Movie::getProducer)
-                .distinct().sorted()
-                .collect(Collectors.toCollection(ArrayList::new));
-        producers.add(0, null);
-
-        ArrayList<String> productionCompanies = StreamSupport.stream(allMovies.spliterator(), false)
-                .map(Movie::getProductionCompany)
-                .distinct().sorted()
-                .collect(Collectors.toCollection(ArrayList::new));
-        productionCompanies.add(0, null); //lege optie toevoegen
-
         model.addAttribute("idFiltered" , id);
         model.addAttribute("imdbFiltered" , imdb);
         model.addAttribute("titleFiltered" , title);

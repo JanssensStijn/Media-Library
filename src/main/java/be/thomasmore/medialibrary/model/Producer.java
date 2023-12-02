@@ -1,9 +1,6 @@
 package be.thomasmore.medialibrary.model;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.FetchType;
-import jakarta.persistence.Id;
-import jakarta.persistence.ManyToMany;
+import jakarta.persistence.*;
 
 import java.util.Collection;
 
@@ -21,7 +18,6 @@ public class Producer {
         public int getId() {
                 return id;
         }
-
         public void setId(int id) {
                 this.id = id;
         }
@@ -29,17 +25,13 @@ public class Producer {
         public String getName() {
                 return name;
         }
-
         public void setName(String name) {
                 this.name = name;
         }
 
-
-
         public Collection<Movie> getMovies() {
                 return movies;
         }
-
         public void setMovies(Collection<Movie> movies) {
                 this.movies = movies;
         }

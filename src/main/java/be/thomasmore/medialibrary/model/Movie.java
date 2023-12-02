@@ -19,17 +19,12 @@ public class Movie {
     private String productionCompany;
     @ManyToMany(fetch = FetchType.LAZY)
     private Collection<Actor> actors;
+    @ManyToMany(fetch = FetchType.LAZY)
+    private Collection<Producer> producers;
+    @ManyToMany(fetch = FetchType.LAZY)
+    private Collection<ProductionCompany> productionCompanies;
 
     public Movie() {
-    }
-
-    public Movie(int id,String imdb, String title, int yearOfRelease, String producer, String productionCompany ) {
-        this.id = id;
-        this.imdb = imdb;
-        this.title = title;
-        this.yearOfRelease = yearOfRelease;
-        this.producer = producer;
-        this.productionCompany = productionCompany;
     }
 
     public int getId() {
@@ -72,11 +67,5 @@ public class Movie {
         this.producer = producer;
     }
 
-    public String getProductionCompany() {
-        return productionCompany;
-    }
 
-    public void setProductionCompany(String productionCompany) {
-        this.productionCompany = productionCompany;
-    }
 }

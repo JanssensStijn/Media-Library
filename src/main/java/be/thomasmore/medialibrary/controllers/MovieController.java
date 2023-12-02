@@ -1,7 +1,12 @@
 package be.thomasmore.medialibrary.controllers;
 
+import be.thomasmore.medialibrary.model.Author;
 import be.thomasmore.medialibrary.model.Movie;
+import be.thomasmore.medialibrary.model.Producer;
+import be.thomasmore.medialibrary.model.ProductionCompany;
 import be.thomasmore.medialibrary.repositories.MovieRepository;
+import be.thomasmore.medialibrary.repositories.ProducerRepository;
+import be.thomasmore.medialibrary.repositories.ProductionCompanyRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -20,6 +25,10 @@ public class MovieController {
 
     @Autowired
     private MovieRepository movieRepository;
+    @Autowired
+    private ProducerRepository producerRepository;
+    @Autowired
+    private ProductionCompanyRepository productionCompanyRepository;
 
     @GetMapping({"/moviedetails/{id}", "/moviedetails", "/moviedetails/"})
     public String moviedetails(Model model, @PathVariable(required = false) Integer id) {
@@ -55,6 +64,8 @@ public class MovieController {
         final List<Movie> filteredMovies = movieRepository.findByFilter(id,imdb, title, yearOfRelease, producer, productionCompany);
 
         final Iterable<Movie> allMovies = movieRepository.findAll();
+        final List<Producer> producers = (List<Producer>) producerRepository.findAll();
+        final List<ProductionCompany> productionCompanies = (List<ProductionCompany>) productionCompanyRepository.findAll();
 
 
         ArrayList<Integer> yearsOfRelease = StreamSupport.stream(allMovies.spliterator(), false)

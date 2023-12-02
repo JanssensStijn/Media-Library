@@ -68,6 +68,7 @@ public class BookController {
         yearsOfRelease.add(0, null);
 
         final List<Author> authors = (List<Author>) authorRepository.findAll();
+
         model.addAttribute("idFiltered" , id);
         model.addAttribute("authorFiltered" , author);
         model.addAttribute("titleFiltered" , title);

@@ -17,7 +17,7 @@ public class Movie {
     private Collection<Producer> producers;
     @ManyToMany(fetch = FetchType.LAZY)
     private Collection<ProductionCompany> productionCompanies;
-//
+
     public Movie() {
     }
 

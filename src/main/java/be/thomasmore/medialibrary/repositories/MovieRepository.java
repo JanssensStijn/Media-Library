@@ -1,21 +1,33 @@
 package be.thomasmore.medialibrary.repositories;
 
+import be.thomasmore.medialibrary.model.Book;
 import be.thomasmore.medialibrary.model.Movie;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.CrudRepository;
+import org.springframework.data.repository.query.Param;
 
 import java.util.List;
 import java.util.Optional;
 
 public interface MovieRepository extends CrudRepository<Movie, Integer> {
 
-    @Query("SELECT m FROM Movie m WHERE (?1 IS NULL OR m.id = ?1)" +
-            " AND (?2 IS NULL OR m.imdb ILIKE ?2)" + //LIKE = case sensitive / ILIKE = not case sensitive
-            " AND (?3 IS NULL OR m.title ILIKE %?3%)" +
-            " AND (?4 IS NULL OR m.yearOfRelease = ?4)" +
-            " AND (?5 IS NULL OR m.producer ILIKE %?5%)"+
-            " AND (?6 IS NULL OR m.productionCompany ILIKE %?6%)")
-    List<Movie> findByFilter(Integer id, String imdb, String title, Integer yearOfRelease, String producer, String productionCompany);
+    @Query("SELECT m FROM Movie m" +
+            " LEFT JOIN m.producers p" +
+            " LEFT JOIN m.productionCompanies pc" +
+            " WHERE (:id IS NULL OR m.id = :id) " +
+            " AND (:imdb IS NULL OR m.imdb ILIKE :imdb)" + //LIKE = case sensitive / ILIKE = not case sensitive
+            " AND (:title IS NULL OR m.title ILIKE %:title%)" +
+            " AND (:yearOfRelease IS NULL OR m.yearOfRelease = :yearOfRelease)" +
+            " AND (:producer IS NULL OR p.name ILIKE %:producer%)"+
+            " AND (:productionCompany IS NULL OR pc.name ILIKE %:productionCompany%)")
+    List<Movie> findByFilter(@Param("id")Integer id,
+                             @Param("imdb")String imdb,
+                             @Param("title")String title,
+                             @Param("yearOfRelease") Integer yearOfRelease,
+                             @Param("producer") String producer,
+                             @Param("productionCompany")String productionCompany);
+
+
     Optional<Movie> findFirstByIdGreaterThanOrderByIdAsc(Integer id);
 
     Optional<Movie> findFirstByOrderByIdAsc();

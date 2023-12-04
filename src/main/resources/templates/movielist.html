@@ -39,22 +39,16 @@
                     <select name="producer" id="producer" class="filterwidth">
                         <option  th:value="null" th:text="Any" th:selected="${producerFiltered eq null}">
                         </option>
-                        <option th:each="item : ${producers}" th:value="${item}" th:text="${item}" th:selected="${item eq producerFiltered}">
+                        <option th:each="item : ${producers}" th:value="${item.name}" th:text="${item.name}" th:selected="${item.name eq producerFiltered}">
                         </option>
                     </select>
                     <label for="productionCompany" class="filterwidth">production company:</label>
                     <select name="productionCompany" id="productionCompany" class="filterwidth">
                         <option  th:value="null" th:text="Any" th:selected="${productionCompanyFiltered eq null}"></option>
-                        <option th:each="item : ${productionCompanies}" th:value="${item}" th:text="${item}"  th:selected="${item eq productionCompanyFiltered}">
+                        <option th:each="item : ${productionCompanies}" th:value="${item.name}" th:text="${item.name}"  th:selected="${item.name eq productionCompanyFiltered}">
                         </option>
                     </select>
-                    <!--
-                        <label for="datemax">Enter a date before 1980-01-01:</label>
-                        <input type="month" id="datemax" name="datemax" max="1979-12-31"><br><br>
-                        <label for="datemin">Enter a date after 2000-01-01:</label>
-                        <input type="month" id="datemin" name="datemin" min="2000-01-02">
-                    -->
-                    <div class="oneFilter">
+                    <div class="submitbutton">
                         <input type="submit" value="search" class="filterwidth">
                     </div>
 

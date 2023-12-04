@@ -69,6 +69,10 @@ nav{
     color: black;
 }
 
+.submitbutton{
+    margin-top: 20px;
+}
+
 .card{
     margin-top: 20px;
     background-color: darkgrey;

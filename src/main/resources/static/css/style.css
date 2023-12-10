@@ -2,11 +2,7 @@ html{
     margin: 20px;
     font-family: "Arial Black";
 }
-.cover-container {
-}
-.background2{
-    background-color: darkmagenta;
-}
+
 .cover-picture {
     background-image: url('../img/Books.jpg');
     background-size: cover;
@@ -110,8 +106,26 @@ nav{
     height:300px;
     image-resolution: normal;
 }
+
+.moviedetails{
+    border-radius: 10px;
+    background-color: darkgrey;
+    padding: 15px;
+}
+.movieDetailCenter{
+    padding: 15px;
+    margin: 0px 30px;
+    border-radius: 10px;
+    background-color: darkgrey;
+    height: 100%;
+}
+.detailsButton{
+    width: 100%;
+    height: 50px;
+
+}
 .overview-card {
-    height: 350px; /* Adjust the maximum height as needed */
+    height: 350px;
 }
 .hidden{
     visibility: hidden;

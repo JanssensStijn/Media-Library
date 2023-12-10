@@ -1,103 +1,103 @@
-INSERT INTO MOVIE (ID, IMDB, TITLE, YEAR_OF_RELEASE)
+INSERT INTO MOVIE (IMDB, TITLE, YEAR_OF_RELEASE)
 VALUES
-    (1, 'tt0111161', 'The Shawshank Redemption',  1994),
-    (2, 'tt0468569', 'The Dark Knight', 2008),
-    (3, 'tt1375666', 'Inception', 2010),
-    (4, 'tt0109830', 'Forrest Gump', 1994),
-    (5, 'tt0137523', 'Fight Club', 1999),
-    (6, 'tt0167261', 'The Lord of the Rings - The Two Towers', 2002),
-    (7, 'tt0068646', 'The Godfather', 1972),
-    (8, 'tt0120737', 'The Lord of the Rings - The Fellowship of the Ring', 2001),
-    (9, 'tt0108052', 'Schindler`s List', 1993),
-    (10, 'tt0088763', 'Back to the Future', 1985);
+    ('tt0111161', 'The Shawshank Redemption',  1994),
+    ('tt0468569', 'The Dark Knight', 2008),
+    ('tt1375666', 'Inception', 2010),
+    ('tt0109830', 'Forrest Gump', 1994),
+    ('tt0137523', 'Fight Club', 1999),
+    ('tt0167261', 'The Lord of the Rings - The Two Towers', 2002),
+    ('tt0068646', 'The Godfather', 1972),
+    ('tt0120737', 'The Lord of the Rings - The Fellowship of the Ring', 2001),
+    ('tt0108052', 'Schindler`s List', 1993),
+    ('tt0088763', 'Back to the Future', 1985);
 
 --------------------------------------------------------------------
 
-INSERT INTO PRODUCER (ID, NAME)
+INSERT INTO PRODUCER (NAME)
 VALUES
-    (1, 'Frank Darabont'),
-    (2, 'Christopher Nolan'),
-    (3, 'Wendy Finerman'),
-    (4, 'Art Linson'),
-    (5, 'Peter Jackson'),
-    (6, 'Albert S. Ruddy'),
-    (7, 'Steven Spielberg');
+    ('Frank Darabont'),
+    ('Christopher Nolan'),
+    ('Wendy Finerman'),
+    ('Art Linson'),
+    ('Peter Jackson'),
+    ('Albert S. Ruddy'),
+    ('Steven Spielberg');
 
 --------------------------------------------------------------------
 
-INSERT INTO PRODUCTION_COMPANY (ID, NAME)
+INSERT INTO PRODUCTION_COMPANY (NAME)
 VALUES
-    (1, 'Castle Rock Entertainment'),
-    (2, 'Warner Bros. Pictures'),
-    (3, 'Paramount Pictures'),
-    (4, '20th Century Fox'),
-    (5, 'New Line Cinema'),
-    (6, 'Universal Pictures');
+    ('Castle Rock Entertainment'),
+    ('Warner Bros. Pictures'),
+    ('Paramount Pictures'),
+    ('20th Century Fox'),
+    ('New Line Cinema'),
+    ('Universal Pictures');
 
 --------------------------------------------------------------------
 
-INSERT INTO MOVIE_PRODUCTION_COMPANIES (MOVIES_ID, PRODUCTION_COMPANIES_ID) VALUES (1, 1);
-INSERT INTO MOVIE_PRODUCTION_COMPANIES (MOVIES_ID, PRODUCTION_COMPANIES_ID) VALUES (2, 2);
-INSERT INTO MOVIE_PRODUCTION_COMPANIES (MOVIES_ID, PRODUCTION_COMPANIES_ID) VALUES (3, 2);
-INSERT INTO MOVIE_PRODUCTION_COMPANIES (MOVIES_ID, PRODUCTION_COMPANIES_ID) VALUES (4, 3);
-INSERT INTO MOVIE_PRODUCTION_COMPANIES (MOVIES_ID, PRODUCTION_COMPANIES_ID) VALUES (5, 4);
-INSERT INTO MOVIE_PRODUCTION_COMPANIES (MOVIES_ID, PRODUCTION_COMPANIES_ID) VALUES (6, 5);
-INSERT INTO MOVIE_PRODUCTION_COMPANIES (MOVIES_ID, PRODUCTION_COMPANIES_ID) VALUES (7, 3);
-INSERT INTO MOVIE_PRODUCTION_COMPANIES (MOVIES_ID, PRODUCTION_COMPANIES_ID) VALUES (8, 5);
-INSERT INTO MOVIE_PRODUCTION_COMPANIES (MOVIES_ID, PRODUCTION_COMPANIES_ID) VALUES (9, 6);
-INSERT INTO MOVIE_PRODUCTION_COMPANIES (MOVIES_ID, PRODUCTION_COMPANIES_ID) VALUES (10, 6);
+INSERT INTO MOVIE_PRODUCTION_COMPANIES (MOVIES_ID, PRODUCTION_COMPANIES_ID) VALUES (select id from movie where title = 'The Shawshank Redemption', select id from production_company where name =  'Castle Rock Entertainment');
+INSERT INTO MOVIE_PRODUCTION_COMPANIES (MOVIES_ID, PRODUCTION_COMPANIES_ID) VALUES (select id from movie where title = 'The Dark Knight', select id from production_company where name = 'Warner Bros. Pictures');
+INSERT INTO MOVIE_PRODUCTION_COMPANIES (MOVIES_ID, PRODUCTION_COMPANIES_ID) VALUES (select id from movie where title = 'Inception', select id from production_company where name =  'Warner Bros. Pictures');
+INSERT INTO MOVIE_PRODUCTION_COMPANIES (MOVIES_ID, PRODUCTION_COMPANIES_ID) VALUES (select id from movie where title = 'Forrest Gump', select id from production_company where name =  'Paramount Pictures');
+INSERT INTO MOVIE_PRODUCTION_COMPANIES (MOVIES_ID, PRODUCTION_COMPANIES_ID) VALUES (select id from movie where title = 'Fight Club', select id from production_company where name =  '20th Century Fox');
+INSERT INTO MOVIE_PRODUCTION_COMPANIES (MOVIES_ID, PRODUCTION_COMPANIES_ID) VALUES (select id from movie where title = 'The Lord of the Rings - The Two Towers', select id from production_company where name =  'New Line Cinema');
+INSERT INTO MOVIE_PRODUCTION_COMPANIES (MOVIES_ID, PRODUCTION_COMPANIES_ID) VALUES (select id from movie where title = 'The Godfather', select id from production_company where name =  'Paramount Pictures');
+INSERT INTO MOVIE_PRODUCTION_COMPANIES (MOVIES_ID, PRODUCTION_COMPANIES_ID) VALUES (select id from movie where title = 'The Lord of the Rings - The Fellowship of the Ring', select id from production_company where name =  'New Line Cinema');
+INSERT INTO MOVIE_PRODUCTION_COMPANIES (MOVIES_ID, PRODUCTION_COMPANIES_ID) VALUES (select id from movie where title = 'Schindler`s List', select id from production_company where name =  'Universal Pictures');
+INSERT INTO MOVIE_PRODUCTION_COMPANIES (MOVIES_ID, PRODUCTION_COMPANIES_ID) VALUES (select id from movie where title = 'Back to the Future', select id from production_company where name =  'Universal Pictures');
 
 --------------------------------------------------------------------
 
-INSERT INTO MOVIE_PRODUCERS (MOVIES_ID, PRODUCERS_ID) VALUES (1, 1);
-INSERT INTO MOVIE_PRODUCERS (MOVIES_ID, PRODUCERS_ID) VALUES (2, 2);
-INSERT INTO MOVIE_PRODUCERS (MOVIES_ID, PRODUCERS_ID) VALUES (3, 2);
-INSERT INTO MOVIE_PRODUCERS (MOVIES_ID, PRODUCERS_ID) VALUES (4, 3);
-INSERT INTO MOVIE_PRODUCERS (MOVIES_ID, PRODUCERS_ID) VALUES (5, 4);
-INSERT INTO MOVIE_PRODUCERS (MOVIES_ID, PRODUCERS_ID) VALUES (6, 5);
-INSERT INTO MOVIE_PRODUCERS (MOVIES_ID, PRODUCERS_ID) VALUES (7, 6);
-INSERT INTO MOVIE_PRODUCERS (MOVIES_ID, PRODUCERS_ID) VALUES (8, 5);
-INSERT INTO MOVIE_PRODUCERS (MOVIES_ID, PRODUCERS_ID) VALUES (9, 7);
-INSERT INTO MOVIE_PRODUCERS (MOVIES_ID, PRODUCERS_ID) VALUES (10, 7);
+INSERT INTO MOVIE_PRODUCERS (MOVIES_ID, PRODUCERS_ID) VALUES (select id from movie where title = 'The Shawshank Redemption', select id from producer where name = 'Frank Darabont');
+INSERT INTO MOVIE_PRODUCERS (MOVIES_ID, PRODUCERS_ID) VALUES (select id from movie where title = 'The Dark Knight', select id from producer where name = 'Christopher Nolan');
+INSERT INTO MOVIE_PRODUCERS (MOVIES_ID, PRODUCERS_ID) VALUES (select id from movie where title = 'Inception', select id from producer where name = 'Christopher Nolan');
+INSERT INTO MOVIE_PRODUCERS (MOVIES_ID, PRODUCERS_ID) VALUES (select id from movie where title = 'Forrest Gump', select id from producer where name = 'Wendy Finerman');
+INSERT INTO MOVIE_PRODUCERS (MOVIES_ID, PRODUCERS_ID) VALUES (select id from movie where title = 'Fight Club', select id from producer where name = 'Art Linson');
+INSERT INTO MOVIE_PRODUCERS (MOVIES_ID, PRODUCERS_ID) VALUES (select id from movie where title = 'The Lord of the Rings - The Two Towers', select id from producer where name = 'Peter Jackson');
+INSERT INTO MOVIE_PRODUCERS (MOVIES_ID, PRODUCERS_ID) VALUES (select id from movie where title = 'The Godfather', select id from producer where name = 'Albert S. Ruddy');
+INSERT INTO MOVIE_PRODUCERS (MOVIES_ID, PRODUCERS_ID) VALUES (select id from movie where title = 'The Lord of the Rings - The Fellowship of the Ring', select id from producer where name = 'Peter Jackson');
+INSERT INTO MOVIE_PRODUCERS (MOVIES_ID, PRODUCERS_ID) VALUES (select id from movie where title = 'Schindler`s List', select id from producer where name = 'Steven Spielberg');
+INSERT INTO MOVIE_PRODUCERS (MOVIES_ID, PRODUCERS_ID) VALUES (select id from movie where title = 'Back to the Future', select id from producer where name = 'Steven Spielberg');
 
 --------------------------------------------------------------------
 
-INSERT INTO BOOK (ID, TITLE, YEAR_OF_RELEASE)
+INSERT INTO BOOK (TITLE, YEAR_OF_RELEASE)
 VALUES
-    (1, 'To Kill a Mockingbird', 1960),
-    (2, '1984', 1949),
-    (3, 'The Great Gatsby', 1925),
-    (4, 'Pride and Prejudice', 1813),
-    (5, 'The Catcher in the Rye', 1951),
-    (6, 'The Hobbit', 1937),
-    (7, 'One Hundred Years of Solitude', 1967),
-    (8, 'Brave New World', 1932),
-    (9, 'To the Lighthouse', 1927),
-    (10, 'The Lord of the Rings', 1954);
+    ('To Kill a Mockingbird', 1960),
+    ('1984', 1949),
+    ('The Great Gatsby', 1925),
+    ('Pride and Prejudice', 1813),
+    ('The Catcher in the Rye', 1951),
+    ('The Hobbit', 1937),
+    ('One Hundred Years of Solitude', 1967),
+    ('Brave New World', 1932),
+    ('To the Lighthouse', 1927),
+    ('The Lord of the Rings', 1954);
 
 --------------------------------------------------------------------
-INSERT INTO AUTHOR (ID, NAME)
+INSERT INTO AUTHOR (NAME)
 VALUES
-    (1, 'Harper Lee'),
-    (2, 'George Orwell'),
-    (3, 'F. Scott Fitzgerald'),
-    (4, 'Jane Austen'),
-    (5, 'J.D. Salinger'),
-    (6, 'J.R.R. Tolkien'),
-    (7, 'Gabriel García Márquez'),
-    (8, 'Aldous Huxley'),
-    (9, 'Virginia Woolf');
+    ('Harper Lee'),
+    ('George Orwell'),
+    ('F. Scott Fitzgerald'),
+    ('Jane Austen'),
+    ('J.D. Salinger'),
+    ('J.R.R. Tolkien'),
+    ('Gabriel García Márquez'),
+    ('Aldous Huxley'),
+    ('Virginia Woolf');
 
 
 --------------------------------------------------------------------
 
-INSERT INTO BOOK_AUTHORS (BOOKS_ID, AUTHORS_ID) VALUES (1, 1);
-INSERT INTO BOOK_AUTHORS (BOOKS_ID, AUTHORS_ID) VALUES (2, 2);
-INSERT INTO BOOK_AUTHORS (BOOKS_ID, AUTHORS_ID) VALUES (3, 3);
-INSERT INTO BOOK_AUTHORS (BOOKS_ID, AUTHORS_ID) VALUES (4, 4);
-INSERT INTO BOOK_AUTHORS (BOOKS_ID, AUTHORS_ID) VALUES (5, 5);
-INSERT INTO BOOK_AUTHORS (BOOKS_ID, AUTHORS_ID) VALUES (6, 6);
-INSERT INTO BOOK_AUTHORS (BOOKS_ID, AUTHORS_ID) VALUES (7, 7);
-INSERT INTO BOOK_AUTHORS (BOOKS_ID, AUTHORS_ID) VALUES (8, 8);
-INSERT INTO BOOK_AUTHORS (BOOKS_ID, AUTHORS_ID) VALUES (9, 9);
-INSERT INTO BOOK_AUTHORS (BOOKS_ID, AUTHORS_ID) VALUES (10, 6);
+INSERT INTO BOOK_AUTHORS (BOOKS_ID, AUTHORS_ID) VALUES (select id from book where title = 'To Kill a Mockingbird', select id from author where name = 'Harper Lee');
+INSERT INTO BOOK_AUTHORS (BOOKS_ID, AUTHORS_ID) VALUES (select id from book where title = '1984', select id from author where name = 'George Orwell');
+INSERT INTO BOOK_AUTHORS (BOOKS_ID, AUTHORS_ID) VALUES (select id from book where title = 'The Great Gatsby', select id from author where name = 'F. Scott Fitzgerald');
+INSERT INTO BOOK_AUTHORS (BOOKS_ID, AUTHORS_ID) VALUES (select id from book where title = 'Pride and Prejudice', select id from author where name = 'Jane Austen');
+INSERT INTO BOOK_AUTHORS (BOOKS_ID, AUTHORS_ID) VALUES (select id from book where title = 'The Catcher in the Rye', select id from author where name = 'J.D. Salinger');
+INSERT INTO BOOK_AUTHORS (BOOKS_ID, AUTHORS_ID) VALUES (select id from book where title = 'The Hobbit', select id from author where name = 'J.R.R. Tolkien');
+INSERT INTO BOOK_AUTHORS (BOOKS_ID, AUTHORS_ID) VALUES (select id from book where title = 'One Hundred Years of Solitude', select id from author where name = 'Gabriel García Márquez');
+INSERT INTO BOOK_AUTHORS (BOOKS_ID, AUTHORS_ID) VALUES (select id from book where title = 'Brave New World', select id from author where name = 'Aldous Huxley');
+INSERT INTO BOOK_AUTHORS (BOOKS_ID, AUTHORS_ID) VALUES (select id from book where title = 'To the Lighthouse', select id from author where name = 'Virginia Woolf');
+INSERT INTO BOOK_AUTHORS (BOOKS_ID, AUTHORS_ID) VALUES (select id from book where title = 'The Lord of the Rings', select id from author where name = 'J.R.R. Tolkien');

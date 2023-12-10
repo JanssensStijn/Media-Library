@@ -1,17 +1,19 @@
 package be.thomasmore.medialibrary.model;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.FetchType;
-import jakarta.persistence.Id;
-import jakarta.persistence.ManyToMany;
+import jakarta.persistence.*;
+import org.springframework.format.annotation.DateTimeFormat;
 
 import java.util.Collection;
 
 @Entity
 public class Book {
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Id
     private int id;
     private String title;
+
+    @Temporal(TemporalType.DATE)
+    @DateTimeFormat(pattern = "yyyy")
     private Integer yearOfRelease;
 
     @ManyToMany (fetch = FetchType.LAZY)

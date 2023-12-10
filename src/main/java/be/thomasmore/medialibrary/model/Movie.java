@@ -1,15 +1,20 @@
 package be.thomasmore.medialibrary.model;
 
 import jakarta.persistence.*;
+import org.springframework.format.annotation.DateTimeFormat;
+
 import java.util.Collection;
 
 @Entity
 public class Movie {
 
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Id
     private int id;
     private String imdb;
     private String title;
+    @Temporal(TemporalType.DATE)
+    @DateTimeFormat(pattern = "yyyy")
     private Integer yearOfRelease;
     @ManyToMany(fetch = FetchType.LAZY)
     private Collection<Actor> actors;

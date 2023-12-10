@@ -8,6 +8,7 @@ import java.util.Date;
 @Entity
 public class Actor {
 
+        @GeneratedValue(strategy = GenerationType.IDENTITY)
         @Id
         private int id;
         private String name;

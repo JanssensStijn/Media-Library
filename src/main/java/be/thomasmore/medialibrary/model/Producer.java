@@ -7,6 +7,7 @@ import java.util.Collection;
 @Entity
 public class Producer {
 
+        @GeneratedValue(strategy = GenerationType.IDENTITY)
         @Id
         private int id;
         private String name;

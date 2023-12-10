@@ -27,6 +27,11 @@
             <div class="col-md-10 d-flex justify-content-center">
                 <div class="content-center">
                     <div class="contentFound " th:if="${movie}">
+                        <iframe id="ytplayer" type="text/html" width="720" height="405"
+                                th:src="|https://www.youtube.com/embed/${movie.trailerLink}?autoplay=1
+                                |"
+                                border="0" allowfullscreen></iframe>
+
                         <div class="card" style="width: 18rem;">
                             <img class="card-img-top detail" th:src="@{|/img/${movie.title}.jpg|}" alt="Card image cap">
                             <div class="card-body">

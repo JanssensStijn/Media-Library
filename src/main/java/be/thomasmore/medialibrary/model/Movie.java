@@ -16,6 +16,7 @@ public class Movie {
     @Temporal(TemporalType.DATE)
     @DateTimeFormat(pattern = "yyyy")
     private Integer yearOfRelease;
+    private String trailerLink;
     @ManyToMany(fetch = FetchType.LAZY)
     private Collection<Actor> actors;
     @ManyToMany(fetch = FetchType.LAZY)
@@ -54,6 +55,14 @@ public class Movie {
         this.yearOfRelease = yearOfRelease;
     }
 
+    public String getTrailerLink() {
+        return trailerLink;
+    }
+
+    public void setTrailerLink(String trailerLink) {
+        this.trailerLink = trailerLink;
+    }
+
     public Collection<Actor> getActors() {
         return actors;
     }
@@ -74,4 +83,5 @@ public class Movie {
     public void setProductionCompanies(Collection<ProductionCompany> productionCompanies) {
         this.productionCompanies = productionCompanies;
     }
+
 }

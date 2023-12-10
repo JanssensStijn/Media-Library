@@ -1,15 +1,16 @@
-INSERT INTO MOVIE (IMDB, TITLE, YEAR_OF_RELEASE)
+INSERT INTO MOVIE (IMDB, TITLE, YEAR_OF_RELEASE, TRAILER_LINK)
 VALUES
-    ('tt0111161', 'The Shawshank Redemption',  1994),
-    ('tt0468569', 'The Dark Knight', 2008),
-    ('tt1375666', 'Inception', 2010),
-    ('tt0109830', 'Forrest Gump', 1994),
-    ('tt0137523', 'Fight Club', 1999),
-    ('tt0167261', 'The Lord of the Rings - The Two Towers', 2002),
-    ('tt0068646', 'The Godfather', 1972),
-    ('tt0120737', 'The Lord of the Rings - The Fellowship of the Ring', 2001),
-    ('tt0108052', 'Schindler`s List', 1993),
-    ('tt0088763', 'Back to the Future', 1985);
+    ('tt0111161', 'The Shawshank Redemption', 1994, '6hB3S9bIaco'),
+    ('tt0468569', 'The Dark Knight', 2008, 'EXeTwQWrcwY'),
+    ('tt1375666', 'Inception', 2010, '8hP9D6kZseM'),
+    ('tt0109830', 'Forrest Gump', 1994, 'bLvqoHBptjg'),
+    ('tt0137523', 'Fight Club', 1999, 'SUXWAEX2jlg'),
+    ('tt0167261', 'The Lord of the Rings - The Two Towers', 2002, 'LbfMDwc4azU'),
+    ('tt0068646', 'The Godfather', 1972, '2neD0MYBaL4'),
+    ('tt0120737', 'The Lord of the Rings - The Fellowship of the Ring', 2001, '_e8QGuG50ro'),
+    ('tt0108052', 'Schindler`s List', 1993, 'JdRGC-w9syA'),
+    ('tt0088763', 'Back to the Future', 1985, 'qvsgGtivCgs');
+
 
 --------------------------------------------------------------------
 

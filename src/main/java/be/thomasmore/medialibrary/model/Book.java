@@ -16,6 +16,8 @@ public class Book {
     @DateTimeFormat(pattern = "yyyy")
     private Integer yearOfRelease;
 
+    private String description;
+
     @ManyToMany (fetch = FetchType.LAZY)
     private Collection<Author> authors;
 
@@ -44,6 +46,14 @@ public class Book {
 
     public void setYearOfRelease(Integer yearOfRelease) {
         this.yearOfRelease = yearOfRelease;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
     }
 
     public Collection<Author> getAuthors() {

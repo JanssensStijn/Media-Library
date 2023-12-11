@@ -65,10 +65,11 @@
                             </div>
                             <div class="col-md-6">
                                 <div class="movieDetailCenter">
-                                <p><strong>Year of release: </strong><span th:text="|${movie.yearOfRelease}|"></span></p>
-                                <p><strong>Producer: </strong><span th:each="producer : ${movie.getProducers()}" th:text="${producer.name} "></span></p>
-                                <p><strong>Production company: </strong><span th:each="company : ${movie.getProductionCompanies()}" th:text="${company.name} "></span></p>
-                                <a href="#" class="card-link" th:href="@{|https://www.imdb.com/title/${movie.imdb}/|}" target="_blank">More info about movie</a>
+                                    <p><strong>Year of release: </strong><span th:text="|${movie.yearOfRelease}|"></span></p>
+                                    <p><strong>Producer: </strong><span th:each="producer : ${movie.getProducers()}" th:text="${producer.name} "></span></p>
+                                    <p><strong>Production company: </strong><span th:each="company : ${movie.getProductionCompanies()}" th:text="${company.name} "></span></p>
+                                    <p><strong>Description: </strong><span th:text="|${movie.description}|"></span></p>
+                                    <a href="#" class="card-link" th:href="@{|https://www.imdb.com/title/${movie.imdb}/|}" target="_blank">More info about movie</a>
                                 </div>
                             </div>
                             <div class="col-md-3 moviedetails align-items-center">

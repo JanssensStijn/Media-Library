@@ -17,6 +17,8 @@ public class Movie {
     @DateTimeFormat(pattern = "yyyy")
     private Integer yearOfRelease;
     private String trailerLink;
+
+    private String description;
     @ManyToMany(fetch = FetchType.LAZY)
     private Collection<Actor> actors;
     @ManyToMany(fetch = FetchType.LAZY)
@@ -61,6 +63,14 @@ public class Movie {
 
     public void setTrailerLink(String trailerLink) {
         this.trailerLink = trailerLink;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
     }
 
     public Collection<Actor> getActors() {

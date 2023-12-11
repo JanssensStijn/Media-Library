@@ -58,6 +58,7 @@
                                 <div class="movieDetailCenter">
                                     <p><strong>Year of release: </strong><span th:text="|${book.yearOfRelease}|"></span></p>
                                     <p><strong>Author: </strong><span th:each="author : ${book.getAuthors()}" th:text="${author.name} "></span></p>
+                                    <p><strong>Description: </strong><span th:text="|${book.description}|"></span></p>
                                 </div>
                             </div>
                             <div class="col-md-3 moviedetails align-items-center">

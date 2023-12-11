@@ -17,51 +17,78 @@
     </head>
     <body>
     <div th:replace="~{fragments/header :: header}">Header</div>
+
     <div class="container text-center">
         <div class="row">
-            <div class="col-md-1 justify-content-start">
-                <a th:href="@{|/bookdetails/${prevId}|}" th:classappend="${prevId == null} ? 'hidden'"
-                   class="btn btn-primary" tabindex="-1" role="button" aria-disabled="true"><<<</a>
-            </div>
-            <div class="col-md-10 d-flex justify-content-center">
-                <div class="content-center">
-                    <div class="contentFound " th:if="${book}">
-                        <div class="card" style="width: 18rem;">
-                            <img class="card-img-top detail" th:src="@{|/img/${book.title}.jpg|}" alt="Card image cap">
-                            <div class="card-body">
-                                <h5 class="card-title" th:text="${book.title}">Card title</h5>
-                            </div>
-                            <ul class="list-group list-group-flush">
-                                <li class="list-group-item">
-                                    <div class="container">
-                                        <div class="row">
-                                            <div class="col-sm-6">
-                                                Author:
-                                            </div>
-                                            <div class="col-sm-6" th:each="author : ${book.getAuthors()}">
-                                                <span th:text="${author.name}"></span>
-                                            </div>
-                                        </div>
-                                        <div class="row">
-                                            <div class="col-sm-6">
-                                                Year of release:
-                                            </div>
-                                            <div class="col-sm-6" th:text="${book.yearOfRelease}">
-                                            </div>
-                                        </div>
-                                    </div>
-                                </li>
-                            </ul>
-                        </div>
+            <div class="col-md-10 mx-auto">
+                <div class="row">
+                    <div class="col mx-auto">
+                        <a th:href="@{|/bookdetails/${prevId}|}" th:classappend="${prevId == null} ? 'hidden'"
+                           class="btn btn-primary" tabindex="-1" role="button" aria-disabled="true">PREV</a>
                     </div>
-                    <div class="contentFound" th:unless="${book}">
-                        <p>no book was chosen</p>
+
+                    <div class="col mx-auto">
+                        <a th:href="@{|../admin/bookedit/${nextId}|}" th:classappend="${false} ? 'hidden'"
+                           class="btn btn-primary" tabindex="-1" role="button" aria-disabled="true">EDIT</a>
+                    </div>
+
+                    <div class="col mx-auto">
+                        <a th:href="@{|/bookdetails/${nextId}|}" th:classappend="${nextId == null} ? 'hidden'"
+                           class="btn btn-primary" tabindex="-1" role="button" aria-disabled="true">NEXT</a>
                     </div>
                 </div>
             </div>
-            <div class="col-md-1 justify-content-end">
-                <a th:href="@{|/bookdetails/${nextId}|}" th:classappend="${nextId == null} ? 'hidden'"
-                   class="btn btn-primary" tabindex="-1" role="button" aria-disabled="true">>>></a>
+        </div>
+        <div class="row">
+            <div class="col-md-10 mx-auto">
+
+                <div class="row">
+                    <div class="col-md-12 m-3 moviedetails text-center">
+                        <h1 th:text="${book.title}"/>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-md-12 m-3">
+                        <div class="row">
+                            <div class="col-md-3 moviedetails">
+                                <img class="card-img-top moviePicture" th:src="@{|/img/${book.title}.jpg|}" alt="Card image cap">
+                            </div>
+                            <div class="col-md-6">
+                                <div class="movieDetailCenter">
+                                    <p><strong>Year of release: </strong><span th:text="|${book.yearOfRelease}|"></span></p>
+                                    <p><strong>Author: </strong><span th:each="author : ${book.getAuthors()}" th:text="${author.name} "></span></p>
+                                </div>
+                            </div>
+                            <div class="col-md-3 moviedetails align-items-center">
+                                <form>
+                                    <label></label>
+                                    <button type="submit" class="btn btn-primary detailsButton">
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-heart-fill" viewBox="0 0 16 16">
+                                            <path fill-rule="evenodd" d="M8 1.314C12.438-3.248 23.534 4.735 8 15-7.534 4.736 3.562-3.248 8 1.314"/>
+                                        </svg></i> Add to Wishlist!
+                                    </button>
+                                </form><br>
+                                <form>
+                                    <label></label>
+                                    <button type="submit" class="btn btn-primary detailsButton">
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-cart-check-fill" viewBox="0 0 16 16">
+                                            <path d="M.5 1a.5.5 0 0 0 0 1h1.11l.401 1.607 1.498 7.985A.5.5 0 0 0 4 12h1a2 2 0 1 0 0 4 2 2 0 0 0 0-4h7a2 2 0 1 0 0 4 2 2 0 0 0 0-4h1a.5.5 0 0 0 .491-.408l1.5-8A.5.5 0 0 0 14.5 3H2.89l-.405-1.621A.5.5 0 0 0 2 1zM6 14a1 1 0 1 1-2 0 1 1 0 0 1 2 0m7 0a1 1 0 1 1-2 0 1 1 0 0 1 2 0m-1.646-7.646-3 3a.5.5 0 0 1-.708 0l-1.5-1.5a.5.5 0 1 1 .708-.708L8 8.293l2.646-2.647a.5.5 0 0 1 .708.708z"/>
+                                        </svg> Already bought it!
+                                    </button>
+                                </form><br>
+                                <form>
+                                    <label></label>
+                                    <button type="submit" class="btn btn-primary detailsButton">
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-cart-check-fill" viewBox="0 0 16 16">
+                                            <path d="M.5 1a.5.5 0 0 0 0 1h1.11l.401 1.607 1.498 7.985A.5.5 0 0 0 4 12h1a2 2 0 1 0 0 4 2 2 0 0 0 0-4h7a2 2 0 1 0 0 4 2 2 0 0 0 0-4h1a.5.5 0 0 0 .491-.408l1.5-8A.5.5 0 0 0 14.5 3H2.89l-.405-1.621A.5.5 0 0 0 2 1zM6 14a1 1 0 1 1-2 0 1 1 0 0 1 2 0m7 0a1 1 0 1 1-2 0 1 1 0 0 1 2 0m-1.646-7.646-3 3a.5.5 0 0 1-.708 0l-1.5-1.5a.5.5 0 1 1 .708-.708L8 8.293l2.646-2.647a.5.5 0 0 1 .708.708z"/>
+                                        </svg> Already bought it!
+                                    </button>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
     </div>

@@ -10,6 +10,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 
+import java.security.Principal;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.time.DayOfWeek;
@@ -22,7 +23,7 @@ public class HomeController {
     @Autowired
     private BookRepository bookRepository;
     @GetMapping({"/", "/home"})
-    public String home(Model model) {
+    public String home(Model model, Principal principal) {
 
         final Iterable<Movie> allMovies = movieRepository.findAll();
         model.addAttribute("movies", allMovies);

@@ -102,3 +102,12 @@ INSERT INTO BOOK_AUTHORS (BOOKS_ID, AUTHORS_ID) VALUES (select id from book wher
 INSERT INTO BOOK_AUTHORS (BOOKS_ID, AUTHORS_ID) VALUES (select id from book where title = 'Brave New World', select id from author where name = 'Aldous Huxley');
 INSERT INTO BOOK_AUTHORS (BOOKS_ID, AUTHORS_ID) VALUES (select id from book where title = 'To the Lighthouse', select id from author where name = 'Virginia Woolf');
 INSERT INTO BOOK_AUTHORS (BOOKS_ID, AUTHORS_ID) VALUES (select id from book where title = 'The Lord of the Rings', select id from author where name = 'J.R.R. Tolkien');
+
+--------------------------------------------------------------------
+
+INSERT INTO USERS (USERNAME, PASSWORD, ENABLED)
+VALUES ('admin', '$2a$10$9MIX8kYPkuB7uE/H5nHF8.KG6.YdjBA/voOnjSZnZDxLXL/2BIerS', true);
+INSERT INTO AUTHORITIES (USERNAME, AUTHORITY) VALUES ('admin', 'ADMIN');
+INSERT INTO USERS (USERNAME, PASSWORD, ENABLED)
+VALUES ('user', '$2a$10$9TeBFudS7HsgCa4sSvP//O627sMq.KiTFrOr8IzrVlYw5c8aoKzNm', true);
+INSERT INTO AUTHORITIES (USERNAME, AUTHORITY) VALUES ('user', 'USER');

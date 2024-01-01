@@ -68,7 +68,10 @@ nav{
 .submitbutton{
     margin-top: 20px;
 }
-
+.icon{
+    width: 20px;
+    height: 20px;
+}
 .card{
     margin-top: 20px;
     background-color: darkgrey;

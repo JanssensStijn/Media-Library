@@ -5,6 +5,7 @@ import be.thomasmore.medialibrary.model.Book;
 import be.thomasmore.medialibrary.model.Movie;
 import be.thomasmore.medialibrary.repositories.AuthorRepository;
 import be.thomasmore.medialibrary.repositories.BookRepository;
+import be.thomasmore.medialibrary.repositories.EndUserRepository;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,6 +15,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import java.security.Principal;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
@@ -28,9 +30,11 @@ public class BookController {
     private BookRepository bookRepository;
     @Autowired
     private AuthorRepository authorRepository;
+    @Autowired
+    private EndUserRepository endUserRepository;
 
     @GetMapping({"/bookdetails/{id}", "/bookdetails", "/bookdetails/"})
-    public String bookdetails(Model model, @PathVariable(required = false) Integer id) {
+    public String bookdetails(Model model, @PathVariable(required = false) Integer id, Principal principal) {
 
         if (id == null) return "bookdetails";
         Optional<Book> bookFromDb = bookRepository.findById(id);
@@ -46,6 +50,7 @@ public class BookController {
             model.addAttribute("nextId", nextbookFromDb.get().getId());
             model.addAttribute("prevId", prevbookFromDb.get().getId());
             model.addAttribute("book", bookFromDb.get());
+            if(principal != null) model.addAttribute("currentUser", endUserRepository.findByUsername(principal.getName()));
         }
 
         return "bookdetails";
@@ -56,7 +61,9 @@ public class BookController {
                                       @RequestParam(required = false) Integer id,
                                       @RequestParam(required = false) String title,
                                       @RequestParam(required = false) String author,
-                                      @RequestParam(required = false) Integer yearOfRelease) {
+                                      @RequestParam(required = false) Integer yearOfRelease,
+                                     Principal principal) {
+
 
         final List<Book> filteredBooks = bookRepository.findByFilter(id, title, author, yearOfRelease);
 
@@ -77,6 +84,8 @@ public class BookController {
         model.addAttribute("authors", authors);
         model.addAttribute("yearsOfRelease", yearsOfRelease);
         model.addAttribute("books", filteredBooks);
+        if(principal != null) model.addAttribute("currentUser", endUserRepository.findByUsername(principal.getName()));
+
         return "booklist";
     }
 

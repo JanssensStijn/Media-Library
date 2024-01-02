@@ -1,9 +1,7 @@
 package be.thomasmore.medialibrary.controllers;
 
-import be.thomasmore.medialibrary.model.Author;
-import be.thomasmore.medialibrary.model.Movie;
-import be.thomasmore.medialibrary.model.Producer;
-import be.thomasmore.medialibrary.model.ProductionCompany;
+import be.thomasmore.medialibrary.model.*;
+import be.thomasmore.medialibrary.repositories.EndUserRepository;
 import be.thomasmore.medialibrary.repositories.MovieRepository;
 import be.thomasmore.medialibrary.repositories.ProducerRepository;
 import be.thomasmore.medialibrary.repositories.ProductionCompanyRepository;
@@ -14,6 +12,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import java.security.Principal;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
@@ -29,9 +28,11 @@ public class MovieController {
     private ProducerRepository producerRepository;
     @Autowired
     private ProductionCompanyRepository productionCompanyRepository;
+    @Autowired
+    private EndUserRepository endUserRepository;
 
     @GetMapping({"/moviedetails/{id}", "/moviedetails", "/moviedetails/"})
-    public String moviedetails(Model model, @PathVariable(required = false) Integer id) {
+    public String moviedetails(Model model, @PathVariable(required = false) Integer id, Principal principal) {
 
         if (id == null) return "moviedetails";
         Optional<Movie> movieFromDb = movieRepository.findById(id);
@@ -47,6 +48,7 @@ public class MovieController {
             model.addAttribute("nextId", nextMovieFromDb.get().getId());
             model.addAttribute("prevId", prevMovieFromDb.get().getId());
             model.addAttribute("movie", movieFromDb.get());
+            if(principal != null)  model.addAttribute("currentUser", endUserRepository.findByUsername(principal.getName()));
         }
 
         return "moviedetails";
@@ -59,7 +61,8 @@ public class MovieController {
                                       @RequestParam(required = false) String title,
                                       @RequestParam(required = false) Integer yearOfRelease,
                                       @RequestParam(required = false) String producer,
-                                      @RequestParam(required = false) String productionCompany) {
+                                      @RequestParam(required = false) String productionCompany,
+                                      Principal principal) {
 
         final List<Movie> filteredMovies = movieRepository.findByFilter(id,imdb, title, yearOfRelease, producer, productionCompany);
 
@@ -85,6 +88,8 @@ public class MovieController {
         model.addAttribute("yearsOfRelease", yearsOfRelease);
         model.addAttribute("producers", producers);
         model.addAttribute("productionCompanies", productionCompanies);
+        if(principal != null)  model.addAttribute("currentUser", endUserRepository.findByUsername(principal.getName()));
+
         return "movielist";
     }
 

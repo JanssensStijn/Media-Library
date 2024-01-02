@@ -105,9 +105,24 @@ INSERT INTO BOOK_AUTHORS (BOOKS_ID, AUTHORS_ID) VALUES (select id from book wher
 
 --------------------------------------------------------------------
 
+INSERT INTO END_USER (NAME, USERNAME) VALUES ('admin','admin');
+INSERT INTO END_USER (NAME, USERNAME) VALUES ('user','user');
+
+--------------------------------------------------------------------
+
 INSERT INTO USERS (USERNAME, PASSWORD, ENABLED)
 VALUES ('admin', '$2a$10$9MIX8kYPkuB7uE/H5nHF8.KG6.YdjBA/voOnjSZnZDxLXL/2BIerS', true);
 INSERT INTO AUTHORITIES (USERNAME, AUTHORITY) VALUES ('admin', 'ADMIN');
 INSERT INTO USERS (USERNAME, PASSWORD, ENABLED)
 VALUES ('user', '$2a$10$9TeBFudS7HsgCa4sSvP//O627sMq.KiTFrOr8IzrVlYw5c8aoKzNm', true);
 INSERT INTO AUTHORITIES (USERNAME, AUTHORITY) VALUES ('user', 'USER');
+
+--------------------------------------------------------------------
+INSERT INTO END_USER_WISHLIST_MOVIES (END_USERS_WISHLIST_ID, WISHLIST_MOVIES_ID)
+VALUES (select id from END_USER where username = 'admin', select id from movie where title = 'The Shawshank Redemption');
+INSERT INTO END_USER_WISHLIST_BOOKS (END_USERS_WISHLIST_ID, WISHLIST_BOOKS_ID)
+VALUES (select id from END_USER where username = 'admin', select id from book where title = 'The Hobbit');
+INSERT INTO END_USER_WISHLIST_MOVIES (END_USERS_WISHLIST_ID, WISHLIST_MOVIES_ID)
+VALUES (select id from END_USER where username = 'user', select id from movie where title = 'The Lord of the Rings - The Two Towers');
+INSERT INTO END_USER_WISHLIST_BOOKS (END_USERS_WISHLIST_ID, WISHLIST_BOOKS_ID)
+VALUES (select id from END_USER where username = 'user', select id from book where title = 'The Lord of the Rings');

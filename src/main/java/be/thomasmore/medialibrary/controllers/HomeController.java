@@ -34,10 +34,9 @@ public class HomeController {
 
         return "home";
     }
+
     @GetMapping({"/error"})
     public String error(Model model) {
         return "error";
     }
-
 }
-//push to main

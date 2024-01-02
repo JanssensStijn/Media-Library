@@ -21,6 +21,11 @@ public class Book{
     @ManyToMany (fetch = FetchType.LAZY)
     private Collection<Author> authors;
 
+    @ManyToMany(mappedBy = "wishlistBooks", fetch = FetchType.LAZY)
+    private Collection<EndUser> endUsersWishlist;
+    @ManyToMany(mappedBy = "ownedBooks", fetch = FetchType.LAZY)
+    private Collection<EndUser> endUsersOwned;
+
     public Book() {
     }
     public int getId() {
@@ -57,5 +62,19 @@ public class Book{
 
     public void setAuthors(Collection<Author> authors) {
         this.authors = authors;
+    }
+
+    public Collection<EndUser> getEndUsersWishlist() {
+        return endUsersWishlist;
+    }
+    public void setEndUsersWishlist(Collection<EndUser> endUsersWishlist) {
+        this.endUsersWishlist = endUsersWishlist;
+    }
+
+    public Collection<EndUser> getEndUsersOwned() {
+        return endUsersOwned;
+    }
+    public void setEndUsersOwned(Collection<EndUser> endUsersOwned) {
+        this.endUsersOwned = endUsersOwned;
     }
 }

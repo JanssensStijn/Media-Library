@@ -26,9 +26,9 @@ public class Movie{
     private Collection<Producer> producers;
     @ManyToMany(fetch = FetchType.LAZY)
     private Collection<ProductionCompany> productionCompanies;
-    @ManyToMany(mappedBy = "wishlistMovies")
+    @ManyToMany(mappedBy = "wishlistMovies", fetch = FetchType.LAZY)
     private Collection<EndUser> endUsersWishlist;
-    @ManyToMany(mappedBy = "ownedMovies")
+    @ManyToMany(mappedBy = "ownedMovies", fetch = FetchType.LAZY)
     private Collection<EndUser> endUsersOwned;
 
     /************ CONSTRUCTORS *************/
@@ -101,10 +101,10 @@ public class Movie{
         this.productionCompanies = productionCompanies;
     }
 
-    public Collection<EndUser> getEndUsers() {
+    public Collection<EndUser> getEndUsersWishlist() {
         return endUsersWishlist;
     }
-    public void setEndUsers(Collection<EndUser> endUsers) {
+    public void setEndUsersWishlist(Collection<EndUser> endUsers) {
         this.endUsersWishlist = endUsers;
     }
 

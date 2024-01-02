@@ -1,6 +1,8 @@
 <!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 
-<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
 <head>
     <div th:replace="~{fragments/initHeader :: initHeader}">initHeader</div>
     <title>Wishlist</title>
@@ -11,11 +13,14 @@
 <div th:replace="~{fragments/header :: header}">Header</div>
 <div class="container justify-content-center">
     <div class="row justify-content-md-center">
-        <h1 th:text="|Wishlist for ${principal.getUsername()}|"></h1>
+        <h1 th:text="|Wishlist for ${username}|"></h1>
     </div>
     <div class="row justify-content-md-center">
         <h2>Movies</h2>
         <div th:if="${#lists.isEmpty(movies)}">
+            <span>no movies in wishlist yet</span>
+        </div>
+        <div th:unless="${#lists.isEmpty(movies)}">
             <div class="col-md-12">
                 <div class="row">
                     <div th:each="movie : ${movies}" class="card hoverable">
@@ -29,31 +34,26 @@
                 </div>
             </div>
         </div>
-        <div th:unless="${#lists.isEmpty(movies)}">
-            <span>no movies in wishlist</span>
-        </div>
-
     </div>
     <div class="row justify-content-md-center">
         <h2>Books</h2>
         <div th:if="${#lists.isEmpty(books)}">
+            <span>no books in wishlist yet</span>
+        </div>
+        <div th:unless="${#lists.isEmpty(books)}">
             <div class="col-md-12">
                 <div class="row">
                     <div th:each="book : ${books}" class="card hoverable">
                         <a th:href="@{|/bookdetails/${book.id}|}" >
                             <div class="card-body overview-card">
-                                <img class="card-img-top" th:src="@{|/img/${movie.title}.jpg|}" alt="Card image cap">
-                                <h5 class="card-title" th:text="${movie.title}"></h5>
+                                <img class="card-img-top" th:src="@{|/img/${book.title}.jpg|}" alt="Card image cap">
+                                <h5 class="card-title" th:text="${book.title}"></h5>
                             </div>
                         </a>
                     </div>
                 </div>
             </div>
         </div>
-        <div th:unless="${#lists.isEmpty(books)}">
-            <span>no books in wishlist</span>
-        </div>
-
     </div>
 </div>
 

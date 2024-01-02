@@ -1,22 +1,24 @@
 package be.thomasmore.medialibrary.model;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
-import jakarta.persistence.ManyToMany;
+import jakarta.persistence.*;
 
 import java.util.Collection;
 
 @Entity
 public class EndUser {
-
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Id
     private int id;
     private String name;
     private String username;
-    @ManyToMany
+    @ManyToMany (fetch = FetchType.LAZY)
     private Collection<Movie> wishlistMovies;
-    @ManyToMany
+    @ManyToMany (fetch = FetchType.LAZY)
     private Collection<Movie> ownedMovies;
+    @ManyToMany (fetch = FetchType.LAZY)
+    private Collection<Book> wishlistBooks;
+    @ManyToMany (fetch = FetchType.LAZY)
+    private Collection<Book> ownedBooks;
 
     public EndUser() {}
 

@@ -6,8 +6,9 @@ import org.springframework.format.annotation.DateTimeFormat;
 import java.util.Collection;
 
 @Entity
-public class Movie {
+public class Movie{
 
+    /*************** FIELDS ****************/
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Id
     private int id;
@@ -17,17 +18,24 @@ public class Movie {
     @DateTimeFormat(pattern = "yyyy")
     private Integer yearOfRelease;
     private String trailerLink;
-
     private String description;
+
     @ManyToMany(fetch = FetchType.LAZY)
     private Collection<Actor> actors;
     @ManyToMany(fetch = FetchType.LAZY)
     private Collection<Producer> producers;
     @ManyToMany(fetch = FetchType.LAZY)
     private Collection<ProductionCompany> productionCompanies;
+    @ManyToMany(mappedBy = "wishlistMovies")
+    private Collection<EndUser> endUsersWishlist;
+    @ManyToMany(mappedBy = "ownedMovies")
+    private Collection<EndUser> endUsersOwned;
 
+    /************ CONSTRUCTORS *************/
     public Movie() {
     }
+
+    /********** GETTERS & SETTERS **********/
 
     public int getId() {
         return id;
@@ -68,7 +76,6 @@ public class Movie {
     public String getDescription() {
         return description;
     }
-
     public void setDescription(String description) {
         this.description = description;
     }
@@ -94,4 +101,17 @@ public class Movie {
         this.productionCompanies = productionCompanies;
     }
 
+    public Collection<EndUser> getEndUsers() {
+        return endUsersWishlist;
+    }
+    public void setEndUsers(Collection<EndUser> endUsers) {
+        this.endUsersWishlist = endUsers;
+    }
+
+    public Collection<EndUser> getEndUsersOwned() {
+        return endUsersOwned;
+    }
+    public void setEndUsersOwned(Collection<EndUser> endUsersOwned) {
+        this.endUsersOwned = endUsersOwned;
+    }
 }

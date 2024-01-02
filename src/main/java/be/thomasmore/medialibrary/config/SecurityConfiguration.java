@@ -42,9 +42,9 @@ public class SecurityConfiguration {
 
         http.authorizeHttpRequests(auth -> auth
                 .requestMatchers(mvcMatcherBuilder.pattern("/admin/**")).hasAuthority("ADMIN")
+                .requestMatchers(mvcMatcherBuilder.pattern("/endUser/**")).hasAnyAuthority("USER","ADMIN")
                 .anyRequest().permitAll()
         );
-
         http.formLogin(form -> form
                 .loginPage("/user/login")
                 .permitAll()

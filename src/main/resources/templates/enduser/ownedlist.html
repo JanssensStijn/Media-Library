@@ -5,7 +5,7 @@
 
 <head>
     <div th:replace="~{fragments/initHeader :: initHeader}">initHeader</div>
-    <title>Wishlist</title>
+    <title>Owned</title>
 </head>
 
 <body>
@@ -18,7 +18,7 @@
     <div class="row justify-content-md-center">
         <h2>Movies</h2>
         <div th:if="${#lists.isEmpty(movies)}">
-            <span>no movies in wishlist yet</span>
+            <span>you don't own any movies yet</span>
         </div>
         <div th:unless="${#lists.isEmpty(movies)}">
             <div class="col-md-12">
@@ -56,7 +56,7 @@
     <div class="row justify-content-md-center">
         <h2>Books</h2>
         <div th:if="${#lists.isEmpty(books)}">
-            <span>no books in wishlist yet</span>
+            <span>you don't own any books yet</span>
         </div>
         <div th:unless="${#lists.isEmpty(books)}">
             <div class="col-md-12">
@@ -67,7 +67,7 @@
                                 <img class="card-img-top" th:src="@{|/img/${book.title}.jpg|}" alt="Card image cap">
                                 <h5 class="card-title" th:text="${book.title}"></h5>
                                 <div sec:authorize="isAuthenticated()">
-                                    <form th:action="@{|/enduser/wishlist/book/${book.id}|}" method="post">
+                                    <form th:action="@{|/enduser/ownedlist/book/${book.id}|}" method="post">
                                         <button type="submit" class="btn btn-primary" th:if="${book.getEndUsersWishlist().contains(currentUser)}">
                                             <i class="bi bi-heart-fill"></i>
                                         </button>

@@ -67,10 +67,13 @@
                                         <i class="bi bi-heart"></i><span> Add to wishlist</span>
                                     </button>
                                 </form><br>
-                                <form>
-                                    <label></label>
-                                    <button type="submit" class="btn btn-primary detailsButton">
-                                        <div th:replace="~{fragments/icons :: cartEmpty}"></div> Add to bought-list!
+
+                                <form th:action="@{|/enduser/ownedlist/movie/${movie.id}|}" method="post">
+                                    <button type="submit" class="btn btn-primary" th:if="${movie.getEndUsersOwned().contains(currentUser)}">
+                                        <i class="bi bi-cart-fill"></i><span> Remove from owned</span>
+                                    </button>
+                                    <button type="submit" class="btn btn-primary" th:unless="${movie.getEndUsersOwned().contains(currentUser)}">
+                                        <i class="bi bi-cart"></i><span> Add to owned</span>
                                     </button>
                                 </form><br><br>
                                 <div class="col mx-auto" sec:authorize="hasAuthority('ADMIN')">

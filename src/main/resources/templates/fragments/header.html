@@ -30,13 +30,13 @@
                         <li class="nav-item">
                             <a class="nav-link" th:href="@{/booklist}">Books</a>
                         </li>
-                        <li class="nav-item dropdown">
+                        <li class="nav-item dropdown" sec:authorize="isAuthenticated()">
                             <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="true">
-                                Dropdown
+                                My collection
                             </a>
                             <ul class="dropdown-menu dropdown-menu-dark">
                                 <li><a class="dropdown-item" th:href="@{/enduser/wishlist}">Wishlist</a></li>
-                                <li><a class="dropdown-item" th:href="@{/enduser/ownedlist}">Already bought</a></li>
+                                <li><a class="dropdown-item" th:href="@{/enduser/ownedlist}">Owned</a></li>
                             </ul>
                         </li>
                         <li class="nav-item">

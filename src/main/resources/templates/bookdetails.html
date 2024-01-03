@@ -48,7 +48,13 @@
                             <div class="col-md-6">
                                 <div class="movieDetailCenter">
                                     <p><strong>Year of release: </strong><span th:text="|${book.yearOfRelease}|"></span></p>
-                                    <p><strong>Author: </strong><span th:each="author : ${book.getAuthors()}" th:text="${author.name} "></span></p>
+                                    <p><strong>Author(s): </strong>
+                                        <span th:each="author, iterStat : ${book.getAuthors()}">
+                                            <!-- Add a span tag for each artist with a comma (except for the last one) -->
+                                            <span th:text="${author.name}"></span>
+                                            <span th:text="|-- |" th:if="${!iterStat.last}"></span>
+                                        </span>
+                                    </p>
                                     <p><strong>Description: </strong><span th:text="|${book.description}|"></span></p>
                                 </div>
                             </div>

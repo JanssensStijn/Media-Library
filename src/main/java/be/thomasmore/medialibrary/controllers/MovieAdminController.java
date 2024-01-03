@@ -36,30 +36,16 @@ public class MovieAdminController {
     @GetMapping({"/movieedit/{id}"})
     public String movieEdit(Model model, @PathVariable (required = false) Integer id) {
         List<Producer> optionalProducers = (List<Producer>) producerRepository.findAll();
-        if(!optionalProducers.isEmpty()) model.addAttribute("producers", optionalProducers);
+        if(!optionalProducers.isEmpty()) model.addAttribute("allProducers", optionalProducers);
         List<ProductionCompany> optionalProductionCompanies = (List<ProductionCompany>) productionCompanyRepository.findAll();
-        if(!optionalProductionCompanies.isEmpty()) model.addAttribute("productionCompanies", optionalProductionCompanies);
+        if(!optionalProductionCompanies.isEmpty()) model.addAttribute("allProductionCompanies", optionalProductionCompanies);
         return "admin/movieedit";
     }
 
     @PostMapping("/movieedit/{id}")
     public String movieEditPost(@PathVariable int id, Movie movie){
-        //logger.info("findParty " + id + " -- new name=" + party.getName());
         movieRepository.save(movie);
         return "redirect:/moviedetails/" + id;
-    }
-
-    @GetMapping({"/partynew"})
-    public String movieNew(Model model) {
-        List<Movie> optionalVenues = (List<Movie>) movieRepository.findAll();
-        if(!optionalVenues.isEmpty()) model.addAttribute("venues", optionalVenues);
-        return "admin/partynew";
-    }
-
-    @PostMapping("/partynew")
-    public String movieNewPost(Movie movie){
-        Movie newParty = movieRepository.save(movie);
-        return "redirect:/partydetails/" + newParty.getId();
     }
 
 }

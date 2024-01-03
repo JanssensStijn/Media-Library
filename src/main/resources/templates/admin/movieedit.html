@@ -3,7 +3,7 @@
 
 <head>
     <div th:replace="~{fragments/initHeader :: initHeader}">initHeader</div>
-    <title>Movies</title>
+    <title>Movie Edit</title>
 </head>
 
 <body>
@@ -30,22 +30,34 @@
                     <div class="col-md-12 m-3">
                         <div class="row">
                             <div class="col-md-3 moviedetails">
-                                <!--<label for="movieImage" class="form-label">Select Image:</label>
-                                <input type="file" class="form-control" id="movieImage" name="image" accept="image/*" required th:field="*{image}">-->
+                                <img class="card-img-top moviePicture" th:src="@{|/img/*{title}.jpg|}" alt="Card image cap">
                             </div>
+                            <!--<div class="col-md-3 moviedetails">
+                                <label for="movieImage" class="form-label">Select Image:</label>
+                                <input type="file" class="form-control" id="movieImage" name="image" accept="image/*" required th:field="*{image}">
+                            </div>-->
                             <div class="col-md-6">
                                 <div class="movieDetailCenter">
                                     <div class="mb-3">
                                         <label for="movieYOR">Year of release:</label>
                                         <input type="text" class="form-control" id="movieYOR" th:field="*{yearOfRelease}">
                                     </div>
-                                    <div class=" mb-3" th:each="producer : *{producers}">
-                                        <label for="movieProducer">Producer:</label>
-                                        <input type="text" class="form-control" id="movieProducer">
-                                    </div>
-                                    <div class="mb-3" th:each="productionCompany : *{productionCompanies}">
-                                        <label for="movieProductionCompany">Production company: </label>
-                                        <input type="text" class="form-control" id="movieProductionCompany">
+                                    <div class=" mb-3">
+                                        <label for="producer" class="filterwidth">producer:</label>
+                                        <select multiple name="producer" id="producer" class="filterwidth" th:field="*{producers}">
+                                            <option  th:value="null" th:text="Any" th:selected="${allProducers eq null}">
+                                            </option>
+                                            <option th:each="item : ${allProducers}" th:value="${item.id}" th:text="${item.name}" th:selected="${movie.producers.contains(item)}">
+                                            </option>
+                                        </select>
+                                    </div><br>
+                                    <div class="mb-3">
+                                        <label for="productionCompany" class="filterwidth">production company:</label>
+                                        <select multiple name="productionCompany" id="productionCompany" class="filterwidth" th:field="*{productionCompanies}">
+                                            <option  th:value="null" th:text="Any" th:selected="${allProductionCompanies eq null}"></option>
+                                            <option th:each="item : ${allProductionCompanies}" th:value="${item.id}" th:text="${item.name}"  th:selected="${movie.productionCompanies.contains(item)}">
+                                            </option>
+                                        </select>
                                     </div>
                                     <div class="mb-3">
                                         <label for="movieDescription">Description: </label>
@@ -59,15 +71,11 @@
                             </div>
                             <div class="col-md-3 moviedetails align-items-center">
                                     <button type="submit" class="btn btn-primary detailsButton">
-                                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-heart-fill" viewBox="0 0 16 16">
-                                            <path fill-rule="evenodd" d="M8 1.314C12.438-3.248 23.534 4.735 8 15-7.534 4.736 3.562-3.248 8 1.314"/>
-                                        </svg></i> Save
+                                        <i class="bi bi-check-circle"></i></i> Save
                                     </button>
-
+                                    <br>
                                     <a class="btn btn-primary detailsButton" th:href="@{|/moviedetails/*{id}|}">
-                                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-cart-check-fill" viewBox="0 0 16 16">
-                                            <path d="M.5 1a.5.5 0 0 0 0 1h1.11l.401 1.607 1.498 7.985A.5.5 0 0 0 4 12h1a2 2 0 1 0 0 4 2 2 0 0 0 0-4h7a2 2 0 1 0 0 4 2 2 0 0 0 0-4h1a.5.5 0 0 0 .491-.408l1.5-8A.5.5 0 0 0 14.5 3H2.89l-.405-1.621A.5.5 0 0 0 2 1zM6 14a1 1 0 1 1-2 0 1 1 0 0 1 2 0m7 0a1 1 0 1 1-2 0 1 1 0 0 1 2 0m-1.646-7.646-3 3a.5.5 0 0 1-.708 0l-1.5-1.5a.5.5 0 1 1 .708-.708L8 8.293l2.646-2.647a.5.5 0 0 1 .708.708z"/>
-                                        </svg> Cancel
+                                        <i class="bi bi-x-circle"></i> Cancel
                                     </a>
                             </div>
                         </div>

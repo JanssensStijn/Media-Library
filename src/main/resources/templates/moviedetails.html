@@ -79,7 +79,7 @@
                                 <div class="col mx-auto" sec:authorize="hasAuthority('ADMIN')">
                                     <a th:href="@{|../admin/movieedit/${movie.id}|}">
                                         <button type="submit" class="btn btn-primary detailsButton">
-                                            <div th:replace="~{fragments/icons :: pencilEdit}"></div> EDIT
+                                            <i class="bi bi-wrench"></i> EDIT
                                         </button>
                                     </a>
                                 </div>

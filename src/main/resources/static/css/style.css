@@ -65,6 +65,14 @@ nav{
     color: black;
 }
 
+.fieldError, input.fieldError, select.input.fieldError{
+    border: red 3px solid;
+}
+
+.fieldErrorMessage{
+    color: red;
+}
+
 .submitbutton{
     margin-top: 20px;
 }

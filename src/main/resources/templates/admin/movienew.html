@@ -12,17 +12,20 @@
     <div class="row">
         <div class="col-md-10 mx-auto" th:if="${movie}" th:object="${movie}">
             <form th:action="@{|/admin/movienew|}" method="post">
+                <div class="error" th:if="${#fields.hasErrors('*')}">ERROR - data is not saved</div>
                 <div class="row">
                     <div class="col-md-12 m-3 moviedetails">
                         <label for="movieTitle">Title of movie:</label>
-                        <input type="text" id="movieTitle" th:field="*{title}">
+                        <input type="text" id="movieTitle" th:field="*{title}" th:errorclass="fieldError">
+                        <span class="fieldErrorMessage" th:if="${#fields.hasErrors('title')}" th:errors="*{title}"></span>
                     </div>
                 </div>
 
                 <div class="row">
                     <div class="col-md-12 m-3 moviedetails">
                         <label for="movieLink">Unique Youtube id of the trailer:</label>
-                        <input type="text" id="movieLink" th:field="*{trailerLink}">
+                        <input type="text" id="movieLink" th:field="*{trailerLink}" th:errorclass="fieldError">
+                        <span class="fieldErrorMessage" th:if="${#fields.hasErrors('trailerLink')}" th:errors="*{trailerLink}"></span>
                     </div>
                 </div>
 
@@ -36,32 +39,37 @@
                                 <div class="movieDetailCenter">
                                     <div class="mb-3">
                                         <label for="movieYOR">Year of release:</label>
-                                        <input type="text" class="form-control" id="movieYOR" th:field="*{yearOfRelease}">
+                                        <input type="number" th:min="1750", th:max="9999" class="form-control" id="movieYOR" th:field="*{yearOfRelease}" th:errorclass="fieldError">
+                                        <p class="fieldErrorMessage" th:if="${#fields.hasErrors('yearOfRelease')}" th:errors="*{yearOfRelease}"></p>
                                     </div>
                                     <div class=" mb-3">
                                         <label for="producer" class="filterwidth">producer:</label>
-                                        <select multiple name="producer" id="producer" class="filterwidth" th:field="*{producers}">
-                                            <option  th:value="null" th:text="Any" th:selected="${allProducers eq null}">
+                                        <select multiple name="producer" id="producer" class="filterwidth" th:field="*{producers}" th:errorclass="fieldError">
+                                            <option  th:value="null" text="None selected" th:selected="${allProducers eq null}">
                                             </option>
                                             <option th:each="item : ${allProducers}" th:value="${item.id}" th:text="${item.name}">
                                             </option>
                                         </select>
+                                        <p class="fieldErrorMessage" th:if="${#fields.hasErrors('producers')}" th:errors="*{producers}"></p>
                                     </div><br>
                                     <div class="mb-3">
                                         <label for="productionCompany" class="filterwidth">production company:</label>
-                                        <select multiple name="productionCompany" id="productionCompany" class="filterwidth" th:field="*{productionCompanies}">
-                                            <option  th:value="null" th:text="Any" th:selected="${allProductionCompanies eq null}"></option>
+                                        <select multiple name="productionCompany" id="productionCompany" class="filterwidth" th:field="*{productionCompanies}" th:errorclass="fieldError">
+                                            <option  th:value="null" text="None selected" th:selected="${allProductionCompanies eq null}"></option>
                                             <option th:each="item : ${allProductionCompanies}" th:value="${item.id}" th:text="${item.name}">
                                             </option>
                                         </select>
+                                        <p class="fieldErrorMessage" th:if="${#fields.hasErrors('productionCompanies')}" th:errors="*{productionCompanies}"></p>
                                     </div>
                                     <div class="mb-3">
                                         <label for="movieDescription">Description: </label>
-                                        <textarea type="text" class="form-control" id="movieDescription" th:field="*{description}"></textarea>
+                                        <textarea type="text" class="form-control" id="movieDescription" th:field="*{description}" th:errorclass="fieldError"></textarea>
+                                        <p class="fieldErrorMessage" th:if="${#fields.hasErrors('description')}" th:errors="*{description}"></p>
                                     </div>
                                     <div class="mb-3">
                                         <label for="movieIMDB">IMDB-id: </label>
-                                        <input type="text" class="form-control" id="movieIMDB" th:field="*{imdb}">
+                                        <input type="text" class="form-control" id="movieIMDB" th:field="*{imdb}" th:errorclass="fieldError">
+                                        <p class="fieldErrorMessage" th:if="${#fields.hasErrors('imdb')}" th:errors="*{imdb}"></p>
                                     </div>
                                 </div>
                             </div>

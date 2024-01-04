@@ -1,6 +1,10 @@
 package be.thomasmore.medialibrary.model;
 
 import jakarta.persistence.*;
+import jakarta.validation.constraints.Digits;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotEmpty;
+import jakarta.validation.constraints.NotNull;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import java.util.Collection;
@@ -10,14 +14,20 @@ public class Book{
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Id
     private int id;
+
+    @NotBlank(message = "Enter a title")
     private String title;
 
     @Temporal(TemporalType.DATE)
     @DateTimeFormat(pattern = "yyyy")
+    @NotNull(message = "Enter a year of release")
+    @Digits(message = "number must have 4 digits", fraction = 0, integer = 4)
     private Integer yearOfRelease;
 
+    @NotBlank(message = "enter a short description")
     private String description;
 
+    @NotEmpty(message = "select author(s)")
     @ManyToMany (fetch = FetchType.LAZY)
     private Collection<Author> authors;
 

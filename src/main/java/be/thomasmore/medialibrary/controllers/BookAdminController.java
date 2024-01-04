@@ -1,12 +1,13 @@
 package be.thomasmore.medialibrary.controllers;
 
-import be.thomasmore.medialibrary.model.Book;
-import be.thomasmore.medialibrary.model.Author;
+import be.thomasmore.medialibrary.model.*;
 import be.thomasmore.medialibrary.repositories.AuthorRepository;
 import be.thomasmore.medialibrary.repositories.BookRepository;
+import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -39,6 +40,25 @@ public class BookAdminController {
     public String bookEditPost(@PathVariable int id, Book book){
         bookRepository.save(book);
         return "redirect:/bookdetails/" + id;
+    }
+
+    @GetMapping({"/booknew"})
+    public String movieNew(Model model) {
+        List<Author> optionalAuthors = (List<Author>) authorRepository.findAll();
+        if(!optionalAuthors.isEmpty()) model.addAttribute("allAuthors", optionalAuthors);
+        return "admin/booknew";
+    }
+
+    @PostMapping("/booknew")
+    public String movieNewPost(Model model,
+                               @Valid Book book,
+                               BindingResult bindingResult){
+        if(bindingResult.hasErrors()){
+            model.addAttribute("allAuthors", authorRepository.findAll());
+            return "admin/booknew";
+        }
+        Book newBook = bookRepository.save(book);
+        return "redirect:/bookdetails/" + newBook.getId();
     }
 
 }

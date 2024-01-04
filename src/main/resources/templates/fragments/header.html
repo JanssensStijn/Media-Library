@@ -39,6 +39,15 @@
                                 <li><a class="dropdown-item" th:href="@{/enduser/ownedlist}">Owned</a></li>
                             </ul>
                         </li>
+                        <li class="nav-item dropdown" sec:authorize="hasAuthority('ADMIN')">
+                        <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="true">
+                            Database
+                        </a>
+                        <ul class="dropdown-menu dropdown-menu-dark">
+                            <li><a class="dropdown-item" th:href="@{/admin/movienew}">Add new movie</a></li>
+                            <li><a class="dropdown-item" th:href="@{/admin/booknew}">Add new book</a></li>
+                        </ul>
+                    </li>
                         <li class="nav-item">
                             <a class="nav-link" sec:authorize="!isAuthenticated()" th:href="@{/user/login}">Login</a>
                             <a class="nav-link" sec:authorize="isAuthenticated()" th:href="@{/user/logout}">Logout</a>

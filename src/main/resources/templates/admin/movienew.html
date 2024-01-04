@@ -1,10 +1,88 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+
 <head>
     <div th:replace="~{fragments/initHeader :: initHeader}">initHeader</div>
-    <title>Title</title>
+    <title>Movie Edit</title>
 </head>
-<body>
 
+<body>
+<div th:replace="~{fragments/header :: header}">Header</div>
+<div class="container text-center">
+    <div class="row">
+        <div class="col-md-10 mx-auto" th:if="${movie}" th:object="${movie}">
+            <form th:action="@{|/admin/movienew|}" method="post">
+                <div class="row">
+                    <div class="col-md-12 m-3 moviedetails">
+                        <label for="movieTitle">Title of movie:</label>
+                        <input type="text" id="movieTitle" th:field="*{title}">
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-md-12 m-3 moviedetails">
+                        <label for="movieLink">Unique Youtube id of the trailer:</label>
+                        <input type="text" id="movieLink" th:field="*{trailerLink}">
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-md-12 m-3">
+                        <div class="row">
+                            <div class="col-md-3 moviedetails">
+                                <img class="card-img-top moviePicture" th:src="@{|/img/*{title}.jpg|}" alt="Card image cap">
+                            </div>
+                            <div class="col-md-6">
+                                <div class="movieDetailCenter">
+                                    <div class="mb-3">
+                                        <label for="movieYOR">Year of release:</label>
+                                        <input type="text" class="form-control" id="movieYOR" th:field="*{yearOfRelease}">
+                                    </div>
+                                    <div class=" mb-3">
+                                        <label for="producer" class="filterwidth">producer:</label>
+                                        <select multiple name="producer" id="producer" class="filterwidth" th:field="*{producers}">
+                                            <option  th:value="null" th:text="Any" th:selected="${allProducers eq null}">
+                                            </option>
+                                            <option th:each="item : ${allProducers}" th:value="${item.id}" th:text="${item.name}">
+                                            </option>
+                                        </select>
+                                    </div><br>
+                                    <div class="mb-3">
+                                        <label for="productionCompany" class="filterwidth">production company:</label>
+                                        <select multiple name="productionCompany" id="productionCompany" class="filterwidth" th:field="*{productionCompanies}">
+                                            <option  th:value="null" th:text="Any" th:selected="${allProductionCompanies eq null}"></option>
+                                            <option th:each="item : ${allProductionCompanies}" th:value="${item.id}" th:text="${item.name}">
+                                            </option>
+                                        </select>
+                                    </div>
+                                    <div class="mb-3">
+                                        <label for="movieDescription">Description: </label>
+                                        <textarea type="text" class="form-control" id="movieDescription" th:field="*{description}"></textarea>
+                                    </div>
+                                    <div class="mb-3">
+                                        <label for="movieIMDB">IMDB-id: </label>
+                                        <input type="text" class="form-control" id="movieIMDB" th:field="*{imdb}">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-3 moviedetails align-items-center">
+                                <button type="submit" class="btn btn-primary detailsButton">
+                                    <i class="bi bi-check-circle"></i> Save
+                                </button>
+                                <br>
+
+                                <a class="btn btn-primary detailsButton" th:href="@{|/movielist|}">
+                                    <i class="bi bi-x-circle"></i> Cancel
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+<div th:replace="~{fragments/footer :: footer}">Footer</div>
 </body>
 </html>

@@ -6,9 +6,11 @@ import be.thomasmore.medialibrary.model.ProductionCompany;
 import be.thomasmore.medialibrary.repositories.MovieRepository;
 import be.thomasmore.medialibrary.repositories.ProducerRepository;
 import be.thomasmore.medialibrary.repositories.ProductionCompanyRepository;
+import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -46,6 +48,28 @@ public class MovieAdminController {
     public String movieEditPost(@PathVariable int id, Movie movie){
         movieRepository.save(movie);
         return "redirect:/moviedetails/" + id;
+    }
+
+    @GetMapping({"/movienew"})
+    public String movieNew(Model model) {
+        List<Producer> optionalProducers = (List<Producer>) producerRepository.findAll();
+        if(!optionalProducers.isEmpty()) model.addAttribute("allProducers", optionalProducers);
+        List<ProductionCompany> optionalProductionCompanies = (List<ProductionCompany>) productionCompanyRepository.findAll();
+        if(!optionalProductionCompanies.isEmpty()) model.addAttribute("allProductionCompanies", optionalProductionCompanies);
+        return "admin/movienew";
+    }
+
+    @PostMapping("/movienew")
+    public String movieNewPost(Model model,
+                               @Valid Movie movie,
+                               BindingResult bindingResult){
+        if(bindingResult.hasErrors()){
+            model.addAttribute("allProducers", producerRepository.findAll());
+            model.addAttribute("allProductionCompanies", productionCompanyRepository.findAll());
+            return "admin/movienew";
+        }
+        Movie newMovie = movieRepository.save(movie);
+        return "redirect:/moviedetails/" + newMovie.getId();
     }
 
 }

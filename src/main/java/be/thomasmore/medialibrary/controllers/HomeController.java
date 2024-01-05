@@ -39,8 +39,8 @@ public class HomeController {
         return "home";
     }
 
-    @GetMapping({"/error"})
+    /*@GetMapping({"/error"})
     public String error(Model model) {
         return "error";
-    }
+    }*/
 }

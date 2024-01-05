@@ -32,6 +32,9 @@ public class EndUser {
         this.name = name;
     }
 
+    public void setUsername(String username) {
+        this.username = username;
+    }
     public String getUsername() {
         return username;
     }

@@ -57,7 +57,7 @@ public class UserController {
         if (principal != null) return "redirect:/home";
         if (username == null || username.isBlank()) return "redirect:/user/signup";
         if (jdbcUserDetailsManager.userExists(username)) return "redirect:/user/signup";
-        if (password1.equals(password2)) return "redirect:/user/signup";
+        if (!password1.equals(password2)) return "redirect:/user/signup";
 
         UserDetails user = org.springframework.security.core.userdetails.User
                 .withUsername(username)
@@ -71,9 +71,9 @@ public class UserController {
         newEndUser.setUsername(username);
         endUserRepository.save(newEndUser);
 
-        //autologin:
+        //log in after signing up
         request.login(username, password1);
 
-        return "redirect:/user/signup";
+        return "redirect:/home";
     }
 }

@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.w3.org/1999/xhtml">
+
+<head>
+    <div th:replace="~{fragments/initHeader :: initHeader}">initHeader</div>
+    <title>test upload</title>
+</head>
+<body>
+<div th:replace="~{fragments/header :: header}">Header</div>
+
+<h1>test upload</h1>
+<p>file upload resultaat</p>
+<p th:text="${uploadedFile}"></p>
+<p th:text="${uploadStatus}"></p>
+
+<div th:replace="~{fragments/footer :: footer}">Footer</div>
+</body>
+</html>

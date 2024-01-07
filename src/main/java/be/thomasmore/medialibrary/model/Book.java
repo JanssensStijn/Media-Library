@@ -18,7 +18,6 @@ public class Book{
     @NotBlank(message = "Enter a title")
     private String title;
 
-    @NotBlank(message = "Enter url of the image")
     private String imageUrl;
 
     @Temporal(TemporalType.DATE)

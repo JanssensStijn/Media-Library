@@ -11,7 +11,7 @@
 <div class="container text-center">
     <div class="row">
         <div class="col-md-10 mx-auto" th:if="${movie}" th:object="${movie}">
-            <form th:action="@{|/admin/movieedit/*{id}|}" method="post">
+            <form th:action="@{|/admin/movieedit/*{id}|}" method="post" enctype="multipart/form-data">
                 <div class="row">
                     <div class="col-md-12 m-3 moviedetails">
                         <label for="movieTitle">Title of movie:</label>
@@ -31,11 +31,9 @@
                         <div class="row">
                             <div class="col-md-3 moviedetails">
                                 <img class="card-img-top moviePicture" th:src="@{*{imageUrl}}" alt="Card image cap">
+                                <label for="image">New image:</label>
+                                <input type="file" id="image" accept="image/*" name="image">
                             </div>
-                            <!--<div class="col-md-3 moviedetails">
-                                <label for="movieImage" class="form-label">Select Image:</label>
-                                <input type="file" class="form-control" id="movieImage" name="image" accept="image/*" required th:field="*{image}">
-                            </div>-->
                             <div class="col-md-6">
                                 <div class="movieDetailCenter">
                                     <div class="mb-3">

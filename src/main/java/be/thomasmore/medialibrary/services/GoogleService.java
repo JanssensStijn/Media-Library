@@ -9,6 +9,7 @@ import com.google.cloud.storage.StorageOptions;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Profile;
 import org.springframework.stereotype.Service;
+import org.springframework.web.multipart.MultipartFile;
 
 import java.io.*;
 import java.net.URLEncoder;
@@ -37,8 +38,9 @@ public class GoogleService {
      * @return the url that can be used to fetch the stored file
      * @throws IOException
      */
-    public String toFirebase(File file, String fileName) throws IOException {
+    private String toFirebase(File file, String fileName) throws IOException {
         BlobId blobId = BlobId.of(imageBucket, fileName);
+
         BlobInfo blobInfo = BlobInfo.newBuilder(blobId).setContentType("media").build();
         Storage storage = getFirebaseStorage();
         InputStream inputStream = new FileInputStream(file);
@@ -56,5 +58,15 @@ public class GoogleService {
     private Storage getFirebaseStorage() throws IOException {
         Credentials credentials = GoogleCredentials.fromStream(new ByteArrayInputStream(firebaseCredentials.getBytes()));
         return StorageOptions.newBuilder().setCredentials(credentials).build().getService();
+    }
+
+    public String uploadImage(MultipartFile multipartFile, String uniqueName) throws IOException{
+        final String filename = multipartFile.getOriginalFilename();
+        final File fileToUpload = new File(filename);
+        FileOutputStream fos = new FileOutputStream(fileToUpload);
+        fos.write(multipartFile.getBytes());
+        final String urlToFirebase = toFirebase(fileToUpload, uniqueName);
+        fileToUpload.delete();
+        return urlToFirebase;
     }
 }

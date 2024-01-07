@@ -3,13 +3,18 @@ package be.thomasmore.medialibrary.controllers;
 import be.thomasmore.medialibrary.model.*;
 import be.thomasmore.medialibrary.repositories.AuthorRepository;
 import be.thomasmore.medialibrary.repositories.BookRepository;
+import be.thomasmore.medialibrary.services.GoogleService;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 
+import java.io.File;
+import java.io.FileOutputStream;
+import java.io.IOException;
 import java.util.List;
 import java.util.Optional;
 
@@ -20,6 +25,9 @@ public class BookAdminController {
     private BookRepository bookRepository;
     @Autowired
     private AuthorRepository authorRepository;
+
+    @Autowired
+    private GoogleService googleService;
 
     @ModelAttribute("book")
     public Book findBook(@PathVariable(required = false) Integer id){
@@ -37,7 +45,17 @@ public class BookAdminController {
     }
 
     @PostMapping("/bookedit/{id}")
-    public String bookEditPost(@PathVariable int id, Book book){
+    public String bookEditPost(@PathVariable int id,
+                               Book book,
+                               @RequestParam(required = false) MultipartFile image,
+                               BindingResult bindingResult) throws IOException {
+
+        if(bindingResult.hasErrors()){
+            return "admin/movieedit/" + id;
+        }
+        if(!image.isEmpty()) {
+            book.setImageUrl(googleService.uploadImage(image, "book" + book.getId())); //overwrite old image independent of changes to the movie
+        }
         bookRepository.save(book);
         return "redirect:/bookdetails/" + id;
     }
@@ -52,12 +70,19 @@ public class BookAdminController {
     @PostMapping("/booknew")
     public String movieNewPost(Model model,
                                @Valid Book book,
-                               BindingResult bindingResult){
+                               @RequestParam(required = false) MultipartFile image,
+                               BindingResult bindingResult) throws IOException{
         if(bindingResult.hasErrors()){
             model.addAttribute("allAuthors", authorRepository.findAll());
             return "admin/booknew";
         }
-        Book newBook = bookRepository.save(book);
+        Book newBook = bookRepository.save(book); //save to create unique id usable for firebase
+
+        if(!image.isEmpty()) {
+            book.setImageUrl(googleService.uploadImage(image, "book" + newBook.getId())); //add unique id to
+        }
+
+        bookRepository.save(book); //save imageUrl containing specific id
         return "redirect:/bookdetails/" + newBook.getId();
     }
 

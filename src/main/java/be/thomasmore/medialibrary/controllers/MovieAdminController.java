@@ -59,7 +59,9 @@ public class MovieAdminController {
         if(bindingResult.hasErrors()){
             return "admin/movieedit/" + id;
         }
-        movie.setImageUrl(uploadImage(image, movie.getImdb()));
+        if(!image.isEmpty()) {
+            movie.setImageUrl(googleService.uploadImage(image, "movie" + movie.getId())); //overwrite old image independent of changes to the movie
+        }
         movieRepository.save(movie);
         return "redirect:/moviedetails/" + id;
     }
@@ -83,23 +85,15 @@ public class MovieAdminController {
             model.addAttribute("allProductionCompanies", productionCompanyRepository.findAll());
             return "admin/movienew";
         }
+
+        Movie newMovie = movieRepository.save(movie); //save to create unique id usable for firebase
+
         if(!image.isEmpty()) {
-            googleService.deleteFromFirebase(movie.getImdb());
-            movie.setImageUrl(uploadImage(image, movie.getImdb()));
+            movie.setImageUrl(googleService.uploadImage(image, "movie" + newMovie.getId())); //add unique id to
         }
 
-        Movie newMovie = movieRepository.save(movie);
+        movieRepository.save(movie); //save imageUrl containing specific id
         return "redirect:/moviedetails/" + newMovie.getId();
-    }
-
-    private String uploadImage(MultipartFile multipartFile, String uniqueName) throws IOException{
-        final String filename = multipartFile.getOriginalFilename();
-        final File fileToUpload = new File(filename);
-        FileOutputStream fos = new FileOutputStream(fileToUpload);
-        fos.write(multipartFile.getBytes());
-        final String urlToFirebase = googleService.toFirebase(fileToUpload, uniqueName);
-        fileToUpload.delete();
-        return urlToFirebase;
     }
 
 }

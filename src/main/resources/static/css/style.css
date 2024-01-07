@@ -6,7 +6,7 @@ html{
 }
 
 .cover-picture {
-    background-image: url('../img/Books.jpg');
+    background-image: url('https://firebasestorage.googleapis.com/v0/b/medialibrary-407109.appspot.com/o/Books.jpg?alt=media&token=65791b79-0421-4f85-9666-3610614888c2');
     background-size: cover;
     background-position: center;
     height: 150px;

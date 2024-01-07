@@ -18,6 +18,9 @@ public class Book{
     @NotBlank(message = "Enter a title")
     private String title;
 
+    @NotBlank(message = "Enter url of the image")
+    private String imageUrl;
+
     @Temporal(TemporalType.DATE)
     @DateTimeFormat(pattern = "yyyy")
     @NotNull(message = "Enter a year of release")
@@ -50,6 +53,13 @@ public class Book{
     }
     public void setTitle(String title) {
         this.title = title;
+    }
+
+    public String getImageUrl() {
+        return imageUrl;
+    }
+    public void setImageUrl(String imageUrl) {
+        this.imageUrl = imageUrl;
     }
 
     public Integer getYearOfRelease() {

@@ -47,7 +47,7 @@
                     <div class="col-md-12 m-3">
                         <div class="row">
                             <div class="col-md-3 moviedetails">
-                                <img class="card-img-top moviePicture" th:src="@{|/img/${movie.title}.jpg|}" alt="Card image cap">
+                                <img class="card-img-top moviePicture" th:src="@{${movie.imageUrl}}" alt="Card image cap">
                             </div>
                             <div class="col-md-6">
                                 <div class="movieDetailCenter">

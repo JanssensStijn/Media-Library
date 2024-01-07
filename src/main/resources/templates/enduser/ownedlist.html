@@ -26,7 +26,7 @@
                     <div th:each="movie : ${movies}" class="card hoverable">
                         <a th:href="@{|/moviedetails/${movie.id}|}" >
                             <div class="card-body overview-card">
-                                <img class="card-img-top" th:src="@{|/img/${movie.title}.jpg|}" alt="Card image cap">
+                                <img class="card-img-top" th:src="@{${movie.imageUrl}}" alt="Card image cap">
                                 <h5 class="card-title" th:text="${movie.title}"></h5>
                                 <div sec:authorize="isAuthenticated()">
                                     <form th:action="@{|/enduser/wishlist/movie/${movie.id}|}" method="post">
@@ -64,7 +64,7 @@
                     <div th:each="book : ${books}" class="card hoverable">
                         <a th:href="@{|/bookdetails/${book.id}|}" >
                             <div class="card-body overview-card">
-                                <img class="card-img-top" th:src="@{|/img/${book.title}.jpg|}" alt="Card image cap">
+                                <img class="card-img-top" th:src="@{${book.imageUrl}}" alt="Card image cap">
                                 <h5 class="card-title" th:text="${book.title}"></h5>
                                 <div sec:authorize="isAuthenticated()">
                                     <form th:action="@{|/enduser/ownedlist/book/${book.id}|}" method="post">

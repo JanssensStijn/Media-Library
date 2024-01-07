@@ -20,7 +20,7 @@ public class Movie{
     private String imdb;
     @NotBlank(message = "Enter a title")
     private String title;
-    @NotBlank(message = "Enter the url for the image")
+
     private String imageUrl;
     @Temporal(TemporalType.DATE)
     @DateTimeFormat(pattern = "yyyy")

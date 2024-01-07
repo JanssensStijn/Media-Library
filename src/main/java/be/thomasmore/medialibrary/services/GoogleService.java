@@ -47,6 +47,12 @@ public class GoogleService {
         return String.format(DOWNLOAD_URL, imageBucket, URLEncoder.encode(fileName, StandardCharsets.UTF_8));
     }
 
+    public boolean deleteFromFirebase(String fileName) throws IOException {
+        BlobId blobId = BlobId.of(imageBucket, fileName);
+        Storage storage = getFirebaseStorage();
+        return storage.delete(blobId);
+    }
+
     private Storage getFirebaseStorage() throws IOException {
         Credentials credentials = GoogleCredentials.fromStream(new ByteArrayInputStream(firebaseCredentials.getBytes()));
         return StorageOptions.newBuilder().setCredentials(credentials).build().getService();

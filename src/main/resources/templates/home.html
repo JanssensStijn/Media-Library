@@ -20,7 +20,7 @@
                                 <div th:each="movie : ${movies}" class="card hoverable" th:if="${movie.id le 6}"> <!--gelimiteerd tot 6 om sneller te kunnen laden-->
                                     <a th:href="@{|/moviedetails/${movie.id}|}" >
                                         <div class="card-body overview-card">
-                                            <img class="card-img-top" th:src="@{|/img/${movie.title}.jpg|}" alt="Card image cap">
+                                            <img class="card-img-top" th:src="@{${movie.imageUrl}}" alt="Card image cap">
                                             <h5 class="card-title" th:text="${movie.title}"></h5>
                                             <div sec:authorize="isAuthenticated()">
                                                 <form th:action="@{|/enduser/wishlist/movie/${movie.id}|}" method="post">

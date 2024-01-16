@@ -1,7 +1,15 @@
+.card {
+    width: 300px;
+    margin-right: 10px;
+    margin-bottom: 10px;
+    white-space: normal;
+    padding: 0px;
+}
+
 .card-background {
     position: relative;
     overflow: hidden;
-    height: 300px; /* Adjust the height as needed */
+    height: 450px; /* Adjust the height as needed */
     background-size: cover;
     background-position: center;
 }
@@ -37,7 +45,8 @@
     left: 0;
     right: 0;
     padding: 10px;
-    background: rgba(0, 0, 0, 0.7); /* Adjust background color and opacity as needed */
+    text-align: center;
+    background: rgba(0, 123, 255, 0.7); /* Adjust background color and opacity as needed */
     color: white; /* Adjust text color as needed */
 }
 
@@ -46,10 +55,7 @@
 
 
 
-
-
 html{
-    margin: 20px;
     font-family: "Arial Black";
 }
 
@@ -106,7 +112,7 @@ nav{
 
 .footer{
     text-align: center;
-    background-color: slategrey;
+    background-color: #007bff;
     color: black;
     margin-top: 20px;
 }
@@ -137,21 +143,12 @@ nav{
 
 .scrollable-cards {
     display: inline-flex;
-    padding: 10px;
     white-space: nowrap;
 }
 
-.card {
-    width: 200px;
-    margin-right: 10px;
-    white-space: normal;
-}
 .hoverable:hover{
     border: #007bff solid 3px;
 }
-.card-img-top{
-     height:200px;
- }
 .moviePicture{
     height:300px;
     image-resolution: normal;
@@ -174,9 +171,7 @@ nav{
     height: 50px;
 
 }
-.overview-card {
-    height: 350px;
-}
+
 .hidden{
     visibility: hidden;
 }

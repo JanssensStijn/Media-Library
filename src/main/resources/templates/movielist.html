@@ -8,7 +8,6 @@
 </head>
 
 <body>
-
 <div th:replace="~{fragments/header :: header}">Header</div>
 <div class="container justify-content-center">
     <div class="row justify-content-md-center">
@@ -42,8 +41,6 @@
                     <div class="submitbutton">
                         <input type="submit" value="search" class="filterwidth">
                     </div>
-
-
                 </form>
             </div>
         </div>
@@ -52,6 +49,7 @@
             <div class="row">
                 <div th:replace="~{fragments/cards :: movieCards}">MovieCards</div>
             </div>
+            <!-- Remove the unnecessary scrollable-container and directly include the movie cards -->
         </div>
     </div>
 </div>

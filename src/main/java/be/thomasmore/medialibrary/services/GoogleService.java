@@ -38,13 +38,14 @@ public class GoogleService {
      * @return the url that can be used to fetch the stored file
      * @throws IOException
      */
-    private String toFirebase(File file, String fileName) throws IOException {
+    public String toFirebase(File file, String fileName) throws IOException {
         BlobId blobId = BlobId.of(imageBucket, fileName);
 
         BlobInfo blobInfo = BlobInfo.newBuilder(blobId).setContentType("media").build();
         Storage storage = getFirebaseStorage();
         InputStream inputStream = new FileInputStream(file);
         storage.createFrom(blobInfo, inputStream);
+        inputStream.close();
         String DOWNLOAD_URL = "https://firebasestorage.googleapis.com/v0/b/%s/o/%s?alt=media";
         return String.format(DOWNLOAD_URL, imageBucket, URLEncoder.encode(fileName, StandardCharsets.UTF_8));
     }
@@ -60,13 +61,5 @@ public class GoogleService {
         return StorageOptions.newBuilder().setCredentials(credentials).build().getService();
     }
 
-    public String uploadImage(MultipartFile multipartFile, String uniqueName) throws IOException{
-        final String filename = multipartFile.getOriginalFilename();
-        final File fileToUpload = new File(filename);
-        FileOutputStream fos = new FileOutputStream(fileToUpload);
-        fos.write(multipartFile.getBytes());
-        final String urlToFirebase = toFirebase(fileToUpload, uniqueName);
-        fileToUpload.delete();
-        return urlToFirebase;
-    }
+
 }

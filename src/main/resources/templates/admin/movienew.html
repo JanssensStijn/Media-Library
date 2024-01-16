@@ -14,16 +14,16 @@
             <form th:action="@{|/admin/movienew|}" method="post" enctype="multipart/form-data">
                 <div class="error" th:if="${#fields.hasErrors('*')}">ERROR - data is not saved</div>
                 <div class="row">
-                    <div class="col-md-12 m-3 moviedetails">
-                        <label for="movieTitle">Title of movie:</label>
+                    <div class="col-md-12 m-3 detailsBlock">
+                        <label for="movieTitle">Title of movie: </label>
                         <input type="text" id="movieTitle" th:field="*{title}" th:errorclass="fieldError">
                         <span class="fieldErrorMessage" th:if="${#fields.hasErrors('title')}" th:errors="*{title}"></span>
                     </div>
                 </div>
 
                 <div class="row">
-                    <div class="col-md-12 m-3 moviedetails">
-                        <label for="movieLink">Unique Youtube id of the trailer:</label>
+                    <div class="col-md-12 m-3 detailsBlock">
+                        <label for="movieLink">Unique Youtube id of the trailer: </label>
                         <input type="text" id="movieLink" th:field="*{trailerLink}" th:errorclass="fieldError">
                         <span class="fieldErrorMessage" th:if="${#fields.hasErrors('trailerLink')}" th:errors="*{trailerLink}"></span>
                     </div>
@@ -32,19 +32,21 @@
                 <div class="row">
                     <div class="col-md-12 m-3">
                         <div class="row">
-                            <div class="col-md-3 moviedetails">
-                                <label for="image">image:</label>
-                                <input type="file" id="image" accept="image/*" name="image">
+                            <div class="col-md-3 detailsButtonBlock">
+                                <div class="detailsButtonSubBlock">
+                                    <label for="image">Upload image: </label>
+                                    <input type="file" id="image" accept="image/*" name="image">
+                                </div>
                             </div>
                             <div class="col-md-6">
-                                <div class="movieDetailCenter">
+                                <div class="DetailsInfo">
                                     <div class="mb-3">
-                                        <label for="movieYOR">Year of release:</label>
+                                        <label for="movieYOR">Year of release: </label>
                                         <input type="number" th:min="1750", th:max="9999" class="form-control" id="movieYOR" th:field="*{yearOfRelease}" th:errorclass="fieldError">
                                         <p class="fieldErrorMessage" th:if="${#fields.hasErrors('yearOfRelease')}" th:errors="*{yearOfRelease}"></p>
                                     </div>
                                     <div class=" mb-3">
-                                        <label for="producer" class="filterwidth">producer:</label>
+                                        <label for="producer" class="filterwidth">producer: </label>
                                         <select multiple name="producer" id="producer" class="filterwidth" th:field="*{producers}" th:errorclass="fieldError">
                                             <option  th:value="null" text="None selected" th:selected="${allProducers eq null}">
                                             </option>
@@ -54,7 +56,7 @@
                                         <p class="fieldErrorMessage" th:if="${#fields.hasErrors('producers')}" th:errors="*{producers}"></p>
                                     </div><br>
                                     <div class="mb-3">
-                                        <label for="productionCompany" class="filterwidth">production company:</label>
+                                        <label for="productionCompany" class="filterwidth">production company: </label>
                                         <select multiple name="productionCompany" id="productionCompany" class="filterwidth" th:field="*{productionCompanies}" th:errorclass="fieldError">
                                             <option  th:value="null" text="None selected" th:selected="${allProductionCompanies eq null}"></option>
                                             <option th:each="item : ${allProductionCompanies}" th:value="${item.id}" th:text="${item.name}">
@@ -74,15 +76,19 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="col-md-3 moviedetails align-items-center">
-                                <button type="submit" class="btn btn-primary detailsButton">
-                                    <i class="bi bi-check-circle"></i> Save
-                                </button>
-                                <br>
-
-                                <a class="btn btn-primary detailsButton" th:href="@{|/movielist|}">
-                                    <i class="bi bi-x-circle"></i> Cancel
-                                </a>
+                            <div class="col-md-3 detailsButtonBlock align-items-center">
+                                <div class="detailsButtonSubBlock">
+                                    <button type="submit" class="detailsButton">
+                                        <i class="bi bi-check-circle"></i> Save
+                                    </button>
+                                </div>
+                                <div class="detailsButtonSubBlock">
+                                    <a class="detailsButton" th:href="@{|/movielist|}">
+                                        <button class="detailsButton">
+                                            <i class="bi bi-x-circle"></i> Cancel
+                                        </button>
+                                    </a>
+                                </div>
                             </div>
                         </div>
                     </div>

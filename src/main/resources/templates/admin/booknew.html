@@ -14,8 +14,8 @@
             <form th:action="@{|/admin/booknew|}" method="post" enctype="multipart/form-data">
                 <div class="error" th:if="${#fields.hasErrors('*')}">ERROR - data is not saved</div>
                 <div class="row">
-                    <div class="col-md-12 m-3 moviedetails">
-                        <label for="movieTitle">Title of movie:</label>
+                    <div class="col-md-12 m-3 detailsBlock">
+                        <label for="movieTitle">Title of book: </label>
                         <input type="text" id="movieTitle" th:field="*{title}" th:errorclass="fieldError">
                         <span class="fieldErrorMessage" th:if="${#fields.hasErrors('title')}" th:errors="*{title}"></span>
                     </div>
@@ -24,19 +24,21 @@
                 <div class="row">
                     <div class="col-md-12 m-3">
                         <div class="row">
-                            <div class="col-md-3 moviedetails">
-                                <label for="image">image:</label>
-                                <input type="file" id="image" accept="image/*" name="image">
+                            <div class="col-md-3 detailsButtonBlock">
+                                <div class="detailsButtonSubBlock">
+                                    <label for="image">Upload image: </label>
+                                    <input type="file" id="image" accept="image/*" name="image">
+                                </div>
                             </div>
                             <div class="col-md-6">
-                                <div class="movieDetailCenter">
+                                <div class="DetailsInfo">
                                     <div class="mb-3">
-                                        <label for="movieYOR">Year of release:</label>
+                                        <label for="movieYOR">Year of release: </label>
                                         <input type="number" th:min="1750", th:max="9999" class="form-control" id="movieYOR" th:field="*{yearOfRelease}" th:errorclass="fieldError">
                                         <p class="fieldErrorMessage" th:if="${#fields.hasErrors('yearOfRelease')}" th:errors="*{yearOfRelease}"></p>
                                     </div>
                                     <div class=" mb-3">
-                                        <label for="producer" class="filterwidth">author:</label>
+                                        <label for="producer" class="filterwidth">author: </label>
                                         <select multiple name="producer" id="producer" class="filterwidth" th:field="*{authors}" th:errorclass="fieldError">
                                             <option  th:value="null" text="None selected" th:selected="${allAuthors eq null}">
                                             </option>
@@ -52,15 +54,19 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="col-md-3 moviedetails align-items-center">
-                                <button type="submit" class="btn btn-primary detailsButton">
-                                    <i class="bi bi-check-circle"></i> Save
-                                </button>
-                                <br>
-
-                                <a class="btn btn-primary detailsButton" th:href="@{|/booklist|}">
-                                    <i class="bi bi-x-circle"></i> Cancel
-                                </a>
+                            <div class="col-md-3 detailsButtonBlock align-items-center">
+                                <div class="detailsButtonSubBlock">
+                                    <button type="submit" class="detailsButton">
+                                        <i class="bi bi-check-circle"></i> Save
+                                    </button>
+                                </div>
+                                <div class="detailsButtonSubBlock">
+                                    <a class="detailsButton" th:href="@{|/booklist|}">
+                                        <button class="detailsButton">
+                                            <i class="bi bi-x-circle"></i> Cancel
+                                        </button>
+                                    </a>
+                                </div>
                             </div>
                         </div>
                     </div>

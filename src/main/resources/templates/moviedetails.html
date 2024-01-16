@@ -29,13 +29,13 @@
             <div class="col-md-10 mx-auto">
 
                 <div class="row">
-                    <div class="col-md-12 m-3 moviedetails text-center">
+                    <div class="col-md-12 m-3 detailsBlock text-center">
                         <h1 th:text="${movie.title}"/>
                     </div>
                 </div>
 
                 <div class="row">
-                    <div class="col-md-12 m-3 moviedetails">
+                    <div class="col-md-12 m-3 detailsBlock">
                         <iframe id="trailerPlayer" type="text/html" width="100%" height="500px"
                                 th:src="|https://www.youtube.com/embed/${movie.trailerLink}?autoplay=1|"
                                 border="0" allowfullscreen>
@@ -46,11 +46,11 @@
                 <div class="row">
                     <div class="col-md-12 m-3">
                         <div class="row">
-                            <div class="col-md-3 moviedetails">
-                                <img class="card-img-top moviePicture" th:src="@{${movie.imageUrl}}" alt="Card image cap">
+                            <div class="col-md-3 detailsBlock">
+                                <img class="detailsPicture" th:src="@{${movie.imageUrl}}" alt="Card image cap">
                             </div>
                             <div class="col-md-6">
-                                <div class="movieDetailCenter">
+                                <div class="DetailsInfo">
                                     <p><strong>Year of release: </strong><span th:text="|${movie.yearOfRelease}|"></span></p>
                                     <p><strong>Producer(s): </strong>
                                         <span th:each="producer, iterStat : ${movie.getProducers()}">
@@ -69,28 +69,33 @@
                                     <a href="#" class="card-link" th:href="@{|https://www.imdb.com/title/${movie.imdb}/|}" target="_blank">More info about movie</a>
                                 </div>
                             </div>
-                            <div class="col-md-3 moviedetails align-items-center" sec:authorize="isAuthenticated()">
-                                <form th:action="@{|/enduser/wishlist/movie/${movie.id}|}" method="post">
-                                    <button type="submit" class="btn btn-primary" th:if="${movie.getEndUsersWishlist().contains(currentUser)}">
-                                        <i class="bi bi-heart-fill"></i><span> Remove from wishlist</span>
-                                    </button>
-                                    <button type="submit" class="btn btn-primary" th:unless="${movie.getEndUsersWishlist().contains(currentUser)}">
-                                        <i class="bi bi-heart"></i><span> Add to wishlist</span>
-                                    </button>
-                                </form><br>
 
-                                <form th:action="@{|/enduser/ownedlist/movie/${movie.id}|}" method="post">
-                                    <button type="submit" class="btn btn-primary" th:if="${movie.getEndUsersOwned().contains(currentUser)}">
-                                        <i class="bi bi-cart-fill"></i><span> Remove from owned</span>
-                                    </button>
-                                    <button type="submit" class="btn btn-primary" th:unless="${movie.getEndUsersOwned().contains(currentUser)}">
-                                        <i class="bi bi-cart"></i><span> Add to owned</span>
-                                    </button>
-                                </form><br><br>
-                                <div class="col mx-auto" sec:authorize="hasAuthority('ADMIN')">
+
+                            <div class="col-md-3 detailsButtonBlock" sec:authorize="isAuthenticated()">
+                                <div class="detailsButtonSubBlock">
+                                    <form th:action="@{|/enduser/wishlist/movie/${movie.id}|}" method="post">
+                                        <button type="submit" class="detailsButton" th:if="${movie.getEndUsersWishlist().contains(currentUser)}">
+                                            <i class="bi bi-heart-fill"></i><span> Remove from wishlist</span>
+                                        </button>
+                                        <button type="submit" class="detailsButton" th:unless="${movie.getEndUsersWishlist().contains(currentUser)}">
+                                            <i class="bi bi-heart"></i><span> Add to wishlist</span>
+                                        </button>
+                                    </form>
+                                </div>
+                                <div class="detailsButtonSubBlock">
+                                    <form th:action="@{|/enduser/ownedlist/movie/${movie.id}|}" method="post">
+                                        <button type="submit" class="detailsButton" th:if="${movie.getEndUsersOwned().contains(currentUser)}">
+                                            <i class="bi bi-cart-fill"></i><span> Remove from owned</span>
+                                        </button>
+                                        <button type="submit" class="detailsButton" th:unless="${movie.getEndUsersOwned().contains(currentUser)}">
+                                            <i class="bi bi-cart"></i><span> Add to owned</span>
+                                        </button>
+                                    </form>
+                                </div>
+                                <div class="detailsButtonSubBlock" sec:authorize="hasAuthority('ADMIN')">
                                     <a th:href="@{|../admin/movieedit/${movie.id}|}">
-                                        <button type="submit" class="btn btn-primary detailsButton">
-                                            <i class="bi bi-wrench"></i> EDIT
+                                        <button type="submit" class="detailsButton">
+                                            <i class="bi bi-wrench"></i> Edit movie
                                         </button>
                                     </a>
                                 </div>

@@ -19,11 +19,6 @@
                     </div>
 
                     <div class="col mx-auto">
-                        <a th:href="@{|../admin/bookedit/${nextId}|}" th:classappend="${false} ? 'hidden'"
-                           class="btn btn-primary" tabindex="-1" role="button" aria-disabled="true">EDIT</a>
-                    </div>
-
-                    <div class="col mx-auto">
                         <a th:href="@{|/bookdetails/${nextId}|}" th:classappend="${nextId == null} ? 'hidden'"
                            class="btn btn-primary" tabindex="-1" role="button" aria-disabled="true">NEXT</a>
                     </div>
@@ -34,7 +29,7 @@
             <div class="col-md-10 mx-auto">
 
                 <div class="row">
-                    <div class="col-md-12 m-3 moviedetails text-center">
+                    <div class="col-md-12 m-3 detailsBlock text-center">
                         <h1 th:text="${book.title}"/>
                     </div>
                 </div>
@@ -42,11 +37,11 @@
                 <div class="row">
                     <div class="col-md-12 m-3">
                         <div class="row">
-                            <div class="col-md-3 moviedetails">
-                                <img class="card-img-top moviePicture" th:src="@{${book.imageUrl}}" alt="Card image cap">
+                            <div class="col-md-3 detailsBlock">
+                                <img class="detailsPicture" th:src="@{${book.imageUrl}}" alt="Card image cap">
                             </div>
                             <div class="col-md-6">
-                                <div class="movieDetailCenter">
+                                <div class="DetailsInfo">
                                     <p><strong>Year of release: </strong><span th:text="|${book.yearOfRelease}|"></span></p>
                                     <p><strong>Author(s): </strong>
                                         <span th:each="author, iterStat : ${book.getAuthors()}">
@@ -58,27 +53,35 @@
                                     <p><strong>Description: </strong><span th:text="|${book.description}|"></span></p>
                                 </div>
                             </div>
-                            <div class="col-md-3 moviedetails align-items-center">
-                                <form th:action="@{|/enduser/wishlist/book/${book.id}|}" method="post">
-                                    <button type="submit" class="btn btn-primary" th:if="${book.getEndUsersWishlist().contains(currentUser)}">
-                                        <i class="bi bi-heart-fill"></i><span> Remove from wishlist</span>
-                                    </button>
-                                    <button type="submit" class="btn btn-primary" th:unless="${book.getEndUsersWishlist().contains(currentUser)}">
-                                        <i class="bi bi-heart"></i><span> Add to wishlist</span>
-                                    </button>
-                                </form><br>
-                                <form th:action="@{|/enduser/ownedlist/book/${book.id}|}" method="post">
-                                    <button type="submit" class="btn btn-primary" th:if="${book.getEndUsersOwned().contains(currentUser)}">
-                                        <i class="bi bi-cart-fill"></i><span> Remove from owned</span>
-                                    </button>
-                                    <button type="submit" class="btn btn-primary" th:unless="${book.getEndUsersOwned().contains(currentUser)}">
-                                        <i class="bi bi-cart"></i><span> Add to owned</span>
-                                    </button>
-                                </form><br>
-                                <div class="col mx-auto" sec:authorize="hasAuthority('ADMIN')">
+
+
+
+
+                            <div class="col-md-3 detailsButtonBlock" sec:authorize="isAuthenticated()">
+                                <div class="detailsButtonSubBlock">
+                                    <form th:action="@{|/enduser/wishlist/book/${book.id}|}" method="post">
+                                        <button type="submit" class="detailsButton" th:if="${book.getEndUsersWishlist().contains(currentUser)}">
+                                            <i class="bi bi-heart-fill"></i><span> Remove from wishlist</span>
+                                        </button>
+                                        <button type="submit" class="detailsButton" th:unless="${book.getEndUsersWishlist().contains(currentUser)}">
+                                            <i class="bi bi-heart"></i><span> Add to wishlist</span>
+                                        </button>
+                                    </form>
+                                </div>
+                                <div class="detailsButtonSubBlock">
+                                    <form th:action="@{|/enduser/ownedlist/book/${book.id}|}" method="post">
+                                        <button type="submit" class="detailsButton" th:if="${book.getEndUsersOwned().contains(currentUser)}">
+                                            <i class="bi bi-cart-fill"></i><span> Remove from owned</span>
+                                        </button>
+                                        <button type="submit" class="detailsButton" th:unless="${book.getEndUsersOwned().contains(currentUser)}">
+                                            <i class="bi bi-cart"></i><span> Add to owned</span>
+                                        </button>
+                                    </form>
+                                </div>
+                                <div class="detailsButtonSubBlock" sec:authorize="hasAuthority('ADMIN')">
                                     <a th:href="@{|../admin/bookedit/${book.id}|}">
-                                        <button type="submit" class="btn btn-primary detailsButton">
-                                            <i class="bi bi-wrench"></i> EDIT
+                                        <button type="submit" class="detailsButton">
+                                            <i class="bi bi-wrench"></i> Edit book
                                         </button>
                                     </a>
                                 </div>

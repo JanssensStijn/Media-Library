@@ -13,14 +13,14 @@
         <div class="col-md-10 mx-auto" th:if="${movie}" th:object="${movie}">
             <form th:action="@{|/admin/movieedit/*{id}|}" method="post" enctype="multipart/form-data">
                 <div class="row">
-                    <div class="col-md-12 m-3 moviedetails">
+                    <div class="col-md-12 m-3 detailsBlock">
                         <label for="movieTitle">Title of movie:</label>
                         <input type="text" id="movieTitle" th:field="*{title}">
                     </div>
                 </div>
 
                 <div class="row">
-                    <div class="col-md-12 m-3 moviedetails">
+                    <div class="col-md-12 m-3 detailsBlock">
                         <label for="movieLink">Unique Youtube id of the trailer:</label>
                         <input type="text" id="movieLink" th:field="*{trailerLink}">
                     </div>
@@ -29,13 +29,17 @@
                 <div class="row">
                     <div class="col-md-12 m-3">
                         <div class="row">
-                            <div class="col-md-3 moviedetails">
-                                <img class="card-img-top moviePicture" th:src="@{*{imageUrl}}" alt="Card image cap">
-                                <label for="image">New image:</label>
-                                <input type="file" id="image" accept="image/*" name="image">
+                            <div class="col-md-3 detailsButtonBlock">
+                                <div class="detailsButtonSubBlock">
+                                    <img class="detailsPicture" th:src="@{*{imageUrl}}">
+                                </div>
+                                <div class="detailsButtonSubBlock">
+                                    <label for="image">New image:</label>
+                                    <input type="file" id="image" accept="image/*" name="image">
+                                </div>
                             </div>
                             <div class="col-md-6">
-                                <div class="movieDetailCenter">
+                                <div class="DetailsInfo">
                                     <div class="mb-3">
                                         <label for="movieYOR">Year of release:</label>
                                         <input type="text" class="form-control" id="movieYOR" th:field="*{yearOfRelease}">
@@ -67,14 +71,19 @@
                                     </div>
                                  </div>
                             </div>
-                            <div class="col-md-3 moviedetails align-items-center">
-                                    <button type="submit" class="btn btn-primary detailsButton">
+                            <div class="col-md-3 detailsButtonBlock">
+                                <div class="detailsButtonSubBlock">
+                                    <button type="submit" class="detailsButton">
                                         <i class="bi bi-check-circle"></i> Save
                                     </button>
-                                    <br>
-                                    <a class="btn btn-primary detailsButton" th:href="@{|/moviedetails/*{id}|}">
-                                        <i class="bi bi-x-circle"></i> Cancel
+                                </div>
+                                <div class="detailsButtonSubBlock">
+                                    <a class="detailsButton" th:href="@{|/moviedetails/*{id}|}">
+                                        <button class="detailsButton">
+                                            <i class="bi bi-x-circle"></i> Cancel
+                                        </button>
                                     </a>
+                                </div>
                             </div>
                         </div>
                     </div>

@@ -48,6 +48,7 @@
     text-align: center;
     background: rgba(0, 123, 255, 0.7); /* Adjust background color and opacity as needed */
     color: white; /* Adjust text color as needed */
+    text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;
 }
 
 

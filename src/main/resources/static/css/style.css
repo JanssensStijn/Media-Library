@@ -1,3 +1,51 @@
+.card-background {
+    position: relative;
+    overflow: hidden;
+    height: 300px; /* Adjust the height as needed */
+    background-size: cover;
+    background-position: center;
+}
+
+.card-buttons {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    display: flex;
+    justify-content: space-between;
+    padding: 10px;
+}
+
+.card-buttons button {
+    position: absolute;
+}
+
+.top-left {
+    top: 10px;
+    left: 10px;
+}
+
+.top-right {
+    top: 10px;
+    right: 10px;
+}
+
+.card-body {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    padding: 10px;
+    background: rgba(0, 0, 0, 0.7); /* Adjust background color and opacity as needed */
+    color: white; /* Adjust text color as needed */
+}
+
+
+
+
+
+
 
 
 html{
@@ -82,13 +130,7 @@ nav{
     width: 20px;
     height: 20px;
 }
-.card{
-    margin-top: 20px;
-    background-color: darkgrey;
-}
-.card-title{
-    text-align: center;
-}
+
 .scrollable-container {
      overflow-x: auto;
  }
@@ -105,12 +147,7 @@ nav{
     white-space: normal;
 }
 .hoverable:hover{
-    background-color: #007bff;
-}
-
-.card a, .card h5{
-    text-decoration: none;
-    color: black;
+    border: #007bff solid 3px;
 }
 .card-img-top{
      height:200px;

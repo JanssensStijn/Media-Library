@@ -6,6 +6,34 @@
 <head/>
 <body>
 <div th:each="movie : ${movies}" class="card hoverable" th:fragment="movieCards">
+    <a th:href="@{|/moviedetails/${movie.id}|}" class="card-link">
+        <div class="card-background" th:style="'background-image: url(' + ${movie.imageUrl} + ')'">
+            <div class="card-buttons">
+                <form th:action="@{|/enduser/wishlist/movie/${movie.id}|}" method="post">
+                    <button type="submit" class="btn btn-primary top-left" th:if="${movie.getEndUsersWishlist().contains(currentUser)}">
+                        <i class="bi bi-heart-fill"></i>
+                    </button>
+                    <button type="submit" class="btn btn-primary top-left" th:unless="${movie.getEndUsersWishlist().contains(currentUser)}">
+                        <i class="bi bi-heart"></i>
+                    </button>
+                </form>
+                <form th:action="@{|/enduser/ownedlist/movie/${movie.id}|}" method="post">
+                    <button type="submit" class="btn btn-primary top-right" th:if="${movie.getEndUsersOwned().contains(currentUser)}">
+                        <i class="bi bi-cart-fill"></i>
+                    </button>
+                    <button type="submit" class="btn btn-primary top-right" th:unless="${movie.getEndUsersOwned().contains(currentUser)}">
+                        <i class="bi bi-cart"></i>
+                    </button>
+                </form>
+            </div>
+            <div class="card-body">
+                <h5 class="card-title" th:text="${movie.title}"></h5>
+            </div>
+        </div>
+    </a>
+</div>
+
+<div th:each="movie : ${movies}" class="card hoverable" th:fragment="movieCardsOld">
     <a th:href="@{|/moviedetails/${movie.id}|}" >
         <div class="card-body overview-card">
             <img class="card-img-top" th:src="${movie.imageUrl}" alt="Card image cap">

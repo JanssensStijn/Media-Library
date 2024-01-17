@@ -36,6 +36,39 @@ VALUES
 
 --------------------------------------------------------------------
 
+INSERT INTO ACTOR (NAME) VALUES
+    ('Tim Robbins'),
+    ('Morgan Freeman'),
+    ('Christian Bale'),
+    ('Heath Ledger'),
+    ('Leonardo DiCaprio'),
+    ('Joseph Gordon-Levitt'),
+    ('Tom Hanks'),
+    ('Robin Wright'),
+    ('Edward Norton'),
+    ('Brad Pitt'),
+    ('Elijah Wood'),
+    ('Ian McKellen'),
+    ('Marlon Brando'),
+    ('Al Pacino'),
+    ('Liam Neeson'),
+    ('Ben Kingsley'),
+    ('Michael J. Fox'),
+    ('Christopher Lloyd');
+--------------------------------------------------------------------
+INSERT INTO MOVIE_ACTORS (ACTORS_ID, MOVIES_ID) SELECT actor.id, movie.id FROM actor, movie WHERE actor.name IN ('Tim Robbins', 'Morgan Freeman') AND movie.title = 'The Shawshank Redemption';
+INSERT INTO MOVIE_ACTORS (ACTORS_ID, MOVIES_ID) SELECT actor.id, movie.id FROM actor, movie WHERE actor.name IN ('Christian Bale', 'Heath Ledger')   AND movie.title = 'The Dark Knight';
+INSERT INTO MOVIE_ACTORS (ACTORS_ID, MOVIES_ID) SELECT actor.id, movie.id FROM actor, movie WHERE actor.name IN ('Leonardo DiCaprio', 'Joseph Gordon-Levitt') AND movie.title = 'Inception';
+INSERT INTO MOVIE_ACTORS (ACTORS_ID, MOVIES_ID) SELECT actor.id, movie.id FROM actor, movie WHERE actor.name IN ('Tom Hanks', 'Robin Wright') AND movie.title = 'Forrest Gump';
+INSERT INTO MOVIE_ACTORS (ACTORS_ID, MOVIES_ID) SELECT actor.id, movie.id FROM actor, movie WHERE actor.name IN ('Edward Norton', 'Brad Pitt') AND movie.title = 'Fight Club';
+INSERT INTO MOVIE_ACTORS (ACTORS_ID, MOVIES_ID) SELECT actor.id, movie.id FROM actor, movie WHERE actor.name IN ('Elijah Wood', 'Ian McKellen') AND movie.title = 'The Lord of the Rings - The Two Towers';
+INSERT INTO MOVIE_ACTORS (ACTORS_ID, MOVIES_ID) SELECT actor.id, movie.id FROM actor, movie WHERE actor.name IN ('Marlon Brando', 'Al Pacino') AND movie.title = 'The Godfather';
+INSERT INTO MOVIE_ACTORS (ACTORS_ID, MOVIES_ID) SELECT actor.id, movie.id FROM actor, movie WHERE actor.name IN ('Elijah Wood', 'Ian McKellen') AND movie.title = 'The Lord of the Rings - The Fellowship of the Ring';
+INSERT INTO MOVIE_ACTORS (ACTORS_ID, MOVIES_ID) SELECT actor.id, movie.id FROM actor, movie WHERE actor.name IN ('Liam Neeson', 'Ben Kingsley') AND movie.title = 'Schindler''s List';
+INSERT INTO MOVIE_ACTORS (ACTORS_ID, MOVIES_ID) SELECT actor.id, movie.id FROM actor, movie WHERE actor.name IN ('Michael J. Fox', 'Christopher Lloyd') AND movie.title = 'Back to the Future';
+
+--------------------------------------------------------------------
+
 INSERT INTO MOVIE_PRODUCTION_COMPANIES (MOVIES_ID, PRODUCTION_COMPANIES_ID) VALUES (select id from movie where title = 'The Shawshank Redemption', select id from production_company where name =  'Castle Rock Entertainment');
 INSERT INTO MOVIE_PRODUCTION_COMPANIES (MOVIES_ID, PRODUCTION_COMPANIES_ID) VALUES (select id from movie where title = 'The Dark Knight', select id from production_company where name = 'Warner Bros. Pictures');
 INSERT INTO MOVIE_PRODUCTION_COMPANIES (MOVIES_ID, PRODUCTION_COMPANIES_ID) VALUES (select id from movie where title = 'Inception', select id from production_company where name =  'Warner Bros. Pictures');

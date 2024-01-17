@@ -64,7 +64,15 @@
                                             <!-- Add a span tag for each artist with a comma (except for the last one) -->
                                             <span th:text="${productionCompany.name}"></span>
                                             <span th:text="|-- |" th:if="${!iterStat.last}"></span>
-                                        </span></p>
+                                        </span>
+                                    </p>
+                                    <p><strong>Main actors: </strong>
+                                        <span th:each="actor, iterStat : ${movie.getActors()}">
+                                            <!-- Add a span tag for each artist with a comma (except for the last one) -->
+                                            <span th:text="${actor.name}"></span>
+                                            <span th:text="|-- |" th:if="${!iterStat.last}"></span>
+                                        </span>
+                                    </p>
                                     <p><strong>Description: </strong><span th:text="|${movie.description}|"></span></p>
                                     <a href="#" class="card-link" th:href="@{|https://www.imdb.com/title/${movie.imdb}/|}" target="_blank">More info about movie</a>
                                 </div>

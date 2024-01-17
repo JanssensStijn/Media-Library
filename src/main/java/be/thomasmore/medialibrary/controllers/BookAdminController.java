@@ -39,19 +39,20 @@ public class BookAdminController {
 
     @GetMapping({"/bookedit/{id}"})
     public String bookEdit(Model model, @PathVariable (required = false) Integer id) {
-        List<Author> optionalAuthors = (List<Author>) authorRepository.findAll();
-        if(!optionalAuthors.isEmpty()) model.addAttribute("allAuthors", optionalAuthors);
+        getAllFromRepos(model);
         return "admin/bookedit";
     }
 
     @PostMapping("/bookedit/{id}")
-    public String bookEditPost(@PathVariable int id,
-                               Book book,
+    public String bookEditPost(Model model,
+                               @PathVariable int id,
                                @RequestParam(required = false) MultipartFile image,
+                               @Valid Book book,
                                BindingResult bindingResult) throws IOException {
 
         if(bindingResult.hasErrors()){
-            return "admin/book edit/" + id;
+            getAllFromRepos(model);
+            return "admin/bookedit";
         }
         if(!image.isEmpty()) {
             book.setImageUrl(uploadImage(image, "book" + book.getId())); //overwrite old image independent of changes to the movie
@@ -61,26 +62,25 @@ public class BookAdminController {
     }
 
     @GetMapping({"/booknew"})
-    public String movieNew(Model model) {
-        List<Author> optionalAuthors = (List<Author>) authorRepository.findAll();
-        if(!optionalAuthors.isEmpty()) model.addAttribute("allAuthors", optionalAuthors);
+    public String bookNew(Model model) {
+        getAllFromRepos(model);
         return "admin/booknew";
     }
 
     @PostMapping("/booknew")
-    public String movieNewPost(Model model,
+    public String bookNewPost(Model model,
+                              @RequestParam(required = false) MultipartFile image,
                                @Valid Book book,
-                               /*@RequestParam(required = false) MultipartFile image,*/
                                BindingResult bindingResult) throws IOException{
         if(bindingResult.hasErrors()){
-            model.addAttribute("allAuthors", authorRepository.findAll());
+            getAllFromRepos(model);
             return "admin/booknew";
         }
         Book newBook = bookRepository.save(book); //save to create unique id usable for firebase
 
-        /*if(!image.isEmpty()) {
+        if(!image.isEmpty()) {
             book.setImageUrl(uploadImage(image, "book" + newBook.getId())); //add unique id to
-        }*/
+        }
 
         bookRepository.save(book); //save imageUrl containing specific id
         return "redirect:/bookdetails/" + newBook.getId();
@@ -95,6 +95,11 @@ public class BookAdminController {
         final String urlToFirebase = googleService.toFirebase(fileToUpload, uniqueName);
         fileToUpload.delete();
         return urlToFirebase;
+    }
+
+    private void getAllFromRepos(Model model) {
+        List<Author> optionalAuthors = (List<Author>) authorRepository.findAll();
+        if (!optionalAuthors.isEmpty()) model.addAttribute("allAuthors", optionalAuthors);
     }
 
 }

@@ -121,7 +121,8 @@ nav{
 }
 .error{
     text-align: center;
-    color: black;
+    font-weight: bold;
+    color: red;
 }
 
 .fieldError, input.fieldError, select.input.fieldError{
@@ -130,6 +131,10 @@ nav{
 
 .fieldErrorMessage{
     color: red;
+    margin-left: 10px;
+}
+.formLabel{
+    margin-right: 10px;
 }
 
 .submitbutton{

@@ -15,7 +15,7 @@
                 <div class="error" th:if="${#fields.hasErrors('*')}">ERROR - data is not saved</div>
                 <div class="row">
                     <div class="col-md-12 m-3 detailsBlock">
-                        <label for="movieTitle">Title of book: </label>
+                        <label for="movieTitle" class="formLabel">Title of book: </label>
                         <input type="text" id="movieTitle" th:field="*{title}" th:errorclass="fieldError">
                         <span class="fieldErrorMessage" th:if="${#fields.hasErrors('title')}" th:errors="*{title}"></span>
                     </div>
@@ -26,29 +26,27 @@
                         <div class="row">
                             <div class="col-md-3 detailsButtonBlock">
                                 <div class="detailsButtonSubBlock">
-                                    <label for="image">Upload image: </label>
+                                    <label for="image" class="formLabel">Upload image: </label>
                                     <input type="file" id="image" accept="image/*" name="image">
                                 </div>
                             </div>
                             <div class="col-md-6">
                                 <div class="DetailsInfo">
                                     <div class="mb-3">
-                                        <label for="movieYOR">Year of release: </label>
-                                        <input type="number" th:min="1750", th:max="9999" class="form-control" id="movieYOR" th:field="*{yearOfRelease}" th:errorclass="fieldError">
+                                        <label for="movieYOR" class="formLabel">Year of release: </label>
+                                        <input type="number" th:min="1442", th:max="9999" class="form-control" id="movieYOR" th:field="*{yearOfRelease}" th:errorclass="fieldError">
                                         <p class="fieldErrorMessage" th:if="${#fields.hasErrors('yearOfRelease')}" th:errors="*{yearOfRelease}"></p>
                                     </div>
                                     <div class=" mb-3">
-                                        <label for="producer" class="filterwidth">author: </label>
+                                        <label for="producer" class="formLabel">author: </label>
                                         <select multiple name="producer" id="producer" class="filterwidth" th:field="*{authors}" th:errorclass="fieldError">
-                                            <option  th:value="null" text="None selected" th:selected="${allAuthors eq null}">
-                                            </option>
                                             <option th:each="item : ${allAuthors}" th:value="${item.id}" th:text="${item.name}">
                                             </option>
                                         </select>
                                         <p class="fieldErrorMessage" th:if="${#fields.hasErrors('authors')}" th:errors="*{authors}"></p>
                                     </div><br>
                                     <div class="mb-3">
-                                        <label for="movieDescription">Description: </label>
+                                        <label for="movieDescription" class="formLabel">Description: </label>
                                         <textarea type="text" class="form-control" id="movieDescription" th:field="*{description}" th:errorclass="fieldError"></textarea>
                                         <p class="fieldErrorMessage" th:if="${#fields.hasErrors('description')}" th:errors="*{description}"></p>
                                     </div>

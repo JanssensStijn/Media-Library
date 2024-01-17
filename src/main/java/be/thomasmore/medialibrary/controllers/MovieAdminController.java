@@ -54,16 +54,20 @@ public class MovieAdminController {
         if(!optionalProductionCompanies.isEmpty()) model.addAttribute("allProductionCompanies", optionalProductionCompanies);
         List<Actor> optionalActors = (List<Actor>) actorRepository.findAll();
         if(!optionalActors.isEmpty()) model.addAttribute("allActors", optionalActors);
-        return "admin/movieedit/ ";
+        return "admin/movieedit";
     }
 
     @PostMapping("/movieedit/{id}")
-    public String movieEditPost(@PathVariable int id,
+    public String movieEditPost(Model model,
+                                @PathVariable int id,
+                                @RequestParam(required = false) MultipartFile image,
                                 @Valid Movie movie,
-                                BindingResult bindingResult,
-                                @RequestParam(required = false) MultipartFile image) throws IOException{
+                                BindingResult bindingResult) throws IOException{
         if(bindingResult.hasErrors()){
-            return "admin/movieedit/" + id;
+            model.addAttribute("allProducers", producerRepository.findAll());
+            model.addAttribute("allProductionCompanies", productionCompanyRepository.findAll());
+            model.addAttribute("allActors", actorRepository.findAll());
+            return "admin/movieedit";
         }
         if(!image.isEmpty()) {
             movie.setImageUrl(uploadImage(image, "movie" + movie.getId())); //overwrite old image independent of changes to the movie
@@ -85,9 +89,9 @@ public class MovieAdminController {
 
     @PostMapping("/movienew")
     public String movieNewPost(Model model,
+                               @RequestParam(required = false) MultipartFile image,
                                @Valid Movie movie,
-                               BindingResult bindingResult,
-                               @RequestParam(required = false) MultipartFile image) throws IOException{
+                               BindingResult bindingResult) throws IOException{
         if(bindingResult.hasErrors()){
             model.addAttribute("allProducers", producerRepository.findAll());
             model.addAttribute("allProductionCompanies", productionCompanyRepository.findAll());

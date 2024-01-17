@@ -54,22 +54,25 @@
                                     <p><strong>Year of release: </strong><span th:text="|${movie.yearOfRelease}|"></span></p>
                                     <p><strong>Producer(s): </strong>
                                         <span th:each="producer, iterStat : ${movie.getProducers()}">
-                                            <!-- Add a span tag for each artist with a comma (except for the last one) -->
                                             <span th:text="${producer.name}"></span>
                                             <span th:text="|-- |" th:if="${!iterStat.last}"></span>
                                         </span>
                                     </p>
                                     <p><strong>Production company: </strong>
                                         <span th:each="productionCompany, iterStat : ${movie.getProductionCompanies()}">
-                                            <!-- Add a span tag for each artist with a comma (except for the last one) -->
                                             <span th:text="${productionCompany.name}"></span>
                                             <span th:text="|-- |" th:if="${!iterStat.last}"></span>
                                         </span>
                                     </p>
                                     <p><strong>Main actors: </strong>
                                         <span th:each="actor, iterStat : ${movie.getActors()}">
-                                            <!-- Add a span tag for each artist with a comma (except for the last one) -->
                                             <span th:text="${actor.name}"></span>
+                                            <span th:text="|-- |" th:if="${!iterStat.last}"></span>
+                                        </span>
+                                    </p>
+                                    <p><strong>Genres: </strong>
+                                        <span th:each="genre, iterStat : ${movie.getGenres()}">
+                                            <span th:text="${genre.name}"></span>
                                             <span th:text="|-- |" th:if="${!iterStat.last}"></span>
                                         </span>
                                     </p>

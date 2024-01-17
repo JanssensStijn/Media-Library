@@ -1,8 +1,10 @@
 package be.thomasmore.medialibrary.controllers;
 
+import be.thomasmore.medialibrary.model.Actor;
 import be.thomasmore.medialibrary.model.Movie;
 import be.thomasmore.medialibrary.model.Producer;
 import be.thomasmore.medialibrary.model.ProductionCompany;
+import be.thomasmore.medialibrary.repositories.ActorRepository;
 import be.thomasmore.medialibrary.repositories.MovieRepository;
 import be.thomasmore.medialibrary.repositories.ProducerRepository;
 import be.thomasmore.medialibrary.repositories.ProductionCompanyRepository;
@@ -30,6 +32,8 @@ public class MovieAdminController {
     private ProducerRepository producerRepository;
     @Autowired
     private ProductionCompanyRepository productionCompanyRepository;
+    @Autowired
+    private ActorRepository actorRepository;
 
     @Autowired
     private GoogleService googleService;
@@ -48,6 +52,8 @@ public class MovieAdminController {
         if(!optionalProducers.isEmpty()) model.addAttribute("allProducers", optionalProducers);
         List<ProductionCompany> optionalProductionCompanies = (List<ProductionCompany>) productionCompanyRepository.findAll();
         if(!optionalProductionCompanies.isEmpty()) model.addAttribute("allProductionCompanies", optionalProductionCompanies);
+        List<Actor> optionalActors = (List<Actor>) actorRepository.findAll();
+        if(!optionalProductionCompanies.isEmpty()) model.addAttribute("allActors", optionalActors);
         return "admin/movieedit";
     }
 
@@ -72,6 +78,8 @@ public class MovieAdminController {
         if(!optionalProducers.isEmpty()) model.addAttribute("allProducers", optionalProducers);
         List<ProductionCompany> optionalProductionCompanies = (List<ProductionCompany>) productionCompanyRepository.findAll();
         if(!optionalProductionCompanies.isEmpty()) model.addAttribute("allProductionCompanies", optionalProductionCompanies);
+        List<Actor> optionalActors = (List<Actor>) actorRepository.findAll();
+        if(!optionalProductionCompanies.isEmpty()) model.addAttribute("allActors", optionalActors);
         return "admin/movienew";
     }
 

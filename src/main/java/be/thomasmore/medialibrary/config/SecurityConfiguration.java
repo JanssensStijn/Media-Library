@@ -54,10 +54,10 @@ public class SecurityConfiguration {
                 .logoutSuccessUrl("/")
         );
 
-
+        /*
         http.csrf(csrf -> csrf.ignoringRequestMatchers(toH2Console()));
         http.headers(headers -> headers.frameOptions(HeadersConfigurer.FrameOptionsConfig::sameOrigin));
-
+        */
 
         return http.build();
     }

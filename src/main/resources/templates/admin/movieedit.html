@@ -62,6 +62,14 @@
                                         </select>
                                     </div>
                                     <div class="mb-3">
+                                        <label for="actors" class="filterwidth">production company:</label>
+                                        <select multiple name="actors" id="actors" class="filterwidth" th:field="*{actors}">
+                                            <option  th:value="null" th:text="Any" th:selected="${allProductionCompanies eq null}"></option>
+                                            <option th:each="item : ${allProductionCompanies}" th:value="${item.id}" th:text="${item.name}"  th:selected="${movie.productionCompanies.contains(item)}">
+                                            </option>
+                                        </select>
+                                    </div>
+                                    <div class="mb-3">
                                         <label for="movieDescription">Description: </label>
                                         <textarea type="text" class="form-control" id="movieDescription" th:field="*{description}"></textarea>
                                     </div>

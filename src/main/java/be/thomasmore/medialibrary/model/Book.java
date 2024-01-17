@@ -34,6 +34,10 @@ public class Book{
     @ManyToMany (fetch = FetchType.LAZY)
     private Collection<Author> authors;
 
+    @NotEmpty(message = "select genre(s)")
+    @ManyToMany (fetch = FetchType.LAZY)
+    private Collection<Genre> genres;
+
     @ManyToMany(mappedBy = "wishlistBooks", fetch = FetchType.LAZY)
     private Collection<EndUser> endUsersWishlist;
     @ManyToMany(mappedBy = "ownedBooks", fetch = FetchType.LAZY)
@@ -96,5 +100,13 @@ public class Book{
     }
     public void setEndUsersOwned(Collection<EndUser> endUsersOwned) {
         this.endUsersOwned = endUsersOwned;
+    }
+
+    public Collection<Genre> getGenres() {
+        return genres;
+    }
+
+    public void setGenres(Collection<Genre> genres) {
+        this.genres = genres;
     }
 }

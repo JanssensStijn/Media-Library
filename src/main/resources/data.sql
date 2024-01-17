@@ -151,6 +151,7 @@ VALUES ('user', '$2a$10$9TeBFudS7HsgCa4sSvP//O627sMq.KiTFrOr8IzrVlYw5c8aoKzNm', 
 INSERT INTO AUTHORITIES (USERNAME, AUTHORITY) VALUES ('user', 'USER');
 
 --------------------------------------------------------------------
+
 INSERT INTO END_USER_WISHLIST_MOVIES (END_USERS_WISHLIST_ID, WISHLIST_MOVIES_ID)
 VALUES (select id from END_USER where username = 'admin', select id from movie where title = 'The Shawshank Redemption');
 INSERT INTO END_USER_WISHLIST_BOOKS (END_USERS_WISHLIST_ID, WISHLIST_BOOKS_ID)
@@ -159,3 +160,67 @@ INSERT INTO END_USER_WISHLIST_MOVIES (END_USERS_WISHLIST_ID, WISHLIST_MOVIES_ID)
 VALUES (select id from END_USER where username = 'user', select id from movie where title = 'The Lord of the Rings - The Two Towers');
 INSERT INTO END_USER_WISHLIST_BOOKS (END_USERS_WISHLIST_ID, WISHLIST_BOOKS_ID)
 VALUES (select id from END_USER where username = 'user', select id from book where title = 'The Lord of the Rings');
+
+--------------------------------------------------------------------
+
+--genres for movies
+INSERT INTO GENRE (NAME, GENRE_FOR)
+VALUES
+    ('Action', 'movie'),
+    ('Drama', 'movie'),
+    ('Adventure', 'movie'),
+    ('Sci-Fi', 'movie'),
+    ('Fantasy', 'movie'),
+    ('Thriller', 'movie'),
+    ('Romance', 'movie'),
+    ('Comedy', 'movie'),
+    ('Adventure', 'movie'),
+    ('Biography', 'movie'),
+    ('History', 'movie'),
+    ('Crime', 'movie');
+--genres for books
+INSERT INTO GENRE (NAME, GENRE_FOR)
+VALUES
+    ('Fiction', 'book'),
+    ('Dystopian', 'book'),
+    ('Political Fiction', 'book'),
+    ('Science Fiction', 'book'),
+    ('Biography', 'book'),
+    ('Coming-of-Age', 'book'),
+    ('Classic', 'book'),
+    ('Literary Fiction', 'book'),
+    ('Romance', 'book'),
+    ('Bildungsroman', 'book'),
+    ('Children''s Literature', 'book'),
+    ('Magical Realism', 'book'),
+    ('Latin American Literature', 'book'),
+    ('Epic Fantasy', 'book'),
+    ('Adventure', 'book'),
+    ('Modernist Literature', 'book'),
+    ('Historical Fiction', 'book');
+
+--------------------------------------------------------------------
+
+INSERT INTO MOVIE_GENRES (GENRES_ID, MOVIES_ID) SELECT genre.id, movie.id FROM genre, movie WHERE genre.name IN ('Drama', 'Crime') AND genre.genre_for = 'movie' AND movie.title = 'The Shawshank Redemption';
+INSERT INTO MOVIE_GENRES (GENRES_ID, MOVIES_ID) SELECT genre.id, movie.id FROM genre, movie WHERE genre.name IN ('Action', 'Drama', 'Crime') AND genre.genre_for = 'movie' AND movie.title = 'The Dark Knight';
+INSERT INTO MOVIE_GENRES (GENRES_ID, MOVIES_ID) SELECT genre.id, movie.id FROM genre, movie WHERE genre.name IN ('Sci-Fi', 'Action', 'Thriller') AND genre.genre_for = 'movie' AND movie.title = 'Inception';
+INSERT INTO MOVIE_GENRES (GENRES_ID, MOVIES_ID) SELECT genre.id, movie.id FROM genre, movie WHERE genre.name IN ('Drama', 'Romance', 'Comedy') AND genre.genre_for = 'movie' AND movie.title = 'Forrest Gump';
+INSERT INTO MOVIE_GENRES (GENRES_ID, MOVIES_ID) SELECT genre.id, movie.id FROM genre, movie WHERE genre.name IN ('Drama', 'Thriller', 'Crime') AND genre.genre_for = 'movie' AND movie.title = 'Fight Club';
+INSERT INTO MOVIE_GENRES (GENRES_ID, MOVIES_ID) SELECT genre.id, movie.id FROM genre, movie WHERE genre.name IN ('Fantasy', 'Adventure', 'Action') AND genre.genre_for = 'movie' AND movie.title = 'The Lord of the Rings - The Two Towers';
+INSERT INTO MOVIE_GENRES (GENRES_ID, MOVIES_ID) SELECT genre.id, movie.id FROM genre, movie WHERE genre.name IN ('Drama', 'Crime') AND genre.genre_for = 'movie' AND movie.title = 'The Godfather';
+INSERT INTO MOVIE_GENRES (GENRES_ID, MOVIES_ID) SELECT genre.id, movie.id FROM genre, movie WHERE genre.name IN ('Fantasy', 'Adventure', 'Action') AND genre.genre_for = 'movie' AND movie.title = 'The Lord of the Rings - The Fellowship of the Ring';
+INSERT INTO MOVIE_GENRES (GENRES_ID, MOVIES_ID) SELECT genre.id, movie.id FROM genre, movie WHERE genre.name IN ('Biography', 'Drama', 'History') AND genre.genre_for = 'movie' AND movie.title = 'Schindler''s List';
+INSERT INTO MOVIE_GENRES (GENRES_ID, MOVIES_ID) SELECT genre.id, movie.id FROM genre, movie WHERE genre.name IN ('Adventure', 'Comedy', 'Sci-Fi') AND genre.genre_for = 'movie' AND movie.title = 'Back to the Future';
+
+--------------------------------------------------------------------
+
+INSERT INTO BOOK_GENRES (GENRES_ID, BOOKS_ID) SELECT genre.id, book.id FROM genre, book WHERE genre.name IN ('Fiction', 'Historical Fiction', 'Coming-of-Age') AND genre.genre_for = 'book' AND book.title = 'To Kill a Mockingbird';
+INSERT INTO BOOK_GENRES (GENRES_ID, BOOKS_ID) SELECT genre.id, book.id FROM genre, book WHERE genre.name IN ('Fiction', 'Dystopian', 'Political Fiction') AND genre.genre_for = 'book' AND book.title = '1984';
+INSERT INTO BOOK_GENRES (GENRES_ID, BOOKS_ID) SELECT genre.id, book.id FROM genre, book WHERE genre.name IN ('Fiction', 'Classic', 'Literary Fiction') AND genre.genre_for = 'book' AND book.title = 'The Great Gatsby';
+INSERT INTO BOOK_GENRES (GENRES_ID, BOOKS_ID) SELECT genre.id, book.id FROM genre, book WHERE genre.name IN ('Fiction', 'Classic', 'Romance') AND genre.genre_for = 'book' AND book.title = 'Pride and Prejudice';
+INSERT INTO BOOK_GENRES (GENRES_ID, BOOKS_ID) SELECT genre.id, book.id FROM genre, book WHERE genre.name IN ('Fiction', 'Coming-of-Age', 'Bildungsroman') AND genre.genre_for = 'book' AND book.title = 'The Catcher in the Rye';
+INSERT INTO BOOK_GENRES (GENRES_ID, BOOKS_ID) SELECT genre.id, book.id FROM genre, book WHERE genre.name IN ('Fantasy', 'Adventure', 'Children''s Literature') AND genre.genre_for = 'book' AND book.title = 'The Hobbit';
+INSERT INTO BOOK_GENRES (GENRES_ID, BOOKS_ID) SELECT genre.id, book.id FROM genre, book WHERE genre.name IN ('Magical Realism', 'Fiction', 'Latin American Literature') AND genre.genre_for = 'book' AND book.title = 'One Hundred Years of Solitude';
+INSERT INTO BOOK_GENRES (GENRES_ID, BOOKS_ID) SELECT genre.id, book.id FROM genre, book WHERE genre.name IN ('Fiction', 'Dystopian', 'Science Fiction') AND genre.genre_for = 'book' AND book.title = 'Brave New World';
+INSERT INTO BOOK_GENRES (GENRES_ID, BOOKS_ID) SELECT genre.id, book.id FROM genre, book WHERE genre.name IN ('Fiction', 'Modernist Literature') AND genre.genre_for = 'book' AND book.title = 'To the Lighthouse';
+INSERT INTO BOOK_GENRES (GENRES_ID, BOOKS_ID) SELECT genre.id, book.id FROM genre, book WHERE genre.name IN ('Fantasy', 'Epic Fantasy', 'Adventure') AND genre.genre_for = 'book' AND book.title = 'The Lord of the Rings';

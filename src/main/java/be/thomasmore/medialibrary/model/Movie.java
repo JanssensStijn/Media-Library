@@ -41,6 +41,10 @@ public class Movie{
     @NotEmpty(message = "select production company")
     @ManyToMany(fetch = FetchType.LAZY)
     private Collection<ProductionCompany> productionCompanies;
+    @NotEmpty(message = "select genre(s)")
+    @ManyToMany(fetch = FetchType.LAZY)
+    private Collection<Genre> genres;
+
     @ManyToMany(mappedBy = "wishlistMovies", fetch = FetchType.LAZY)
     private Collection<EndUser> endUsersWishlist;
     @ManyToMany(mappedBy = "ownedMovies", fetch = FetchType.LAZY)
@@ -135,5 +139,13 @@ public class Movie{
     }
     public void setEndUsersOwned(Collection<EndUser> endUsersOwned) {
         this.endUsersOwned = endUsersOwned;
+    }
+
+    public Collection<Genre> getGenres() {
+        return genres;
+    }
+
+    public void setGenres(Collection<Genre> genres) {
+        this.genres = genres;
     }
 }

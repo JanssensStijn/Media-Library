@@ -52,7 +52,7 @@
                                             </option>
                                         </select>
                                         <p class="fieldErrorMessage" th:if="${#fields.hasErrors('producers')}" th:errors="*{producers}"></p>
-                                    </div><br>
+                                    </div>
                                     <div class="mb-3">
                                         <label for="productionCompany" class="formLabel">Production company: </label>
                                         <select multiple name="productionCompany" id="productionCompany" class="filterwidth" th:field="*{productionCompanies}" th:errorclass="fieldError">
@@ -68,6 +68,14 @@
                                             </option>
                                         </select>
                                         <p class="fieldErrorMessage" th:if="${#fields.hasErrors('actors')}" th:errors="*{actors}"></p>
+                                    </div>
+                                    <div class="mb-3">
+                                        <label for="genre" class="formLabel">Genre:</label>
+                                        <select multiple name="genre" id="genre" class="filterwidth" th:field="*{genres}" th:errorclass="fieldError">
+                                            <option th:each="item : ${allGenres}" th:value="${item.id}" th:text="${item.name}">
+                                            </option>
+                                        </select>
+                                        <p class="fieldErrorMessage" th:if="${#fields.hasErrors('genres')}" th:errors="*{genres}"></p>
                                     </div>
                                     <div class="mb-3">
                                         <label for="movieDescription" class="formLabel">Description: </label>

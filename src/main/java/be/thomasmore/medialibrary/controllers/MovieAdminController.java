@@ -1,13 +1,7 @@
 package be.thomasmore.medialibrary.controllers;
 
-import be.thomasmore.medialibrary.model.Actor;
-import be.thomasmore.medialibrary.model.Movie;
-import be.thomasmore.medialibrary.model.Producer;
-import be.thomasmore.medialibrary.model.ProductionCompany;
-import be.thomasmore.medialibrary.repositories.ActorRepository;
-import be.thomasmore.medialibrary.repositories.MovieRepository;
-import be.thomasmore.medialibrary.repositories.ProducerRepository;
-import be.thomasmore.medialibrary.repositories.ProductionCompanyRepository;
+import be.thomasmore.medialibrary.model.*;
+import be.thomasmore.medialibrary.repositories.*;
 import be.thomasmore.medialibrary.services.GoogleService;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -34,6 +28,8 @@ public class MovieAdminController {
     private ProductionCompanyRepository productionCompanyRepository;
     @Autowired
     private ActorRepository actorRepository;
+    @Autowired
+    private GenreRepository genreRepository;
 
     @Autowired
     private GoogleService googleService;
@@ -48,12 +44,7 @@ public class MovieAdminController {
 
     @GetMapping({"/movieedit/{id}"})
     public String movieEdit(Model model) {
-        List<Producer> optionalProducers = (List<Producer>) producerRepository.findAll();
-        if(!optionalProducers.isEmpty()) model.addAttribute("allProducers", optionalProducers);
-        List<ProductionCompany> optionalProductionCompanies = (List<ProductionCompany>) productionCompanyRepository.findAll();
-        if(!optionalProductionCompanies.isEmpty()) model.addAttribute("allProductionCompanies", optionalProductionCompanies);
-        List<Actor> optionalActors = (List<Actor>) actorRepository.findAll();
-        if(!optionalActors.isEmpty()) model.addAttribute("allActors", optionalActors);
+        getAllFromRepos(model);
         return "admin/movieedit";
     }
 
@@ -64,9 +55,7 @@ public class MovieAdminController {
                                 @Valid Movie movie,
                                 BindingResult bindingResult) throws IOException{
         if(bindingResult.hasErrors()){
-            model.addAttribute("allProducers", producerRepository.findAll());
-            model.addAttribute("allProductionCompanies", productionCompanyRepository.findAll());
-            model.addAttribute("allActors", actorRepository.findAll());
+            getAllFromRepos(model);
             return "admin/movieedit";
         }
         if(!image.isEmpty()) {
@@ -78,12 +67,7 @@ public class MovieAdminController {
 
     @GetMapping({"/movienew"})
     public String movieNew(Model model) {
-        List<Producer> optionalProducers = (List<Producer>) producerRepository.findAll();
-        if(!optionalProducers.isEmpty()) model.addAttribute("allProducers", optionalProducers);
-        List<ProductionCompany> optionalProductionCompanies = (List<ProductionCompany>) productionCompanyRepository.findAll();
-        if(!optionalProductionCompanies.isEmpty()) model.addAttribute("allProductionCompanies", optionalProductionCompanies);
-        List<Actor> optionalActors = (List<Actor>) actorRepository.findAll();
-        if(!optionalActors.isEmpty()) model.addAttribute("allActors", optionalActors);
+        getAllFromRepos(model);
         return "admin/movienew";
     }
 
@@ -93,9 +77,7 @@ public class MovieAdminController {
                                @Valid Movie movie,
                                BindingResult bindingResult) throws IOException{
         if(bindingResult.hasErrors()){
-            model.addAttribute("allProducers", producerRepository.findAll());
-            model.addAttribute("allProductionCompanies", productionCompanyRepository.findAll());
-            model.addAttribute("allActors", actorRepository.findAll());
+            getAllFromRepos(model);
             return "admin/movienew";
         }
 
@@ -120,4 +102,15 @@ public class MovieAdminController {
         return urlToFirebase;
     }
 
+
+    private void getAllFromRepos(Model model) {
+        List<Producer> optionalProducers = (List<Producer>) producerRepository.findAll();
+        if(!optionalProducers.isEmpty()) model.addAttribute("allProducers", optionalProducers);
+        List<ProductionCompany> optionalProductionCompanies = (List<ProductionCompany>) productionCompanyRepository.findAll();
+        if(!optionalProductionCompanies.isEmpty()) model.addAttribute("allProductionCompanies", optionalProductionCompanies);
+        List<Actor> optionalActors = (List<Actor>) actorRepository.findAll();
+        if(!optionalActors.isEmpty()) model.addAttribute("allActors", optionalActors);
+        List<Genre> optionalGenres = (List<Genre>) genreRepository.findAll();
+        if (!optionalGenres.isEmpty()) model.addAttribute("allGenres", optionalGenres.stream().filter(genre -> genre.getGenreFor().equals("movie")));
+    }
 }

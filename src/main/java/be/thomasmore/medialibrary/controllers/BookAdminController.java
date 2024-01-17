@@ -3,6 +3,7 @@ package be.thomasmore.medialibrary.controllers;
 import be.thomasmore.medialibrary.model.*;
 import be.thomasmore.medialibrary.repositories.AuthorRepository;
 import be.thomasmore.medialibrary.repositories.BookRepository;
+import be.thomasmore.medialibrary.repositories.GenreRepository;
 import be.thomasmore.medialibrary.services.GoogleService;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,6 +26,8 @@ public class BookAdminController {
     private BookRepository bookRepository;
     @Autowired
     private AuthorRepository authorRepository;
+    @Autowired
+    private GenreRepository genreRepository;
 
     @Autowired
     private GoogleService googleService;
@@ -100,6 +103,8 @@ public class BookAdminController {
     private void getAllFromRepos(Model model) {
         List<Author> optionalAuthors = (List<Author>) authorRepository.findAll();
         if (!optionalAuthors.isEmpty()) model.addAttribute("allAuthors", optionalAuthors);
+        List<Genre> optionalGenres = (List<Genre>) genreRepository.findAll();
+        if (!optionalGenres.isEmpty()) model.addAttribute("allGenres", optionalGenres.stream().filter(genre -> genre.getGenreFor().equals("book")));
     }
 
 }

@@ -47,6 +47,14 @@
                                         </select>
                                         <p class="fieldErrorMessage" th:if="${#fields.hasErrors('authors')}" th:errors="*{authors}"></p>
                                     </div>
+                                    <div class=" mb-3">
+                                        <label for="genre" class="formLabel">genre:</label>
+                                        <select multiple name="genre" id="genre" class="filterwidth" th:field="*{genres}">
+                                            <option th:each="item : ${allGenres}" th:value="${item.id}" th:text="${item.name}" th:selected="${book.genres.contains(item)}">
+                                            </option>
+                                        </select>
+                                        <p class="fieldErrorMessage" th:if="${#fields.hasErrors('genres')}" th:errors="*{genres}"></p>
+                                    </div>
                                     <div class="mb-3">
                                         <label for="movieDescription" class="formLabel">Description: </label>
                                         <textarea type="text" class="form-control" id="movieDescription" th:field="*{description}"></textarea>

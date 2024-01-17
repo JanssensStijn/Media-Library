@@ -51,7 +51,7 @@ public class BookAdminController {
                                BindingResult bindingResult) throws IOException {
 
         if(bindingResult.hasErrors()){
-            return "admin/movieedit/" + id;
+            return "admin/book edit/" + id;
         }
         if(!image.isEmpty()) {
             book.setImageUrl(uploadImage(image, "book" + book.getId())); //overwrite old image independent of changes to the movie
@@ -70,7 +70,7 @@ public class BookAdminController {
     @PostMapping("/booknew")
     public String movieNewPost(Model model,
                                @Valid Book book,
-                               @RequestParam(required = false) MultipartFile image,
+                               /*@RequestParam(required = false) MultipartFile image,*/
                                BindingResult bindingResult) throws IOException{
         if(bindingResult.hasErrors()){
             model.addAttribute("allAuthors", authorRepository.findAll());
@@ -78,9 +78,9 @@ public class BookAdminController {
         }
         Book newBook = bookRepository.save(book); //save to create unique id usable for firebase
 
-        if(!image.isEmpty()) {
+        /*if(!image.isEmpty()) {
             book.setImageUrl(uploadImage(image, "book" + newBook.getId())); //add unique id to
-        }
+        }*/
 
         bookRepository.save(book); //save imageUrl containing specific id
         return "redirect:/bookdetails/" + newBook.getId();

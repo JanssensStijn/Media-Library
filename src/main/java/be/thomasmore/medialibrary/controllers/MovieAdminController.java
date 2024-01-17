@@ -47,21 +47,21 @@ public class MovieAdminController {
     }
 
     @GetMapping({"/movieedit/{id}"})
-    public String movieEdit(Model model, @PathVariable (required = false) Integer id) {
+    public String movieEdit(Model model) {
         List<Producer> optionalProducers = (List<Producer>) producerRepository.findAll();
         if(!optionalProducers.isEmpty()) model.addAttribute("allProducers", optionalProducers);
         List<ProductionCompany> optionalProductionCompanies = (List<ProductionCompany>) productionCompanyRepository.findAll();
         if(!optionalProductionCompanies.isEmpty()) model.addAttribute("allProductionCompanies", optionalProductionCompanies);
         List<Actor> optionalActors = (List<Actor>) actorRepository.findAll();
-        if(!optionalProductionCompanies.isEmpty()) model.addAttribute("allActors", optionalActors);
-        return "admin/movieedit";
+        if(!optionalActors.isEmpty()) model.addAttribute("allActors", optionalActors);
+        return "admin/movieedit/ ";
     }
 
     @PostMapping("/movieedit/{id}")
     public String movieEditPost(@PathVariable int id,
                                 @Valid Movie movie,
-                                @RequestParam(required = false) MultipartFile image,
-                                BindingResult bindingResult) throws IOException{
+                                BindingResult bindingResult,
+                                @RequestParam(required = false) MultipartFile image) throws IOException{
         if(bindingResult.hasErrors()){
             return "admin/movieedit/" + id;
         }
@@ -79,18 +79,19 @@ public class MovieAdminController {
         List<ProductionCompany> optionalProductionCompanies = (List<ProductionCompany>) productionCompanyRepository.findAll();
         if(!optionalProductionCompanies.isEmpty()) model.addAttribute("allProductionCompanies", optionalProductionCompanies);
         List<Actor> optionalActors = (List<Actor>) actorRepository.findAll();
-        if(!optionalProductionCompanies.isEmpty()) model.addAttribute("allActors", optionalActors);
+        if(!optionalActors.isEmpty()) model.addAttribute("allActors", optionalActors);
         return "admin/movienew";
     }
 
     @PostMapping("/movienew")
     public String movieNewPost(Model model,
                                @Valid Movie movie,
-                               @RequestParam(required = false) MultipartFile image,
-                               BindingResult bindingResult) throws IOException{
+                               BindingResult bindingResult,
+                               @RequestParam(required = false) MultipartFile image) throws IOException{
         if(bindingResult.hasErrors()){
             model.addAttribute("allProducers", producerRepository.findAll());
             model.addAttribute("allProductionCompanies", productionCompanyRepository.findAll());
+            model.addAttribute("allActors", actorRepository.findAll());
             return "admin/movienew";
         }
 

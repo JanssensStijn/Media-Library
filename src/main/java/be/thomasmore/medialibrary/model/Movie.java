@@ -32,6 +32,7 @@ public class Movie{
     @NotBlank(message = "enter a short description")
     private String description;
 
+    @NotEmpty(message = "select actor(s)")
     @ManyToMany(fetch = FetchType.LAZY)
     private Collection<Actor> actors;
     @NotEmpty(message = "select producer(s)")

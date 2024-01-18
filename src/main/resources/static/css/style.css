@@ -152,6 +152,10 @@ nav{
     height: 20px;
 }
 
+.homeHeaders{
+    margin-top: 30px;
+}
+
 .scrollable-container {
      overflow-x: auto;
  }
@@ -161,7 +165,27 @@ nav{
     white-space: nowrap;
     padding-top: 10px;
 }
+/*scrollbar design*/
+.scrollable-container {
+    width: 100%;
+    overflow-x: auto;
+    white-space: nowrap;
+}
 
+/* Style the scrollbar track */
+.scrollable-container::-webkit-scrollbar {
+    height: 15px;
+}
+.scrollable-container::-webkit-scrollbar-track {
+    margin-left: 10px;
+    margin-right: 20px;
+}
+/* Style the scrollbar handle */
+.scrollable-container::-webkit-scrollbar-thumb {
+    background-color: #007bff;
+    border-radius: 6px;
+}
+/*end of scrollbar design*/
 
 .detailsPicture{
 

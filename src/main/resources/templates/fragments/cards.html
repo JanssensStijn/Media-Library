@@ -34,7 +34,7 @@
 <div th:each="book : ${books}" class="card hoverable" th:fragment="bookCards">
     <a th:href="@{|/bookdetails/${book.id}|}">
         <div class="card-background" th:style="'background-image: url(' + ${book.imageUrl} + ')'">
-            <div class="card-buttons">
+            <div class="card-buttons" sec:authorize="isAuthenticated()">
                 <form th:action="@{|/enduser/wishlist/book/${book.id}|}" method="post">
                     <button type="submit" class="btn btn-primary top-left" th:if="${book.getEndUsersWishlist().contains(currentUser)}">
                         <i class="bi bi-heart-fill"></i>

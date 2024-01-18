@@ -1,6 +1,7 @@
 package be.thomasmore.medialibrary.repositories;
 
 import be.thomasmore.medialibrary.model.Book;
+import be.thomasmore.medialibrary.model.Movie;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.data.repository.query.Param;
@@ -38,6 +39,13 @@ public interface BookRepository extends CrudRepository<Book, Integer> {
             @Param("genre") String genre,
             @Param("yearOfRelease") Integer yearOfRelease
     );
+
+    @Query("SELECT b FROM Book b" +
+            " LEFT JOIN b.endUsersOwned be ON b.id = be.id" +
+            " GROUP BY b.id" +
+            " ORDER BY COUNT(be.id) DESC" +
+            " LIMIT 5")
+    List<Book> findTopBought();
 
     Optional<Book> findFirstByIdGreaterThanOrderByIdAsc(Integer id);
     Optional<Book> findFirstByOrderByIdAsc();

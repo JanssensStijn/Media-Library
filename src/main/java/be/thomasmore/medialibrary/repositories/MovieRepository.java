@@ -2,6 +2,7 @@ package be.thomasmore.medialibrary.repositories;
 
 import be.thomasmore.medialibrary.model.Book;
 import be.thomasmore.medialibrary.model.Movie;
+import org.hibernate.query.spi.Limit;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.data.repository.query.Param;
@@ -47,6 +48,13 @@ public interface MovieRepository extends CrudRepository<Movie, Integer> {
                                    @Param("producer") String producer,
                                    @Param("productionCompany")String productionCompany,
                                    @Param("actor")String actor);
+
+    @Query("SELECT m FROM Movie m" +
+            " LEFT JOIN m.endUsersOwned me" +
+            " GROUP BY m.id" +
+            " ORDER BY COUNT(me.id) DESC" +
+            " LIMIT 5")
+    List<Movie> findTopBought();
 
     Optional<Movie> findFirstByIdGreaterThanOrderByIdAsc(Integer id);
 

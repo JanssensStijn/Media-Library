@@ -30,11 +30,11 @@ public class HomeController {
     @GetMapping({"/", "/home"})
     public String home(Model model, Principal principal) {
 
-        final Iterable<Movie> allMovies = movieRepository.findAll();
+        final Iterable<Movie> allMovies = movieRepository.findTopBought();
         model.addAttribute("movies", allMovies);
 
 
-        final Iterable<Book> allMBooks = bookRepository.findAll();
+        final Iterable<Book> allMBooks = bookRepository.findTopBought();
         model.addAttribute("books", allMBooks);
         if(principal != null) model.addAttribute("currentUser", endUserRepository.findByUsername(principal.getName()));
 

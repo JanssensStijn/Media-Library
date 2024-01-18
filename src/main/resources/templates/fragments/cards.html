@@ -8,7 +8,7 @@
 <div th:each="movie : ${movies}" class="card hoverable" th:fragment="movieCards">
     <a th:href="@{|/moviedetails/${movie.id}|}">
         <div class="card-background" th:style="'background-image: url(' + ${movie.imageUrl} + ')'">
-            <div class="card-buttons">
+            <div class="card-buttons" sec:authorize="isAuthenticated()">
                 <form th:action="@{|/enduser/wishlist/movie/${movie.id}|}" method="post">
                     <button type="submit" class="btn btn-primary top-left" th:if="${movie.getEndUsersWishlist().contains(currentUser)}">
                         <i class="bi bi-heart-fill"></i>

@@ -29,16 +29,6 @@ public interface MovieRepository extends CrudRepository<Movie, Integer> {
                              @Param("productionCompany")String productionCompany,
                             @Param("actor")String actor);
 
-
-
-    Optional<Movie> findFirstByIdGreaterThanOrderByIdAsc(Integer id);
-
-    Optional<Movie> findFirstByOrderByIdAsc();
-
-    Optional<Movie> findFirstByIdLessThanOrderByIdDesc(Integer id);
-
-    Optional<Movie> findFirstByOrderByIdDesc();
-
     @Query("SELECT m FROM Movie m" +
             " LEFT JOIN m.producers p" +
             " LEFT JOIN m.productionCompanies pc" +
@@ -52,9 +42,19 @@ public interface MovieRepository extends CrudRepository<Movie, Integer> {
             " AND (:actor IS NULL OR a.name ILIKE %:actor%)" +
             " ORDER BY m.title ASC")
     List<Movie> findByFilterSorted(@Param("title")String title,
-                             @Param("yearOfRelease") Integer yearOfRelease,
-                             @Param("genre") String genre,
-                             @Param("producer") String producer,
-                             @Param("productionCompany")String productionCompany,
-                             @Param("actor")String actor);
+                                   @Param("yearOfRelease") Integer yearOfRelease,
+                                   @Param("genre") String genre,
+                                   @Param("producer") String producer,
+                                   @Param("productionCompany")String productionCompany,
+                                   @Param("actor")String actor);
+
+    Optional<Movie> findFirstByIdGreaterThanOrderByIdAsc(Integer id);
+
+    Optional<Movie> findFirstByOrderByIdAsc();
+
+    Optional<Movie> findFirstByIdLessThanOrderByIdDesc(Integer id);
+
+    Optional<Movie> findFirstByOrderByIdDesc();
+
+
 }

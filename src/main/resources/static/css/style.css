@@ -159,6 +159,7 @@ nav{
 .scrollable-cards {
     display: inline-flex;
     white-space: nowrap;
+    padding-top: 10px;
 }
 
 

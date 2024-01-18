@@ -48,25 +48,25 @@
                                     <p class="fieldErrorMessage" th:if="${#fields.hasErrors('yearOfRelease')}" th:errors="*{yearOfRelease}"></p>
 
                                     <label for="producer" class="formLabel">Producer:</label>
-                                    <select multiple name="producer" id="producer" class="filterwidth" th:field="*{producers}" th:errorclass="fieldError">
+                                    <select multiple name="producer" id="producer" class="filter" th:field="*{producers}" th:errorclass="fieldError">
                                         <option th:each="item : ${allProducers}" th:value="${item.id}" th:text="${item.name}" th:selected="${movie.producers.contains(item)}"></option>
                                     </select>
                                     <p class="fieldErrorMessage" th:if="${#fields.hasErrors('producers')}" th:errors="*{producers}"></p>
 
                                     <label for="productionCompany" class="formLabel">Production company:</label>
-                                    <select multiple name="productionCompany" id="productionCompany" class="filterwidth" th:field="*{productionCompanies}" th:errorclass="fieldError">
+                                    <select multiple name="productionCompany" id="productionCompany" class="filter" th:field="*{productionCompanies}" th:errorclass="fieldError">
                                         <option th:each="item : ${allProductionCompanies}" th:value="${item.id}" th:text="${item.name}"  th:selected="${movie.productionCompanies.contains(item)}"></option>
                                     </select>
                                     <p class="fieldErrorMessage" th:if="${#fields.hasErrors('productionCompanies')}" th:errors="*{productionCompanies}"></p>
 
                                     <label for="actors" class="formLabel">Main actors:</label>
-                                    <select multiple name="actors" id="actors" class="filterwidth" th:field="*{actors}" th:errorclass="fieldError">
+                                    <select multiple name="actors" id="actors" class="filter" th:field="*{actors}" th:errorclass="fieldError">
                                         <option th:each="item : ${allActors}" th:value="${item.id}" th:text="${item.name}"  th:selected="${movie.actors.contains(item)}"></option>
                                     </select>
                                     <p class="fieldErrorMessage" th:if="${#fields.hasErrors('actors')}" th:errors="*{actors}"></p>
 
                                     <label for="genre" class="formLabel">Genres:</label>
-                                    <select multiple name="genre" id="genre" class="filterwidth" th:field="*{genres}" th:errorclass="fieldError">
+                                    <select multiple name="genre" id="genre" class="filter" th:field="*{genres}" th:errorclass="fieldError">
                                         <option th:each="item : ${allGenres}" th:value="${item.id}" th:text="${item.name}"  th:selected="${movie.genres.contains(item)}"></option>
                                     </select>
                                     <p class="fieldErrorMessage" th:if="${#fields.hasErrors('genres')}" th:errors="*{genres}"></p>

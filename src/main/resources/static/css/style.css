@@ -1,9 +1,15 @@
+.hoverable:hover{
+    outline: 5px solid #007bff;
+}
+
 .card {
     width: 300px;
     margin-right: 10px;
     margin-bottom: 10px;
     white-space: normal;
     padding: 0px;
+    border-radius: 10px;
+
 }
 a{
     text-decoration: none;
@@ -11,9 +17,10 @@ a{
 .card-background {
     position: relative;
     overflow: hidden;
-    height: 450px; /* Adjust the height as needed */
+    height: 450px;
     background-size: cover;
     background-position: center;
+    border-radius: 10px;
 }
 
 .card-buttons {
@@ -154,9 +161,7 @@ nav{
     white-space: nowrap;
 }
 
-.hoverable:hover{
-    border: #007bff solid 3px;
-}
+
 .detailsPicture{
 
     border-radius: 5px;
@@ -242,16 +247,37 @@ nav{
 .hidden{
     visibility: hidden;
 }
+
+.filterBlock{
+    padding-right: 15px;
+}
 .allFilters{
-    padding-bottom: 10px;
-    padding-top: 5px;
+    padding: 10px;
     background-color: #007bff;
+    border-radius: 10px;
 }
 
-.filterwidth{
+.filterLabel{
+    padding-top: 10px;
+    text-align: center;
     width: 100%;
 }
-.appname{width: 50%; text-align: center;}
+.filter{
+    text-align: center;
+    width: 100%;
+    border-radius: 10px;
+}
+
+.form-check-input:checked {
+    background-color: red;
+}
+.form-check-input:not(:checked) {
+    background-color: white;
+    border: black 1px solid;
+}
+.form-check{
+    padding-top: 10px;
+}
 
 @media (max-width: 767px) {
     /* Apply styles only for screens smaller than 768px */

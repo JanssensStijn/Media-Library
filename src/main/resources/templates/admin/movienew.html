@@ -47,7 +47,7 @@
                                     </div>
                                     <div class=" mb-3">
                                         <label for="producer" class="formLabel">Producer: </label>
-                                        <select multiple name="producer" id="producer" class="filterwidth" th:field="*{producers}" th:errorclass="fieldError">
+                                        <select multiple name="producer" id="producer" class="filter" th:field="*{producers}" th:errorclass="fieldError">
                                            <option th:each="item : ${allProducers}" th:value="${item.id}" th:text="${item.name}">
                                             </option>
                                         </select>
@@ -55,7 +55,7 @@
                                     </div>
                                     <div class="mb-3">
                                         <label for="productionCompany" class="formLabel">Production company: </label>
-                                        <select multiple name="productionCompany" id="productionCompany" class="filterwidth" th:field="*{productionCompanies}" th:errorclass="fieldError">
+                                        <select multiple name="productionCompany" id="productionCompany" class="filter" th:field="*{productionCompanies}" th:errorclass="fieldError">
                                             <option th:each="item : ${allProductionCompanies}" th:value="${item.id}" th:text="${item.name}">
                                             </option>
                                         </select>
@@ -63,7 +63,7 @@
                                     </div>
                                     <div class="mb-3">
                                         <label for="actors" class="formLabel">Main actors:</label>
-                                        <select multiple name="actors" id="actors" class="filterwidth" th:field="*{actors}" th:errorclass="fieldError">
+                                        <select multiple name="actors" id="actors" class="filter" th:field="*{actors}" th:errorclass="fieldError">
                                             <option th:each="item : ${allActors}" th:value="${item.id}" th:text="${item.name}">
                                             </option>
                                         </select>
@@ -71,7 +71,7 @@
                                     </div>
                                     <div class="mb-3">
                                         <label for="genre" class="formLabel">Genre:</label>
-                                        <select multiple name="genre" id="genre" class="filterwidth" th:field="*{genres}" th:errorclass="fieldError">
+                                        <select multiple name="genre" id="genre" class="filter" th:field="*{genres}" th:errorclass="fieldError">
                                             <option th:each="item : ${allGenres}" th:value="${item.id}" th:text="${item.name}">
                                             </option>
                                         </select>

@@ -39,7 +39,7 @@
                                     </div>
                                     <div class=" mb-3">
                                         <label for="producer" class="formLabel">author: </label>
-                                        <select multiple name="producer" id="producer" class="filterwidth" th:field="*{authors}" th:errorclass="fieldError">
+                                        <select multiple name="producer" id="producer" class="filter" th:field="*{authors}" th:errorclass="fieldError">
                                             <option th:each="item : ${allAuthors}" th:value="${item.id}" th:text="${item.name}">
                                             </option>
                                         </select>
@@ -47,7 +47,7 @@
                                     </div>
                                     <div class=" mb-3">
                                         <label for="genre" class="formLabel">genre: </label>
-                                        <select multiple name="genre" id="genre" class="filterwidth" th:field="*{genres}" th:errorclass="fieldError">
+                                        <select multiple name="genre" id="genre" class="filter" th:field="*{genres}" th:errorclass="fieldError">
                                             <option th:each="item : ${allGenres}" th:value="${item.id}" th:text="${item.name}">
                                             </option>
                                         </select>

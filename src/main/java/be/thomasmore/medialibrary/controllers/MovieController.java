@@ -1,17 +1,16 @@
 package be.thomasmore.medialibrary.controllers;
 
 import be.thomasmore.medialibrary.model.*;
-import be.thomasmore.medialibrary.repositories.EndUserRepository;
-import be.thomasmore.medialibrary.repositories.MovieRepository;
-import be.thomasmore.medialibrary.repositories.ProducerRepository;
-import be.thomasmore.medialibrary.repositories.ProductionCompanyRepository;
+import be.thomasmore.medialibrary.repositories.*;
+import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 
+import java.io.IOException;
 import java.security.Principal;
 import java.util.ArrayList;
 import java.util.List;
@@ -28,6 +27,10 @@ public class MovieController {
     private ProducerRepository producerRepository;
     @Autowired
     private ProductionCompanyRepository productionCompanyRepository;
+    @Autowired
+    private ActorRepository actorRepository;
+    @Autowired
+    private GenreRepository genreRepository;
     @Autowired
     private EndUserRepository endUserRepository;
 
@@ -56,41 +59,45 @@ public class MovieController {
 
     @GetMapping({"/movielist", "/movielist/"})
     public String MovieListWithFilter(Model model,
-                                      @RequestParam(required = false) Integer id,
-                                      @RequestParam(required = false) String imdb,
                                       @RequestParam(required = false) String title,
                                       @RequestParam(required = false) Integer yearOfRelease,
+                                      @RequestParam(required = false) String genre,
                                       @RequestParam(required = false) String producer,
                                       @RequestParam(required = false) String productionCompany,
+                                      @RequestParam(required = false) String actor,
+                                      @RequestParam(required = false, defaultValue = "off") Boolean sorted,
                                       Principal principal) {
 
-        final List<Movie> filteredMovies = movieRepository.findByFilter(id,imdb, title, yearOfRelease, producer, productionCompany);
+
+        List<Movie> filteredMovies;
+
+        if(sorted) filteredMovies = movieRepository.findByFilterSorted(title, yearOfRelease, genre, producer, productionCompany, actor);
+        else filteredMovies = movieRepository.findByFilter(title, yearOfRelease, genre, producer, productionCompany, actor);
 
         final Iterable<Movie> allMovies = movieRepository.findAll();
-        final List<Producer> producers = (List<Producer>) producerRepository.findAll();
-        final List<ProductionCompany> productionCompanies = (List<ProductionCompany>) productionCompanyRepository.findAll();
 
 
         ArrayList<Integer> yearsOfRelease = StreamSupport.stream(allMovies.spliterator(), false)
                 .map(Movie::getYearOfRelease)
                 .distinct().sorted()
                 .collect(Collectors.toCollection(ArrayList::new));
-        yearsOfRelease.add(0, null);
 
-        model.addAttribute("idFiltered" , id);
-        model.addAttribute("imdbFiltered" , imdb);
         model.addAttribute("titleFiltered" , title);
         model.addAttribute("yearOfReleaseFiltered", yearOfRelease);
         model.addAttribute("producerFiltered", producer);
         model.addAttribute("productionCompanyFiltered", productionCompany);
+        model.addAttribute("actorFiltered", actor);
+        model.addAttribute("genreFiltered", genre);
+        model.addAttribute("sortedFiltered", sorted);
         model.addAttribute("numberOfMovies" , filteredMovies.size());
         model.addAttribute("movies", filteredMovies);
         model.addAttribute("yearsOfRelease", yearsOfRelease);
-        model.addAttribute("producers", producers);
-        model.addAttribute("productionCompanies", productionCompanies);
+        model.addAttribute("producers", (List<Producer>) producerRepository.findAll());
+        model.addAttribute("productionCompanies", (List<ProductionCompany>) productionCompanyRepository.findAll());
+        model.addAttribute("actors", (List<Actor>) actorRepository.findAll());
+        model.addAttribute("genres", (List<Genre>) genreRepository.findByGenreFor("movie"));
         if(principal != null)  model.addAttribute("currentUser", endUserRepository.findByUsername(principal.getName()));
 
         return "movielist";
     }
-
 }

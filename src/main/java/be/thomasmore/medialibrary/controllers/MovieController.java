@@ -65,8 +65,7 @@ public class MovieController {
                                       @RequestParam(required = false) String producer,
                                       @RequestParam(required = false) String productionCompany,
                                       @RequestParam(required = false) String actor,
-                                      @RequestParam(required = false, defaultValue = "off") Boolean sorted,
-                                      Principal principal) {
+                                      @RequestParam(required = false, defaultValue = "off") Boolean sorted) {
 
 
         List<Movie> filteredMovies;
@@ -92,11 +91,10 @@ public class MovieController {
         model.addAttribute("numberOfMovies" , filteredMovies.size());
         model.addAttribute("movies", filteredMovies);
         model.addAttribute("yearsOfRelease", yearsOfRelease);
-        model.addAttribute("producers", (List<Producer>) producerRepository.findAll());
-        model.addAttribute("productionCompanies", (List<ProductionCompany>) productionCompanyRepository.findAll());
-        model.addAttribute("actors", (List<Actor>) actorRepository.findAll());
-        model.addAttribute("genres", (List<Genre>) genreRepository.findByGenreFor("movie"));
-        if(principal != null)  model.addAttribute("currentUser", endUserRepository.findByUsername(principal.getName()));
+        model.addAttribute("producers", producerRepository.findAll());
+        model.addAttribute("productionCompanies",productionCompanyRepository.findAll());
+        model.addAttribute("actors", actorRepository.findAll());
+        model.addAttribute("genres", genreRepository.findByGenreFor("movie"));
 
         return "movielist";
     }

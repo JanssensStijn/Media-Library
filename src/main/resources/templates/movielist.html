@@ -16,6 +16,10 @@
                 <form>
                     <h4 class="filterLabel">Movie filters</h4>
                     <p style="text-align:center" th:text="|${numberOfMovies} movies found|">number of movies found</p>
+
+                    <label for="title" class="filterLabel">Title:</label>
+                    <input type="text" id="title" class="filter" name="title" value="" th:value="${titleFiltered}">
+
                     <label for="yearOfRelease" class="filterLabel">Year of Release:</label>
                     <select name="yearOfRelease" id="yearOfRelease" class="filter">
                         <option  th:value="null" th:text="Any" th:selected="${yearOfReleaseFiltered eq null}">

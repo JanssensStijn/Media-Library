@@ -2,10 +2,12 @@ package be.thomasmore.medialibrary.controllers;
 
 import be.thomasmore.medialibrary.model.Author;
 import be.thomasmore.medialibrary.model.Book;
+import be.thomasmore.medialibrary.model.Genre;
 import be.thomasmore.medialibrary.model.Movie;
 import be.thomasmore.medialibrary.repositories.AuthorRepository;
 import be.thomasmore.medialibrary.repositories.BookRepository;
 import be.thomasmore.medialibrary.repositories.EndUserRepository;
+import be.thomasmore.medialibrary.repositories.GenreRepository;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -30,6 +32,8 @@ public class BookController {
     private BookRepository bookRepository;
     @Autowired
     private AuthorRepository authorRepository;
+    @Autowired
+    private GenreRepository genreRepository;
     @Autowired
     private EndUserRepository endUserRepository;
 
@@ -58,33 +62,36 @@ public class BookController {
 
     @GetMapping({"/booklist", "/booklist/"})
     public String booklistWithFilter(Model model,
-                                      @RequestParam(required = false) Integer id,
                                       @RequestParam(required = false) String title,
                                       @RequestParam(required = false) String author,
                                       @RequestParam(required = false) Integer yearOfRelease,
-                                     Principal principal) {
+                                      @RequestParam(required = false) String genre,
+                                      @RequestParam(required = false, defaultValue = "off") Boolean sorted) {
 
 
-        final List<Book> filteredBooks = bookRepository.findByFilter(id, title, author, yearOfRelease);
+        List<Book> filteredBooks;
+        if(sorted) filteredBooks = bookRepository.findByFilterSorted(title, author, genre, yearOfRelease);
+        else filteredBooks = bookRepository.findByFilter(title, author, genre, yearOfRelease);
 
         final Iterable<Book> allBooks = bookRepository.findAll();
         ArrayList<Integer> yearsOfRelease = StreamSupport.stream(allBooks.spliterator(), false)
                 .map(Book::getYearOfRelease)
                 .distinct().sorted()
                 .collect(Collectors.toCollection(ArrayList::new));
-        yearsOfRelease.add(0, null);
 
         final List<Author> authors = (List<Author>) authorRepository.findAll();
 
-        model.addAttribute("idFiltered" , id);
         model.addAttribute("authorFiltered" , author);
         model.addAttribute("titleFiltered" , title);
         model.addAttribute("yearOfReleaseFiltered", yearOfRelease);
+        model.addAttribute("yearOfReleaseFiltered", yearOfRelease);
+        model.addAttribute("genreFiltered", genre);
+        model.addAttribute("sortedFiltered", sorted);
         model.addAttribute("numberOfBooks" , filteredBooks.size());
         model.addAttribute("authors", authors);
         model.addAttribute("yearsOfRelease", yearsOfRelease);
         model.addAttribute("books", filteredBooks);
-        if(principal != null) model.addAttribute("currentUser", endUserRepository.findByUsername(principal.getName()));
+        model.addAttribute("genres", genreRepository.findByGenreFor("book"));
 
         return "booklist";
     }

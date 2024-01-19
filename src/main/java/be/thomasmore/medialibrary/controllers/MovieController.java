@@ -2,21 +2,21 @@ package be.thomasmore.medialibrary.controllers;
 
 import be.thomasmore.medialibrary.model.*;
 import be.thomasmore.medialibrary.repositories.*;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import java.security.Principal;
-import java.util.ArrayList;
-import java.util.Comparator;
+import java.util.Arrays;
 import java.util.List;
 import java.util.Optional;
-import java.util.stream.Collectors;
-import java.util.stream.StreamSupport;
 
 @Controller
 public class MovieController {
+
+    private final Logger logger = LoggerFactory.getLogger(MovieController.class);
 
     @Autowired
     private MovieRepository movieRepository;
@@ -61,12 +61,14 @@ public class MovieController {
                                       @RequestParam(required = false) String genre,
                                       @RequestParam(required = false) String producer,
                                       @RequestParam(required = false) String productionCompany,
-                                      @RequestParam(required = false) String actor,
+                                      @RequestParam(required = false) String[] actor,
                                       @RequestParam(required = false, defaultValue = "off") Boolean sorted) {
 
+        if(actor == null) logger.info("value of actors: null");
+            else logger.info("value of actors: " + Arrays.asList(actor));
         List<Movie> filteredMovies;
-        if(sorted) filteredMovies = movieRepository.findByFilterSorted(title, yearOfRelease, genre, producer, productionCompany, actor);
-        else filteredMovies = movieRepository.findByFilter(title, yearOfRelease, genre, producer, productionCompany, actor);
+        if(sorted) filteredMovies = movieRepository.findByFilterSorted(title, yearOfRelease, genre, producer, productionCompany, Arrays.asList(actor));
+        else filteredMovies = movieRepository.findByFilter(title, yearOfRelease, genre, producer, productionCompany, Arrays.asList(actor));
 
         model.addAttribute("titleFiltered" , title);
         model.addAttribute("yearOfReleaseFiltered", yearOfRelease);

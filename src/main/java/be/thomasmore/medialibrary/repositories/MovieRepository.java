@@ -19,7 +19,7 @@ public interface MovieRepository extends CrudRepository<Movie, Integer> {
             " AND (:genre IS NULL OR g.name ILIKE %:genre%)"+
             " AND (:producer IS NULL OR p.name ILIKE %:producer%)"+
             " AND (:productionCompany IS NULL OR pc.name ILIKE %:productionCompany%)" +
-            " AND (a.name IN :actor)")
+            " AND (:actor IS NULL OR a.name IN :actor)")
     List<Movie> findByFilter(@Param("title")String title,
                              @Param("yearOfRelease") Integer yearOfRelease,
                              @Param("genre") String genre,

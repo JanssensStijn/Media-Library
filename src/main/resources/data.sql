@@ -168,7 +168,6 @@ INSERT INTO GENRE (NAME, GENRE_FOR)
 VALUES
     ('Action', 'movie'),
     ('Drama', 'movie'),
-    ('Adventure', 'movie'),
     ('Sci-Fi', 'movie'),
     ('Fantasy', 'movie'),
     ('Thriller', 'movie'),

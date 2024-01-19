@@ -13,6 +13,10 @@ import org.springframework.security.web.servlet.util.matcher.MvcRequestMatcher;
 import org.springframework.web.servlet.handler.HandlerMappingIntrospector;
 import javax.sql.DataSource;
 
+//needed to go to h2-console page
+import org.springframework.security.config.annotation.web.configurers.HeadersConfigurer;
+import static org.springframework.boot.autoconfigure.security.servlet.PathRequest.toH2Console;
+
 @EnableWebSecurity
 @Configuration
 public class SecurityConfiguration {
@@ -51,10 +55,10 @@ public class SecurityConfiguration {
         );
 
 
-        /* //in comment for deploy to google cloud
+        //in comment for deploy to google cloud
         http.csrf(csrf -> csrf.ignoringRequestMatchers(toH2Console()));
         http.headers(headers -> headers.frameOptions(HeadersConfigurer.FrameOptionsConfig::sameOrigin));
-        */
+
 
         return http.build();
     }

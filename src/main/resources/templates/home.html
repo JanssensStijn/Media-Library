@@ -1,19 +1,20 @@
 <!DOCTYPE html>
-<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org"
-      xmlns:sec="http://www.w3.org/1999/xhtml">
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
 
-<head>
-    <div th:replace="~{fragments/initHeader :: initHeader}">initHeader</div>
-    <title>Home</title>
-</head>
+    <head>
+        <div th:replace="~{fragments/initHeader :: initHeader}">initHeader</div>
+        <title>Home</title>
+    </head>
+
     <body>
-    <div th:replace="~{fragments/header :: header}">Header</div>
+        <div th:replace="~{fragments/header :: header}">Header</div>
         <div class="container justify-content-center">
             <div class="row justify-content-md-center">
                 <div class="col-md-12">
                     <div class="row">
                         <h1 class="homeHeaders">Top 5 movies</h1>
                     </div>
+
                     <div class="row">
                         <div class="scrollable-container">
                             <div class="scrollable-cards">
@@ -21,9 +22,11 @@
                             </div>
                         </div>
                     </div>
+
                     <div class="row">
                         <h1 class="homeHeaders">Top 5 books</h1>
                     </div>
+
                     <div class="row">
                         <div class="scrollable-container">
                             <div class="scrollable-cards">

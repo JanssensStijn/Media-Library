@@ -1,82 +1,82 @@
 <!DOCTYPE html>
 
-<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org"
-      xmlns:sec="http://www.w3.org/1999/xhtml">
-<head>
-    <div th:replace="~{fragments/initHeader :: initHeader}">initHeader</div>
-    <title>Movies</title>
-</head>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
 
-<body>
-<div th:replace="~{fragments/header :: header}">Header</div>
-<div class="container justify-content-center">
-    <div class="row justify-content-md-center">
-        <div class="col-md-3 filterBlock">
-            <div class="allFilters">
-                <form>
-                    <h4 class="filterLabel">Movie filters</h4>
-                    <p style="text-align:center" th:text="|${numberOfMovies} movies found|">number of movies found</p>
+    <head>
+        <div th:replace="~{fragments/initHeader :: initHeader}">initHeader</div>
+        <title>Movies</title>
+    </head>
 
-                    <label for="title" class="filterLabel">Title:</label>
-                    <input type="text" id="title" class="filter" name="title" value="" th:value="${titleFiltered}">
+    <body>
+        <div th:replace="~{fragments/header :: header}">Header</div>
 
-                    <label for="yearOfRelease" class="filterLabel">Year of Release:</label>
-                    <select name="yearOfRelease" id="yearOfRelease" class="filter">
-                        <option  th:value="null" th:text="Any" th:selected="${yearOfReleaseFiltered eq null}">
-                        </option>
-                        <option th:each="item : ${yearsOfRelease}" th:value="${item}" th:text="${item}" th:selected="${item eq yearOfReleaseFiltered}"></option>
-                    </select>
+        <div class="container justify-content-center">
+            <div class="row justify-content-md-center">
+                <div class="col-md-3 filterBlock">
+                    <div class="allFilters">
+                        <form>
+                            <h4 class="filterLabel">Movie filters</h4>
+                            <p style="text-align:center" th:text="|${numberOfMovies} movies found|">number of movies found</p>
 
-                    <label for="genre" class="filterLabel">Genre:</label>
-                    <select name="genre" id="genre" class="filter">
-                        <option  th:value="null" th:text="Any" th:selected="${genreFiltered eq null}">
-                        </option>
-                        <option th:each="item : ${genres}" th:value="${item.name}" th:text="${item.name}" th:selected="${item.name eq genreFiltered}">
-                        </option>
-                    </select>
+                            <label for="title" class="filterLabel">Title:</label>
+                            <input type="text" id="title" class="filter" name="title" value="" th:value="${titleFiltered}">
 
-                    <label for="producer" class="filterLabel">Producer:</label>
-                    <select name="producer" id="producer" class="filter">
-                        <option  th:value="null" th:text="Any" th:selected="${producerFiltered eq null}">
-                        </option>
-                        <option th:each="item : ${producers}" th:value="${item.name}" th:text="${item.name}" th:selected="${item.name eq producerFiltered}">
-                        </option>
-                    </select>
+                            <label for="yearOfRelease" class="filterLabel">Year of Release:</label>
+                            <select name="yearOfRelease" id="yearOfRelease" class="filter">
+                                <option  th:value="null" th:text="Any" th:selected="${yearOfReleaseFiltered eq null}">
+                                </option>
+                                <option th:each="item : ${yearsOfRelease}" th:value="${item}" th:text="${item}" th:selected="${item eq yearOfReleaseFiltered}"></option>
+                            </select>
 
-                    <label for="productionCompany" class="filterLabel">Production company:</label>
-                    <select name="productionCompany" id="productionCompany" class="filter">
-                        <option  th:value="null" th:text="Any" th:selected="${productionCompanyFiltered eq null}"></option>
-                        <option th:each="item : ${productionCompanies}" th:value="${item.name}" th:text="${item.name}"  th:selected="${item.name eq productionCompanyFiltered}">
-                        </option>
-                    </select>
+                            <label for="genre" class="filterLabel">Genre:</label>
+                            <select name="genre" id="genre" class="filter">
+                                <option  th:value="null" th:text="Any" th:selected="${genreFiltered eq null}">
+                                </option>
+                                <option th:each="item : ${genres}" th:value="${item.getName()}" th:text="${item.getName()}" th:selected="${item.getName() eq genreFiltered}">
+                                </option>
+                            </select>
 
-                    <label for="actor" class="filterLabel">Actor:</label>
-                    <select name="actor" id="actor" class="filter">
-                        <option  th:value="null" th:text="Any" th:selected="${actorFiltered eq null}"></option>
-                        <option th:each="item : ${actors}" th:value="${item.name}" th:text="${item.name}"  th:selected="${item.name eq actorFiltered}">
-                        </option>
-                    </select>
-                    <div class="form-check">
-                        <input class="form-check-input" type="checkbox" id="sorted" name="sorted" th:checked="${sortedFiltered}">
-                        <label class="form-check-label" for="sorted">Sort alphabetically</label>
+                            <label for="producer" class="filterLabel">Producer:</label>
+                            <select name="producer" id="producer" class="filter">
+                                <option  th:value="null" th:text="Any" th:selected="${producerFiltered eq null}">
+                                </option>
+                                <option th:each="item : ${producers}" th:value="${item.getName()}" th:text="${item.getName()}" th:selected="${item.getName() eq producerFiltered}">
+                                </option>
+                            </select>
+
+                            <label for="productionCompany" class="filterLabel">Production company:</label>
+                            <select name="productionCompany" id="productionCompany" class="filter">
+                                <option  th:value="null" th:text="Any" th:selected="${productionCompanyFiltered eq null}"></option>
+                                <option th:each="item : ${productionCompanies}" th:value="${item.getName()}" th:text="${item.getName()}"  th:selected="${item.getName() eq productionCompanyFiltered}">
+                                </option>
+                            </select>
+
+                            <label for="actor" class="filterLabel">Actor:</label>
+                            <select name="actor" id="actor" class="filter">
+                                <option  th:value="null" th:text="Any" th:selected="${actorFiltered eq null}"></option>
+                                <option th:each="item : ${actors}" th:value="${item.getName()}" th:text="${item.getName()}"  th:selected="${item.getName() eq actorFiltered}">
+                                </option>
+                            </select>
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" id="sorted" name="sorted" th:checked="${sortedFiltered}">
+                                <label class="form-check-label" for="sorted">Sort alphabetically</label>
+                            </div>
+
+                            <div class="submitbutton">
+                                <input type="submit" value="Refresh" class="filter">
+                            </div>
+                        </form>
                     </div>
+                </div>
 
-                    <div class="submitbutton">
-                        <input type="submit" value="Refresh" class="filter">
+                <div class="col-md-9">
+                    <div class="row">
+                        <div th:replace="~{fragments/cards :: movieCards}">MovieCards</div>
                     </div>
-                </form>
+                </div>
             </div>
         </div>
 
-        <div class="col-md-9">
-            <div class="row">
-                <div th:replace="~{fragments/cards :: movieCards}">MovieCards</div>
-            </div>
-            <!-- Remove the unnecessary scrollable-container and directly include the movie cards -->
-        </div>
-    </div>
-</div>
-
-<div th:replace="~{fragments/footer :: footer}">Footer</div>
-</body>
+        <div th:replace="~{fragments/footer :: footer}">Footer</div>
+    </body>
 </html>

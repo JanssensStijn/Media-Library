@@ -1,68 +1,68 @@
 <!DOCTYPE html>
-<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org"
-      xmlns:sec="http://www.w3.org/1999/xhtml">
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
 
-<head>
-    <div th:replace="~{fragments/initHeader :: initHeader}">initHeader</div>
-    <title>Books</title>
-</head>
-<body>
+    <head>
+        <div th:replace="~{fragments/initHeader :: initHeader}">initHeader</div>
+        <title>Books</title>
+    </head>
 
-<div th:replace="~{fragments/header :: header}">Header</div>
-<div class="container justify-content-center">
-    <div class="row justify-content-md-center">
-        <div class="col-md-3">
-            <div class="col-md-12">
-                <p style="text-align:center" th:text="|${numberOfBooks} books found|">number of books found</p>
-            </div>
-            <div class="col-md-12 allFilters">
-                <form>
-                    <h4 class="filterLabel">Book filters</h4>
-                    <p style="text-align:center" th:text="|${numberOfBooks} movies found|">number of movies found</p>
+    <body>
+        <div th:replace="~{fragments/header :: header}">Header</div>
 
-                    <label for="title" class="filterLabel">Title:</label>
-                    <input type="text" id="title" class="filter" name="title" value="" th:value="${titleFiltered}">
-
-                    <label for="yearOfRelease" class="filterLabel">Year of release:</label>
-                    <select name="yearOfRelease" id="yearOfRelease" class="filter">
-                        <option th:value="null" th:text="Any" th:selected="${yearOfReleaseFiltered eq null}"></option>
-                        <option th:each="item : ${yearsOfRelease}" th:value="${item}" th:text="${item}" th:selected="${item eq yearOfReleaseFiltered}">
-                        </option>
-                    </select>
-
-                    <label for="genre" class="filterLabel">Genre:</label>
-                    <select name="genre" id="genre" class="filter">
-                        <option th:value="null" th:text="Any" th:selected="${genreFiltered eq null}"></option>
-                        <option th:each="item : ${genres}" th:value="${item.name}" th:text="${item.name}" th:selected="${item eq genreFiltered}">
-                        </option>
-                    </select>
-
-                    <label for="author" class="filterLabel">Author:</label>
-                    <select name="author" id="author" class="filter">
-                        <option th:value="null" th:text="Any" th:selected="${authorFiltered eq null}"></option>
-                        <option th:each="item : ${authors}" th:value="${item.name}" th:text="${item.name}"  th:selected="${item.name eq authorFiltered}">
-                        </option>
-                    </select>
-
-                    <div class="form-check">
-                        <input class="form-check-input" type="checkbox" id="sorted" name="sorted" th:checked="${sortedFiltered}">
-                        <label class="form-check-label" for="sorted">Sort alphabetically</label>
+        <div class="container justify-content-center">
+            <div class="row justify-content-md-center">
+                <div class="col-md-3">
+                    <div class="col-md-12">
+                        <p style="text-align:center" th:text="|${numberOfBooks} books found|">number of books found</p>
                     </div>
+                    <div class="col-md-12 allFilters">
+                        <form>
+                            <h4 class="filterLabel">Book filters</h4>
+                            <p style="text-align:center" th:text="|${numberOfBooks} movies found|">number of movies found</p>
 
-                    <div class="submitbutton">
-                        <input type="submit" value="search" class="buttonLook filterButton">
+                            <label for="title" class="filterLabel">Title:</label>
+                            <input type="text" id="title" class="filter" name="title" value="" th:value="${titleFiltered}">
+
+                            <label for="yearOfRelease" class="filterLabel">Year of release:</label>
+                            <select name="yearOfRelease" id="yearOfRelease" class="filter">
+                                <option th:value="null" th:text="Any" th:selected="${yearOfReleaseFiltered eq null}"></option>
+                                <option th:each="item : ${yearsOfRelease}" th:value="${item}" th:text="${item}" th:selected="${item eq yearOfReleaseFiltered}">
+                                </option>
+                            </select>
+
+                            <label for="genre" class="filterLabel">Genre:</label>
+                            <select name="genre" id="genre" class="filter">
+                                <option th:value="null" th:text="Any" th:selected="${genreFiltered eq null}"></option>
+                                <option th:each="item : ${genres}" th:value="${item.getName()}" th:text="${item.getName()}" th:selected="${item eq genreFiltered}">
+                                </option>
+                            </select>
+
+                            <label for="author" class="filterLabel">Author:</label>
+                            <select name="author" id="author" class="filter">
+                                <option th:value="null" th:text="Any" th:selected="${authorFiltered eq null}"></option>
+                                <option th:each="item : ${authors}" th:value="${item.getName()}" th:text="${item.getName()}"  th:selected="${item.name eq authorFiltered}">
+                                </option>
+                            </select>
+
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" id="sorted" name="sorted" th:checked="${sortedFiltered}">
+                                <label class="form-check-label" for="sorted">Sort alphabetically</label>
+                            </div>
+
+                            <div class="submitbutton">
+                                <input type="submit" value="search" class="buttonLook filterButton">
+                            </div>
+                        </form>
                     </div>
-                </form>
+                </div>
+                <div class="col-md-9">
+                    <div class="row">
+                        <div th:replace="~{fragments/cards :: bookCards}">BookCards</div>
+                    </div>
+                </div>
             </div>
         </div>
-        <div class="col-md-9">
-            <div class="row">
-                <div th:replace="~{fragments/cards :: bookCards}">BookCards</div>
-            </div>
-        </div>
-    </div>
-</div>
 
-<div th:replace="~{fragments/footer :: footer}">Footer</div>
-</body>
+        <div th:replace="~{fragments/footer :: footer}">Footer</div>
+    </body>
 </html>

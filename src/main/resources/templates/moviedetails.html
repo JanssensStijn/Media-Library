@@ -30,14 +30,14 @@
 
                 <div class="row">
                     <div class="col-md-12 m-3 detailsBlock text-center">
-                        <h1 th:text="${movie.title}"/>
+                        <h1 th:text="${movie.getTitle()}"/>
                     </div>
                 </div>
 
                 <div class="row">
                     <div class="col-md-12 m-3 detailsBlock">
                         <iframe id="trailerPlayer" type="text/html" width="100%" height="500px"
-                                th:src="|https://www.youtube.com/embed/${movie.trailerLink}?autoplay=1|"
+                                th:src="|https://www.youtube.com/embed/${movie.getTrailerLink()}?autoplay=1|"
                                 border="0" allowfullscreen>
                         </iframe>
                     </div>
@@ -47,44 +47,44 @@
                     <div class="col-md-12 m-3">
                         <div class="row">
                             <div class="col-md-3 detailsBlock">
-                                <img class="detailsPicture" th:src="@{${movie.imageUrl}}" alt="Card image cap">
+                                <img class="detailsPicture" th:src="@{${movie.getImageUrl()}}" alt="Card image cap">
                             </div>
+
                             <div class="col-md-6">
                                 <div class="DetailsInfo">
-                                    <p><strong>Year of release: </strong><span th:text="|${movie.yearOfRelease}|"></span></p>
+                                    <p><strong>Year of release: </strong><span th:text="|${movie.getYearOfRelease()}|"></span></p>
                                     <p><strong>Producer(s): </strong>
                                         <span th:each="producer, iterStat : ${movie.getProducers()}">
-                                            <span th:text="${producer.name}"></span>
+                                            <span th:text="${producer.getName()}"></span>
                                             <span th:text="|-- |" th:if="${!iterStat.last}"></span>
                                         </span>
                                     </p>
                                     <p><strong>Production company: </strong>
                                         <span th:each="productionCompany, iterStat : ${movie.getProductionCompanies()}">
-                                            <span th:text="${productionCompany.name}"></span>
+                                            <span th:text="${productionCompany.getName()}"></span>
                                             <span th:text="|-- |" th:if="${!iterStat.last}"></span>
                                         </span>
                                     </p>
                                     <p><strong>Main actors: </strong>
                                         <span th:each="actor, iterStat : ${movie.getActors()}">
-                                            <span th:text="${actor.name}"></span>
+                                            <span th:text="${actor.getName()}"></span>
                                             <span th:text="|-- |" th:if="${!iterStat.last}"></span>
                                         </span>
                                     </p>
                                     <p><strong>Genres: </strong>
                                         <span th:each="genre, iterStat : ${movie.getGenres()}">
-                                            <span th:text="${genre.name}"></span>
+                                            <span th:text="${genre.getName()}"></span>
                                             <span th:text="|-- |" th:if="${!iterStat.last}"></span>
                                         </span>
                                     </p>
-                                    <p><strong>Description: </strong><span th:text="|${movie.description}|"></span></p>
+                                    <p><strong>Description: </strong><span th:text="|${movie.getDescription()}|"></span></p>
                                     <a href="#" class="card-link" th:href="@{|https://www.imdb.com/title/${movie.imdb}/|}" target="_blank">More info about movie</a>
                                 </div>
                             </div>
 
-
                             <div class="col-md-3 detailsButtonBlock" sec:authorize="isAuthenticated()">
                                 <div class="detailsButtonSubBlock">
-                                    <form th:action="@{|/enduser/wishlist/movie/${movie.id}|}" method="post">
+                                    <form th:action="@{|/enduser/wishlist/movie/${movie.getId()}|}" method="post">
                                         <button type="submit" class="detailsButton" th:if="${movie.getEndUsersWishlist().contains(currentUser)}">
                                             <i class="bi bi-heart-fill"></i><span> Remove from wishlist</span>
                                         </button>
@@ -94,7 +94,7 @@
                                     </form>
                                 </div>
                                 <div class="detailsButtonSubBlock">
-                                    <form th:action="@{|/enduser/ownedlist/movie/${movie.id}|}" method="post">
+                                    <form th:action="@{|/enduser/ownedlist/movie/${movie.getId()}|}" method="post">
                                         <button type="submit" class="detailsButton" th:if="${movie.getEndUsersOwned().contains(currentUser)}">
                                             <i class="bi bi-cart-fill"></i><span> Remove from owned</span>
                                         </button>
@@ -104,7 +104,7 @@
                                     </form>
                                 </div>
                                 <div class="detailsButtonSubBlock" sec:authorize="hasAuthority('ADMIN')">
-                                    <a th:href="@{|../admin/movieedit/${movie.id}|}">
+                                    <a th:href="@{|../admin/movieedit/${movie.getId()}|}">
                                         <button type="submit" class="detailsButton">
                                             <i class="bi bi-wrench"></i> Edit movie
                                         </button>

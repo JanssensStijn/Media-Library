@@ -1,48 +1,47 @@
 <!DOCTYPE html>
 <html lang="en" xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:th="http://www.thymeleaf.org"
-      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+      xmlns:th="http://www.thymeleaf.org">
 
-<head>
-    <div th:replace="~{fragments/initHeader :: initHeader}">initHeader</div>
-    <title>Wishlist</title>
-</head>
+    <head>
+        <div th:replace="~{fragments/initHeader :: initHeader}">initHeader</div>
+        <title>Wishlist</title>
+    </head>
 
-<body>
+    <body>
+        <div th:replace="~{fragments/header :: header}">Header</div>
 
-<div th:replace="~{fragments/header :: header}">Header</div>
-<div class="container justify-content-center">
-    <div class="row justify-content-md-center">
-        <h1 th:text="|Wishlist for ${currentUser.name}|"></h1>
-    </div>
-    <div class="row justify-content-md-center">
-        <h2>Movies</h2>
-        <div th:if="${#lists.isEmpty(movies)}">
-            <span>no movies in wishlist yet</span>
-        </div>
-        <div th:unless="${#lists.isEmpty(movies)}">
-            <div class="col-md-12">
-                <div class="row">
-                    <div th:replace="~{fragments/cards :: movieCards}">MovieCards</div>
+        <div class="container justify-content-center">
+            <div class="row justify-content-md-center">
+                <h1 th:text="|Wishlist for ${currentUser.getName()}|"></h1>
+            </div>
+            <div class="row justify-content-md-center">
+                <h2>Movies</h2>
+                <div th:if="${#lists.isEmpty(movies)}">
+                    <span>no movies in wishlist yet</span>
+                </div>
+                <div th:unless="${#lists.isEmpty(movies)}">
+                    <div class="col-md-12">
+                        <div class="row">
+                            <div th:replace="~{fragments/cards :: movieCards}">MovieCards</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row justify-content-md-center">
+                <h2>Books</h2>
+                <div th:if="${#lists.isEmpty(books)}">
+                    <span>no books in wishlist yet</span>
+                </div>
+                <div th:unless="${#lists.isEmpty(books)}">
+                    <div class="col-md-12">
+                        <div class="row">
+                            <div th:replace="~{fragments/cards :: bookCards}">BookCards</div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
-    </div>
-    <div class="row justify-content-md-center">
-        <h2>Books</h2>
-        <div th:if="${#lists.isEmpty(books)}">
-            <span>no books in wishlist yet</span>
-        </div>
-        <div th:unless="${#lists.isEmpty(books)}">
-            <div class="col-md-12">
-                <div class="row">
-                    <div th:replace="~{fragments/cards :: bookCards}">BookCards</div>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
 
-<div th:replace="~{fragments/footer :: footer}">Footer</div>
-</body>
+        <div th:replace="~{fragments/footer :: footer}">Footer</div>
+    </body>
 </html>

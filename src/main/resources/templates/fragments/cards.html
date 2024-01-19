@@ -3,87 +3,62 @@
       xmlns:th="http://www.thymeleaf.org"
       xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 
-<head/>
-<body>
-<div th:each="movie : ${movies}" class="card hoverable" th:fragment="movieCards">
-    <a th:href="@{|/moviedetails/${movie.id}|}">
-        <div class="card-background" th:style="'background-image: url(' + ${movie.imageUrl} + ')'">
-            <div class="card-buttons" sec:authorize="isAuthenticated()">
-                <form th:action="@{|/enduser/wishlist/movie/${movie.id}|}" method="post">
-                    <button type="submit" class="btn btn-primary top-left" th:if="${movie.getEndUsersWishlist().contains(currentUser)}">
-                        <i class="bi bi-heart-fill"></i>
-                    </button>
-                    <button type="submit" class="btn btn-primary top-left" th:unless="${movie.getEndUsersWishlist().contains(currentUser)}">
-                        <i class="bi bi-heart"></i>
-                    </button>
-                </form>
-                <form th:action="@{|/enduser/ownedlist/movie/${movie.id}|}" method="post">
-                    <button type="submit" class="btn btn-primary top-right" th:if="${movie.getEndUsersOwned().contains(currentUser)}">
-                        <i class="bi bi-cart-fill"></i>
-                    </button>
-                    <button type="submit" class="btn btn-primary top-right" th:unless="${movie.getEndUsersOwned().contains(currentUser)}">
-                        <i class="bi bi-cart"></i>
-                    </button>
-                </form>
-            </div>
-            <div class="card-body"><h5 th:text="${movie.title}"></h5></div>
+    <head/>
+    <body>
+        <div th:each="movie : ${movies}" class="card hoverable" th:fragment="movieCards">
+            <a th:href="@{|/moviedetails/${movie.getId()}|}">
+                <div class="card-background" th:style="'background-image: url(' + ${movie.getImageUrl()} + ')'">
+                    <div class="card-buttons" sec:authorize="isAuthenticated()">
+                        <form th:action="@{|/enduser/wishlist/movie/${movie.getId()}|}" method="post">
+                            <button type="submit" class="btn btn-primary top-left" th:if="${movie.getEndUsersWishlist().contains(currentUser)}">
+                                <i class="bi bi-heart-fill"></i>
+                            </button>
+                            <button type="submit" class="btn btn-primary top-left" th:unless="${movie.getEndUsersWishlist().contains(currentUser)}">
+                                <i class="bi bi-heart"></i>
+                            </button>
+                        </form>
+                        <form th:action="@{|/enduser/ownedlist/movie/${movie.getId()}|}" method="post">
+                            <button type="submit" class="btn btn-primary top-right" th:if="${movie.getEndUsersOwned().contains(currentUser)}">
+                                <i class="bi bi-cart-fill"></i>
+                            </button>
+                            <button type="submit" class="btn btn-primary top-right" th:unless="${movie.getEndUsersOwned().contains(currentUser)}">
+                                <i class="bi bi-cart"></i>
+                            </button>
+                        </form>
+                    </div>
+                    <div class="card-body">
+                        <h5 th:text="${movie.getTitle()}"></h5>
+                    </div>
+                </div>
+            </a>
         </div>
-    </a>
-</div>
 
-<div th:each="book : ${books}" class="card hoverable" th:fragment="bookCards">
-    <a th:href="@{|/bookdetails/${book.id}|}">
-        <div class="card-background" th:style="'background-image: url(' + ${book.imageUrl} + ')'">
-            <div class="card-buttons" sec:authorize="isAuthenticated()">
-                <form th:action="@{|/enduser/wishlist/book/${book.id}|}" method="post">
-                    <button type="submit" class="btn btn-primary top-left" th:if="${book.getEndUsersWishlist().contains(currentUser)}">
-                        <i class="bi bi-heart-fill"></i>
-                    </button>
-                    <button type="submit" class="btn btn-primary top-left" th:unless="${book.getEndUsersWishlist().contains(currentUser)}">
-                        <i class="bi bi-heart"></i>
-                    </button>
-                </form>
-                <form th:action="@{|/enduser/ownedlist/book/${book.id}|}" method="post">
-                    <button type="submit" class="btn btn-primary top-right" th:if="${book.getEndUsersOwned().contains(currentUser)}">
-                        <i class="bi bi-cart-fill"></i>
-                    </button>
-                    <button type="submit" class="btn btn-primary top-right" th:unless="${book.getEndUsersOwned().contains(currentUser)}">
-                        <i class="bi bi-cart"></i>
-                    </button>
-                </form>
-            </div>
-            <div class="card-body"><h5 th:text="${book.title}"></h5></div>
+        <div th:each="book : ${books}" class="card hoverable" th:fragment="bookCards">
+            <a th:href="@{|/bookdetails/${book.getId()}|}">
+                <div class="card-background" th:style="'background-image: url(' + ${book.getImageUrl()} + ')'">
+                    <div class="card-buttons" sec:authorize="isAuthenticated()">
+                        <form th:action="@{|/enduser/wishlist/book/${book.getId()}|}" method="post">
+                            <button type="submit" class="btn btn-primary top-left" th:if="${book.getEndUsersWishlist().contains(currentUser)}">
+                                <i class="bi bi-heart-fill"></i>
+                            </button>
+                            <button type="submit" class="btn btn-primary top-left" th:unless="${book.getEndUsersWishlist().contains(currentUser)}">
+                                <i class="bi bi-heart"></i>
+                            </button>
+                        </form>
+                        <form th:action="@{|/enduser/ownedlist/book/${book.getId()}|}" method="post">
+                            <button type="submit" class="btn btn-primary top-right" th:if="${book.getEndUsersOwned().contains(currentUser)}">
+                                <i class="bi bi-cart-fill"></i>
+                            </button>
+                            <button type="submit" class="btn btn-primary top-right" th:unless="${book.getEndUsersOwned().contains(currentUser)}">
+                                <i class="bi bi-cart"></i>
+                            </button>
+                        </form>
+                    </div>
+                    <div class="card-body">
+                        <h5 th:text="${book.getTitle()}"></h5>
+                    </div>
+                </div>
+            </a>
         </div>
-    </a>
-</div>
-
-
-<div th:each="book : ${books}" class="card hoverable" th:fragment="bookCardsOld">
-    <a th:href="@{|/bookdetails/${book.id}|}" >
-        <div class="card-body overview-card">
-            <!--<img class="card-img-top" th:src="@{|/img/${book.title}.jpg|}" alt="Card image cap">-->
-            <img class="card-img-top" th:src="${book.imageUrl}" alt="Card image cap">
-            <h5 class="card-title" th:text="${book.title}"></h5>
-            <div sec:authorize="isAuthenticated()">
-                <form th:action="@{|/enduser/wishlist/book/${book.id}|}" method="post">
-                    <button type="submit" class="btn btn-primary" th:if="${book.getEndUsersWishlist().contains(currentUser)}">
-                        <i class="bi bi-heart-fill"></i>
-                    </button>
-                    <button type="submit" class="btn btn-primary" th:unless="${book.getEndUsersWishlist().contains(currentUser)}">
-                        <i class="bi bi-heart"></i>
-                    </button>
-                </form>
-                <form th:action="@{|/enduser/ownedlist/book/${book.id}|}" method="post">
-                    <button type="submit" class="btn btn-primary" th:if="${book.getEndUsersOwned().contains(currentUser)}">
-                        <i class="bi bi-cart-fill"></i>
-                    </button>
-                    <button type="submit" class="btn btn-primary" th:unless="${book.getEndUsersOwned().contains(currentUser)}">
-                        <i class="bi bi-cart"></i>
-                    </button>
-                </form>
-            </div>
-        </div>
-    </a>
-</div>
-</body>
+    </body>
 </html>

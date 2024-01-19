@@ -1,20 +1,19 @@
 <!DOCTYPE html>
 <html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
 
-<head>
-    <div th:replace="~{fragments/initHeader :: initHeader}">initHeader</div>
-    <title>Error</title>
-</head>
-<body>
+    <head>
+        <div th:replace="~{fragments/initHeader :: initHeader}">initHeader</div>
+        <title>Error</title>
+    </head>
 
-<div th:replace="~{fragments/header :: header}">Header</div>
+    <body>
+        <div th:replace="~{fragments/header :: header}">Header</div>
 
-<div class="error">
-    <h1>Oops something went wrong.</h1>
-    <p>It seems you've reached the void of this application</p>
-</div>
+        <div class="error">
+            <h1>Oops something went wrong.</h1>
+            <p>It seems you've reached the void of this application</p>
+        </div>
 
-<div th:replace="~{fragments/footer :: footer}">Footer</div>
-
-</body>
+        <div th:replace="~{fragments/footer :: footer}">Footer</div>
+    </body>
 </html>

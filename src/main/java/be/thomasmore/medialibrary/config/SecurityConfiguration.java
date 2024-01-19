@@ -56,9 +56,10 @@ public class SecurityConfiguration {
 
 
         //in comment for deploy to google cloud
+        /*
         http.csrf(csrf -> csrf.ignoringRequestMatchers(toH2Console()));
         http.headers(headers -> headers.frameOptions(HeadersConfigurer.FrameOptionsConfig::sameOrigin));
-
+        */
 
         return http.build();
     }

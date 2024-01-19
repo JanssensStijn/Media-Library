@@ -1,6 +1,5 @@
 package be.thomasmore.medialibrary.controllers;
 
-import be.thomasmore.medialibrary.model.Author;
 import be.thomasmore.medialibrary.model.Book;
 import be.thomasmore.medialibrary.repositories.AuthorRepository;
 import be.thomasmore.medialibrary.repositories.BookRepository;
@@ -14,8 +13,6 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestParam;
 import java.security.Principal;
 import java.util.*;
-import java.util.stream.Collectors;
-import java.util.stream.StreamSupport;
 
 @Controller
 public class BookController {

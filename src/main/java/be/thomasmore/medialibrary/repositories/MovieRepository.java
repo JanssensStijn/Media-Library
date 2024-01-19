@@ -25,7 +25,7 @@ public interface MovieRepository extends CrudRepository<Movie, Integer> {
                              @Param("genre") String genre,
                              @Param("producer") String producer,
                              @Param("productionCompany")String productionCompany,
-                            @Param("actor")List<String> actor);
+                            @Param("actor")String actor);
 
     @Query("SELECT m FROM Movie m" +
             " LEFT JOIN m.producers p" +
@@ -44,7 +44,7 @@ public interface MovieRepository extends CrudRepository<Movie, Integer> {
                                    @Param("genre") String genre,
                                    @Param("producer") String producer,
                                    @Param("productionCompany")String productionCompany,
-                                   @Param("actor")List<String> actor);
+                                   @Param("actor")String actor);
 
     @Query("SELECT m FROM Movie m" +
             " LEFT JOIN m.endUsersOwned me" +

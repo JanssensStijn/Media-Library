@@ -55,7 +55,7 @@ public class BookController {
     }
 
     @GetMapping({"/booklist", "/booklist/"})
-    public String booklistWithFilter(Model model,
+    public String booklistWithFilter(Model model, Principal principal,
                                       @RequestParam(required = false) String title,
                                       @RequestParam(required = false) String author,
                                       @RequestParam(required = false) Integer yearOfRelease,
@@ -86,6 +86,7 @@ public class BookController {
         model.addAttribute("yearsOfRelease", yearsOfRelease);
         model.addAttribute("books", filteredBooks);
         model.addAttribute("genres", genreRepository.findByGenreFor("book"));
+        if(principal != null) model.addAttribute("currentUser", endUserRepository.findByUsername(principal.getName()));
 
         return "booklist";
     }

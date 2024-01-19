@@ -53,7 +53,7 @@ public class MovieController {
     }
 
     @GetMapping({"/movielist", "/movielist/"})
-    public String MovieListWithFilter(Model model,
+    public String MovieListWithFilter(Model model, Principal principal,
                                       @RequestParam(required = false) String title,
                                       @RequestParam(required = false) Integer yearOfRelease,
                                       @RequestParam(required = false) String genre,
@@ -88,6 +88,7 @@ public class MovieController {
         model.addAttribute("productionCompanies",productionCompanyRepository.findAll());
         model.addAttribute("actors", actorRepository.findAll());
         model.addAttribute("genres", genreRepository.findByGenreFor("movie"));
+        if(principal != null) model.addAttribute("currentUser", endUserRepository.findByUsername(principal.getName()));
 
         return "movielist";
     }

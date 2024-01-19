@@ -22,8 +22,6 @@ public class HomeController {
     @Autowired
     private EndUserRepository endUserRepository;
 
-    @Autowired
-    private GoogleService googleService;
     @GetMapping({"/", "/home"})
     public String home(Model model, Principal principal) {
 

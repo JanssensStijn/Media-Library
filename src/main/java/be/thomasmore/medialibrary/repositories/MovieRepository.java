@@ -60,4 +60,6 @@ public interface MovieRepository extends CrudRepository<Movie, Integer> {
     Optional<Movie> findFirstByIdLessThanOrderByIdDesc(Integer id);
 
     Optional<Movie> findFirstByOrderByIdDesc();
+    @Query("SELECT DISTINCT m.yearOfRelease FROM Movie m ORDER BY m.yearOfRelease")
+    List<Integer> findDistinctYearsOfRelease();
 }

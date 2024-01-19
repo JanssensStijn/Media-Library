@@ -49,4 +49,7 @@ public interface BookRepository extends CrudRepository<Book, Integer> {
     Optional<Book> findFirstByOrderByIdAsc();
     Optional<Book> findFirstByIdLessThanOrderByIdDesc(Integer id);
     Optional<Book> findFirstByOrderByIdDesc();
+
+    @Query("SELECT DISTINCT m.yearOfRelease FROM Movie m ORDER BY m.yearOfRelease")
+    List<Integer> findDistinctYearsOfRelease();
 }

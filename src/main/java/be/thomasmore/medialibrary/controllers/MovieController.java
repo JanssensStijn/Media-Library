@@ -3,11 +3,13 @@ package be.thomasmore.medialibrary.controllers;
 import be.thomasmore.medialibrary.model.*;
 import be.thomasmore.medialibrary.repositories.*;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import java.security.Principal;
 import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
@@ -63,16 +65,8 @@ public class MovieController {
                                       @RequestParam(required = false, defaultValue = "off") Boolean sorted) {
 
         List<Movie> filteredMovies;
-
         if(sorted) filteredMovies = movieRepository.findByFilterSorted(title, yearOfRelease, genre, producer, productionCompany, actor);
         else filteredMovies = movieRepository.findByFilter(title, yearOfRelease, genre, producer, productionCompany, actor);
-
-        final Iterable<Movie> allMovies = movieRepository.findAll();
-
-        ArrayList<Integer> yearsOfRelease = StreamSupport.stream(allMovies.spliterator(), false)
-                .map(Movie::getYearOfRelease)
-                .distinct().sorted()
-                .collect(Collectors.toCollection(ArrayList::new));
 
         model.addAttribute("titleFiltered" , title);
         model.addAttribute("yearOfReleaseFiltered", yearOfRelease);
@@ -83,11 +77,11 @@ public class MovieController {
         model.addAttribute("sortedFiltered", sorted);
         model.addAttribute("numberOfMovies" , filteredMovies.size());
         model.addAttribute("movies", filteredMovies);
-        model.addAttribute("yearsOfRelease", yearsOfRelease);
-        model.addAttribute("producers", producerRepository.findAll());
-        model.addAttribute("productionCompanies",productionCompanyRepository.findAll());
-        model.addAttribute("actors", actorRepository.findAll());
-        model.addAttribute("genres", genreRepository.findByGenreFor("movie"));
+        model.addAttribute("yearsOfRelease", movieRepository.findDistinctYearsOfRelease());
+        model.addAttribute("producers", producerRepository.findByOrderByNameAsc());
+        model.addAttribute("productionCompanies",productionCompanyRepository.findByOrderByNameAsc());
+        model.addAttribute("actors", actorRepository.findByOrderByNameAsc());
+        model.addAttribute("genres", genreRepository.findByGenreForOrderByName("movie"));
         if(principal != null) model.addAttribute("currentUser", endUserRepository.findByUsername(principal.getName()));
 
         return "movielist";

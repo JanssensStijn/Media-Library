@@ -13,9 +13,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestParam;
 import java.security.Principal;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Optional;
+import java.util.*;
 import java.util.stream.Collectors;
 import java.util.stream.StreamSupport;
 
@@ -67,14 +65,6 @@ public class BookController {
         if(sorted) filteredBooks = bookRepository.findByFilterSorted(title, author, genre, yearOfRelease);
         else filteredBooks = bookRepository.findByFilter(title, author, genre, yearOfRelease);
 
-        final Iterable<Book> allBooks = bookRepository.findAll();
-        ArrayList<Integer> yearsOfRelease = StreamSupport.stream(allBooks.spliterator(), false)
-                .map(Book::getYearOfRelease)
-                .distinct().sorted()
-                .collect(Collectors.toCollection(ArrayList::new));
-
-        final List<Author> authors = (List<Author>) authorRepository.findAll();
-
         model.addAttribute("authorFiltered" , author);
         model.addAttribute("titleFiltered" , title);
         model.addAttribute("yearOfReleaseFiltered", yearOfRelease);
@@ -82,10 +72,10 @@ public class BookController {
         model.addAttribute("genreFiltered", genre);
         model.addAttribute("sortedFiltered", sorted);
         model.addAttribute("numberOfBooks" , filteredBooks.size());
-        model.addAttribute("authors", authors);
-        model.addAttribute("yearsOfRelease", yearsOfRelease);
+        model.addAttribute("authors", authorRepository.findByOrderByNameAsc());
+        model.addAttribute("yearsOfRelease", bookRepository.findDistinctYearsOfRelease());
         model.addAttribute("books", filteredBooks);
-        model.addAttribute("genres", genreRepository.findByGenreFor("book"));
+        model.addAttribute("genres", genreRepository.findByGenreForOrderByName("book"));
         if(principal != null) model.addAttribute("currentUser", endUserRepository.findByUsername(principal.getName()));
 
         return "booklist";

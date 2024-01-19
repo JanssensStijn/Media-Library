@@ -1,9 +1,7 @@
 package be.thomasmore.medialibrary.controllers;
 
 import be.thomasmore.medialibrary.model.EndUser;
-import be.thomasmore.medialibrary.model.Movie;
 import be.thomasmore.medialibrary.repositories.EndUserRepository;
-import ch.qos.logback.core.model.Model;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,9 +10,7 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.provisioning.JdbcUserDetailsManager;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
-
 import java.security.Principal;
-import java.util.Optional;
 
 @Controller
 @RequestMapping("/user")

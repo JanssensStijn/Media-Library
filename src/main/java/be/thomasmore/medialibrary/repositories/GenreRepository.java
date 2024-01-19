@@ -1,9 +1,7 @@
 package be.thomasmore.medialibrary.repositories;
 
 import be.thomasmore.medialibrary.model.Genre;
-import be.thomasmore.medialibrary.model.Movie;
 import org.springframework.data.repository.CrudRepository;
-
 import java.util.List;
 
 public interface GenreRepository extends CrudRepository<Genre, Integer> {

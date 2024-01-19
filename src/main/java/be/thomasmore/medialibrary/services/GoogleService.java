@@ -7,10 +7,7 @@ import com.google.cloud.storage.BlobInfo;
 import com.google.cloud.storage.Storage;
 import com.google.cloud.storage.StorageOptions;
 import org.springframework.beans.factory.annotation.Value;
-import org.springframework.context.annotation.Profile;
 import org.springframework.stereotype.Service;
-import org.springframework.web.multipart.MultipartFile;
-
 import java.io.*;
 import java.net.URLEncoder;
 import java.nio.charset.StandardCharsets;
@@ -60,6 +57,4 @@ public class GoogleService {
         Credentials credentials = GoogleCredentials.fromStream(new ByteArrayInputStream(firebaseCredentials.getBytes()));
         return StorageOptions.newBuilder().setCredentials(credentials).build().getService();
     }
-
-
 }

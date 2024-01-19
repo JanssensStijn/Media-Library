@@ -2,24 +2,18 @@ package be.thomasmore.medialibrary.controllers;
 
 import be.thomasmore.medialibrary.model.Author;
 import be.thomasmore.medialibrary.model.Book;
-import be.thomasmore.medialibrary.model.Genre;
-import be.thomasmore.medialibrary.model.Movie;
 import be.thomasmore.medialibrary.repositories.AuthorRepository;
 import be.thomasmore.medialibrary.repositories.BookRepository;
 import be.thomasmore.medialibrary.repositories.EndUserRepository;
 import be.thomasmore.medialibrary.repositories.GenreRepository;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestParam;
-
 import java.security.Principal;
 import java.util.ArrayList;
-import java.util.Collection;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;

@@ -7,11 +7,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
-
 import java.security.Principal;
-import java.util.HashSet;
 import java.util.List;
-import java.util.Optional;
 
 @Controller
 @RequestMapping("/enduser")
@@ -105,7 +102,6 @@ public class EndUserController {
                 break;
         }
 
-
         endUserRepository.save(currentUser);
 
         //go back to the page where item was added to the wishlist
@@ -114,10 +110,8 @@ public class EndUserController {
             // Redirect to the previous page
             return "redirect:" + referer;
         }
+
         // Default redirect if referer is not available or empty
         return "redirect:/home";
-
-
     }
-
 }

@@ -1,7 +1,6 @@
 package be.thomasmore.medialibrary.model;
 
 import jakarta.persistence.*;
-
 import java.util.Collection;
 
 @Entity
@@ -18,8 +17,7 @@ public class Genre {
         @ManyToMany(mappedBy = "genres", fetch = FetchType.LAZY)
         private Collection<Book> books;
 
-        public Genre() {
-        }
+        public Genre() {}
 
         public int getId() {
                 return id;

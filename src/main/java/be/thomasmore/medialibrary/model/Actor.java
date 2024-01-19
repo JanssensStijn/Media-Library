@@ -1,9 +1,7 @@
 package be.thomasmore.medialibrary.model;
 
 import jakarta.persistence.*;
-
 import java.util.Collection;
-import java.util.Date;
 
 @Entity
 public class Actor {
@@ -15,13 +13,11 @@ public class Actor {
         @ManyToMany(mappedBy = "actors", fetch = FetchType.LAZY)
         private Collection<Movie> movies;
 
-        public Actor() {
-        }
+        public Actor() {}
 
         public int getId() {
                 return id;
         }
-
         public void setId(int id) {
                 this.id = id;
         }
@@ -29,7 +25,6 @@ public class Actor {
         public String getName() {
                 return name;
         }
-
         public void setName(String name) {
                 this.name = name;
         }
@@ -37,7 +32,6 @@ public class Actor {
         public Collection<Movie> getMovies() {
                 return movies;
         }
-
         public void setMovies(Collection<Movie> movies) {
                 this.movies = movies;
         }

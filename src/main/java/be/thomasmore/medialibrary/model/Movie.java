@@ -6,7 +6,6 @@ import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotEmpty;
 import jakarta.validation.constraints.NotNull;
 import org.springframework.format.annotation.DateTimeFormat;
-
 import java.util.Collection;
 
 @Entity
@@ -20,7 +19,6 @@ public class Movie{
     private String imdb;
     @NotBlank(message = "Enter a title")
     private String title;
-
     private String imageUrl;
     @Temporal(TemporalType.DATE)
     @DateTimeFormat(pattern = "yyyy")
@@ -44,7 +42,6 @@ public class Movie{
     @NotEmpty(message = "select genre(s)")
     @ManyToMany(fetch = FetchType.LAZY)
     private Collection<Genre> genres;
-
     @ManyToMany(mappedBy = "wishlistMovies", fetch = FetchType.LAZY)
     private Collection<EndUser> endUsersWishlist;
     @ManyToMany(mappedBy = "ownedMovies", fetch = FetchType.LAZY)
@@ -55,7 +52,6 @@ public class Movie{
     }
 
     /********** GETTERS & SETTERS **********/
-
     public int getId() {
         return id;
     }
@@ -144,7 +140,6 @@ public class Movie{
     public Collection<Genre> getGenres() {
         return genres;
     }
-
     public void setGenres(Collection<Genre> genres) {
         this.genres = genres;
     }

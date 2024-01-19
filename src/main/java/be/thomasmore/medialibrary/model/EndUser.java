@@ -1,7 +1,6 @@
 package be.thomasmore.medialibrary.model;
 
 import jakarta.persistence.*;
-
 import java.util.Collection;
 
 @Entity

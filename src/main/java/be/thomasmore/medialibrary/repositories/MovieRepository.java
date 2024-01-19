@@ -1,12 +1,9 @@
 package be.thomasmore.medialibrary.repositories;
 
-import be.thomasmore.medialibrary.model.Book;
 import be.thomasmore.medialibrary.model.Movie;
-import org.hibernate.query.spi.Limit;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.data.repository.query.Param;
-
 import java.util.List;
 import java.util.Optional;
 
@@ -63,6 +60,4 @@ public interface MovieRepository extends CrudRepository<Movie, Integer> {
     Optional<Movie> findFirstByIdLessThanOrderByIdDesc(Integer id);
 
     Optional<Movie> findFirstByOrderByIdDesc();
-
-
 }

@@ -10,7 +10,6 @@ import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
-
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
@@ -84,7 +83,7 @@ public class MovieAdminController {
         Movie newMovie = movieRepository.save(movie); //save to create unique id usable for firebase
 
         if(!image.isEmpty()) {
-            movie.setImageUrl(uploadImage(image, "movie" + newMovie.getId())); //add unique id to
+            movie.setImageUrl(uploadImage(image, "movie" + newMovie.getId())); //add unique id to image name
         }
 
         movieRepository.save(movie); //save imageUrl containing specific id

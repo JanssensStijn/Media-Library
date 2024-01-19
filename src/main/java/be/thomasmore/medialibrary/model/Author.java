@@ -1,9 +1,7 @@
 package be.thomasmore.medialibrary.model;
 
 import jakarta.persistence.*;
-
 import java.util.Collection;
-import java.util.Date;
 
 @Entity
 public class Author {
@@ -15,8 +13,7 @@ public class Author {
         @ManyToMany(mappedBy = "authors", fetch = FetchType.LAZY)
         private Collection<Book> books;
 
-        public Author() {
-        }
+        public Author() {}
 
         public int getId() {
                 return id;

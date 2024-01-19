@@ -2,15 +2,10 @@ package be.thomasmore.medialibrary.controllers;
 
 import be.thomasmore.medialibrary.model.*;
 import be.thomasmore.medialibrary.repositories.*;
-import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.multipart.MultipartFile;
-
-import java.io.IOException;
 import java.security.Principal;
 import java.util.ArrayList;
 import java.util.List;
@@ -67,14 +62,12 @@ public class MovieController {
                                       @RequestParam(required = false) String actor,
                                       @RequestParam(required = false, defaultValue = "off") Boolean sorted) {
 
-
         List<Movie> filteredMovies;
 
         if(sorted) filteredMovies = movieRepository.findByFilterSorted(title, yearOfRelease, genre, producer, productionCompany, actor);
         else filteredMovies = movieRepository.findByFilter(title, yearOfRelease, genre, producer, productionCompany, actor);
 
         final Iterable<Movie> allMovies = movieRepository.findAll();
-
 
         ArrayList<Integer> yearsOfRelease = StreamSupport.stream(allMovies.spliterator(), false)
                 .map(Movie::getYearOfRelease)

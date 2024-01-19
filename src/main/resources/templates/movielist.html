@@ -52,7 +52,7 @@
                             </select>
 
                             <label for="actor" class="filterLabel">Actor:</label>
-                            <select name="actor" id="actor" class="filter">
+                            <select multiple name="actor" id="actor" class="filter">
                                 <option  th:value="null" th:text="Any" th:selected="${actorFiltered eq null}"></option>
                                 <option th:each="item : ${actors}" th:value="${item.getName()}" th:text="${item.getName()}"  th:selected="${item.getName() eq actorFiltered}">
                                 </option>

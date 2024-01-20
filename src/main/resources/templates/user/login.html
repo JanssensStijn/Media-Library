@@ -9,9 +9,10 @@
   <div th:replace="~{fragments/header :: header}">Header</div>
 
   <div class="container text-center">
-    <div class="col-md-10 mx-auto">
+    <div class="col-md-6 mx-auto">
+      <h1>Login to continue</h1>
       <form th:action="@{/user/login}" method="post">
-        <div class="row g-2">
+        <div class="row g-2 loginInputRow">
           <div class="input-group col-md">
             <span class="input-group-text"><i class="bi bi-person-fill"></i></span>
             <div class="form-floating">
@@ -21,7 +22,7 @@
           </div>
         </div>
 
-        <div class="row g-2">
+        <div class="row g-2 loginInputRow">
           <div class="input-group col-md">
             <span class="input-group-text"><i class="bi bi-asterisk"></i></span>
             <div class="form-floating">
@@ -31,18 +32,12 @@
           </div>
         </div>
 
-        <div class="row g-2">
-          <input type="submit" value="login"/>
+        <div class="row g-2 loginButtonRow">
+          <a href="/home" class="col-md-3 loginButton">Cancel</a>
+          <input type="submit" value="Login" class="col-md-3 loginButton">
+          <a href="/user/signup" class="col-md-5 loginButton">Don't have an account yet?<br>Sign up here! </a>
         </div>
       </form>
-      <div class="row g-2">
-        <div class="col-md">
-          <a href="/user/signup"><button>Sign up</button></a>
-        </div>
-        <div class="col-md">
-          <a href="/home"><button>Cancel</button></a>
-        </div>
-      </div>
     </div>
   </div>
 

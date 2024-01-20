@@ -293,6 +293,28 @@ nav{
     border-radius: 10px;
 }
 
+.loginInputRow{
+    margin-top: 10px;
+}
+.loginButtonRow{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 50px;
+    margin-top: 20px;
+}
+.loginButton {
+    border:none;
+    background-color: #007bff;
+    border-radius: 20px;
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+}
+
 .form-check-input:checked {
     background-color: red;
 }

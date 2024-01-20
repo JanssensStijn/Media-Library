@@ -19,13 +19,13 @@ public interface MovieRepository extends CrudRepository<Movie, Integer> {
             " AND (:genre IS NULL OR g.name ILIKE %:genre%)"+
             " AND (:producer IS NULL OR p.name ILIKE %:producer%)"+
             " AND (:productionCompany IS NULL OR pc.name ILIKE %:productionCompany%)" +
-            " AND (:actor IS NULL OR a.name IN :actor)")
+            " AND (:actor IS NULL OR a.name ILIKE %:actor%)")
     List<Movie> findByFilter(@Param("title")String title,
                              @Param("yearOfRelease") Integer yearOfRelease,
                              @Param("genre") String genre,
                              @Param("producer") String producer,
                              @Param("productionCompany")String productionCompany,
-                            @Param("actor")String actor);
+                             @Param("actor")String actor);
 
     @Query("SELECT m FROM Movie m" +
             " LEFT JOIN m.producers p" +
@@ -37,7 +37,7 @@ public interface MovieRepository extends CrudRepository<Movie, Integer> {
             " AND (:genre IS NULL OR g.name ILIKE %:genre%)"+
             " AND (:producer IS NULL OR p.name ILIKE %:producer%)"+
             " AND (:productionCompany IS NULL OR pc.name ILIKE %:productionCompany%)" +
-            " AND (a.name IN :actor)" +
+            " AND (:actor IS NULL OR a.name ILIKE %:actor%)" +
             " ORDER BY m.title ASC")
     List<Movie> findByFilterSorted(@Param("title")String title,
                                    @Param("yearOfRelease") Integer yearOfRelease,

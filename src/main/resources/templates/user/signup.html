@@ -1,32 +1,19 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <div th:replace="~{fragments/initHeader :: initHeader}">initHeader</div>
-</head>
+  <head>
+    <div th:replace="~{fragments/initHeader :: initHeader}">initHeader</div>
+  </head>
 
-<body>
+  <body>
+    <div th:replace="~{fragments/header :: header}">Header</div>
 
-  <div th:replace="~{fragments/header :: header}">Header</div>
-
-  <div class="container text-center">
-    <div class="row">
-      <div class="col-md-10 mx-auto">
-        <!--<form th:action="@{/signup}" method="post">
-          <div class="row"> <h1>Login</h1> </div>
-          <div class="row"> <input id="name" name="name"/> </div>
-          <div class="row"> <input id="username" name="username"/> </div>
-          <div class="row"> <input id="password" name="password" type="password"/></div>
-          <div class="row"> <input type="submit" value="login"/> </div>
-          <div class="row"> <a href="/home">cancel</a> </div>
-        </form>-->
-        <div class="middle-box text-center loginscreen animated fadeInDown">
-          <div>
-
-            <h4>Sign up</h4>
-
+    <div class="container text-center">
+      <div class="row">
+        <div class="col-md-6 mx-auto">
+          <div class="middle-box text-center">
+            <h1>Sign up</h1>
             <form th:action="@{/user/signup}" method="post" >
-
-              <div class="row g-2">
+              <div class="row g-2 loginInputRow">
                 <div class="input-group col-md">
                   <span class="input-group-text"><i class="bi bi-person-fill"></i></span>
                   <div class="form-floating">
@@ -40,7 +27,7 @@
                 </div>
               </div>
 
-              <div class="row g-2">
+              <div class="row g-2 loginInputRow">
                 <div class="input-group col-md">
                   <span class="input-group-text"><i class="bi bi-asterisk"></i></span>
                   <div class="form-floating">
@@ -53,17 +40,18 @@
                   </div>
                 </div>
               </div>
-              <div class="row g-2">
-                <input type="submit" value="Sign up & log in"/>
+
+              <div class="row g-2 loginButtonRow">
+                <a href="/home" class="col-md-3 loginButton">Cancel</a>
+                <input type="submit" value="Sign up & log in" class="col-md-3 loginButton">
+                <a href="/user/login" class="col-md-5 loginButton">Already have an account?<br> Log in here! </a>
               </div>
             </form>
           </div>
         </div>
-
       </div>
     </div>
-  </div>
-  <div th:replace="~{fragments/footer :: footer}">Footer</div>
 
-</body>
+    <div th:replace="~{fragments/footer :: footer}">Footer</div>
+  </body>
 </html>

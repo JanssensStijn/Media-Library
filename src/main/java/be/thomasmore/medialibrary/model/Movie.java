@@ -62,9 +62,6 @@ public class Movie{
     public String getImdb() {
         return imdb;
     }
-    public void setImdb(String imdb) {
-        this.imdb = imdb;
-    }
 
     public String getTitle() {
         return title;
@@ -91,50 +88,29 @@ public class Movie{
         return trailerLink;
     }
 
-    public void setTrailerLink(String trailerLink) {
-        this.trailerLink = trailerLink;
-    }
 
     public String getDescription() {
         return description;
-    }
-    public void setDescription(String description) {
-        this.description = description;
     }
 
     public Collection<Actor> getActors() {
         return actors;
     }
-    public void setActors(Collection<Actor> actors) {
-        this.actors = actors;
-    }
 
     public Collection<Producer> getProducers() {
         return producers;
-    }
-    public void setProducers(Collection<Producer> producers) {
-        this.producers = producers;
     }
 
     public Collection<ProductionCompany> getProductionCompanies() {
         return productionCompanies;
     }
-    public void setProductionCompanies(Collection<ProductionCompany> productionCompanies) {
-        this.productionCompanies = productionCompanies;
-    }
 
     public Collection<EndUser> getEndUsersWishlist() {
         return endUsersWishlist;
     }
-    public void setEndUsersWishlist(Collection<EndUser> endUsers) {
-        this.endUsersWishlist = endUsers;
-    }
 
     public Collection<EndUser> getEndUsersOwned() {
         return endUsersOwned;
-    }
-    public void setEndUsersOwned(Collection<EndUser> endUsersOwned) {
-        this.endUsersOwned = endUsersOwned;
     }
 
     public Collection<Genre> getGenres() {

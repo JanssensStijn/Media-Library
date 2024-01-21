@@ -38,25 +38,27 @@ VALUES
 
 --------------------------------------------------------------------
 
-INSERT INTO ACTOR (NAME) VALUES
-    ('Tim Robbins'),
-    ('Morgan Freeman'),
-    ('Christian Bale'),
-    ('Heath Ledger'),
-    ('Leonardo DiCaprio'),
-    ('Joseph Gordon-Levitt'),
-    ('Tom Hanks'),
-    ('Robin Wright'),
-    ('Edward Norton'),
-    ('Brad Pitt'),
-    ('Elijah Wood'),
-    ('Ian McKellen'),
-    ('Marlon Brando'),
-    ('Al Pacino'),
-    ('Liam Neeson'),
-    ('Ben Kingsley'),
-    ('Michael J. Fox'),
-    ('Christopher Lloyd');
+INSERT INTO ACTOR (NAME, HOMETOWN, NATIONALITY, BIOGRAPHY)
+VALUES
+    ('Tim Robbins', 'West Covina', 'American', 'Tim Robbins, born in West Covina, California, is an American actor and director. He gained acclaim for his roles in films such as ''The Shawshank Redemption'' and ''Mystic River''.'),
+    ('Morgan Freeman', 'Memphis', 'American', 'Morgan Freeman, hailing from Memphis, Tennessee, is an iconic American actor and film narrator. Known for his distinguished voice, Freeman''s notable works include ''The Shawshank Redemption'' and ''Million Dollar Baby''.'),
+    ('Christian Bale', 'Haverfordwest', 'British', 'Christian Bale, born in Haverfordwest, Wales, is a British actor known for his versatile roles. He gained fame for portraying Batman in Christopher Nolan''s trilogy and received acclaim for ''The Fighter''.'),
+    ('Heath Ledger', 'Perth', 'Australian', 'Heath Ledger, born in Perth, Australia, was an acclaimed Australian actor. Ledger''s memorable performances include ''Brokeback Mountain'' and his posthumous Oscar-winning role as the Joker in ''The Dark Knight''.'),
+    ('Leonardo DiCaprio', 'Los Angeles', 'American', 'Leonardo DiCaprio, born in Los Angeles, California, is an American actor and environmental activist. DiCaprio''s career includes roles in films like ''Titanic,'' ''Inception,'' and ''The Revenant''.'),
+    ('Joseph Gordon-Levitt', 'Los Angeles', 'American', 'Joseph Gordon-Levitt, born in Los Angeles, California, is an American actor known for his diverse roles. He has appeared in films like ''Inception,'' ''500 Days of Summer,'' and ''The Dark Knight Rises''.'),
+    ('Tom Hanks', 'Concord', 'American', 'Tom Hanks, born in Concord, California, is an American actor and filmmaker. Hanks has received numerous awards for his roles in films such as ''Forrest Gump,'' ''Philadelphia,'' and ''Cast Away''.'),
+    ('Robin Wright', 'Dallas', 'American', 'Robin Wright, born in Dallas, Texas, is an American actress and director. She is known for her roles in ''The Princess Bride,'' ''Forrest Gump,'' and the TV series ''House of Cards''.'),
+    ('Edward Norton', 'Boston', 'American', 'Edward Norton, born in Boston, Massachusetts, is an American actor and filmmaker. Norton is acclaimed for his performances in ''American History X,'' ''Fight Club,'' and ''Birdman''.'),
+    ('Brad Pitt', 'Shawnee', 'American', 'Brad Pitt, born in Shawnee, Oklahoma, is an American actor and film producer. He gained fame for roles in films like ''Thelma & Louise,'' ''Fight Club,'' and ''Once Upon a Time in Hollywood''.'),
+    ('Elijah Wood', 'Cedar Rapids', 'American', 'Elijah Wood, born in Cedar Rapids, Iowa, is an American actor and producer. He is best known for his role as Frodo Baggins in ''The Lord of the Rings'' trilogy.'),
+    ('Ian McKellen', 'Burnley', 'British', 'Sir Ian McKellen, born in Burnley, England, is a British actor known for his distinguished career in film and theater. He is famous for portraying Gandalf in ''The Lord of the Rings'' and Magneto in ''X-Men''.'),
+    ('Marlon Brando', 'Omaha', 'American', 'Marlon Brando, born in Omaha, Nebraska, was an influential American actor. Regarded as one of the greatest actors of all time, Brando''s notable films include ''The Godfather'' and ''On the Waterfront''.'),
+    ('Al Pacino', 'New York City', 'American', 'Al Pacino, born in New York City, is an iconic American actor and filmmaker. He is known for his roles in classics such as ''The Godfather,'' ''Scarface,'' and ''Scent of a Woman''.'),
+    ('Liam Neeson', 'Ballymena', 'Irish', 'Liam Neeson, born in Ballymena, Northern Ireland, is an Irish actor known for his powerful performances. He gained fame for roles in ''Schindler''s List,'' ''Taken,'' and ''The Dark Knight Rises''.'),
+    ('Ben Kingsley', 'Snainton', 'British', 'Sir Ben Kingsley, born in Snainton, England, is a British actor with a distinguished career. He won an Academy Award for his role in ''Gandhi'' and has appeared in films like ''Schindler''s List'' and ''Iron Man 3''.'),
+    ('Michael J. Fox', 'Edmonton', 'Canadian', 'Michael J. Fox, born in Edmonton, Alberta, Canada, is a Canadian-American actor and author. He is known for his roles in ''Back to the Future'' and the TV series ''Family Ties''.'),
+    ('Christopher Lloyd', 'Stamford', 'American', 'Christopher Lloyd, born in Stamford, Connecticut, is an American actor known for his versatile roles. He is iconic for portraying Doc Brown in ''Back to the Future'' and Uncle Fester in ''The Addams Family''.');
+
 --------------------------------------------------------------------
 INSERT INTO MOVIE_ACTORS (ACTORS_ID, MOVIES_ID) SELECT actor.id, movie.id FROM actor, movie WHERE actor.name IN ('Tim Robbins', 'Morgan Freeman') AND movie.title = 'The Shawshank Redemption';
 INSERT INTO MOVIE_ACTORS (ACTORS_ID, MOVIES_ID) SELECT actor.id, movie.id FROM actor, movie WHERE actor.name IN ('Christian Bale', 'Heath Ledger')   AND movie.title = 'The Dark Knight';

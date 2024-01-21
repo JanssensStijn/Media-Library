@@ -67,7 +67,7 @@
                                     </p>
                                     <p><strong>Main actors: </strong>
                                         <span th:each="actor, iterStat : ${movie.getActors()}">
-                                            <span th:text="${actor.getName()}"></span>
+                                            <a th:href="@{|/actordetails/${actor.getId()}|}"> <span th:text="${actor.name}"></span></a>
                                             <span th:text="|-- |" th:if="${!iterStat.last}"></span>
                                         </span>
                                     </p>

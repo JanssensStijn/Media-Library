@@ -13,26 +13,28 @@ VALUES
 
 --------------------------------------------------------------------
 
-INSERT INTO PRODUCER (NAME)
+INSERT INTO PRODUCER (NAME, HOMETOWN, NATIONALITY, BIOGRAPHY)
 VALUES
-    ('Frank Darabont'),
-    ('Christopher Nolan'),
-    ('Wendy Finerman'),
-    ('Art Linson'),
-    ('Peter Jackson'),
-    ('Albert S. Ruddy'),
-    ('Steven Spielberg');
+    ('Frank Darabont', 'Montbéliard', 'American', 'Frank Darabont is an American filmmaker born in Montbéliard, France. He is best known for directing films such as "The Shawshank Redemption" and "The Green Mile."'),
+    ('Christopher Nolan', 'London', 'British', 'Christopher Nolan is a British filmmaker born in London, England. Renowned for his work on movies like "Inception" and "The Dark Knight" trilogy, Nolan is acclaimed for his innovative storytelling and direction.'),
+    ('Wendy Finerman', 'Los Angeles', 'American', 'Wendy Finerman is an American film producer hailing from Los Angeles, California. She won an Academy Award for producing "Forrest Gump" and has been involved in numerous successful film projects.'),
+    ('Art Linson', 'Chicago', 'American', 'Art Linson is an American film producer born in Chicago, Illinois. Known for his work on films like "The Untouchables" and "Heat," Linson has had a significant impact on the film industry.'),
+    ('Peter Jackson', 'Pukerua Bay', 'New Zealander', 'Peter Jackson is a New Zealand filmmaker born in Pukerua Bay, New Zealand. He gained international fame for directing "The Lord of the Rings" trilogy, winning multiple Academy Awards.'),
+    ('Albert S. Ruddy', 'New York City', 'American', 'Albert S. Ruddy is an American film producer born in New York City. He is best known for producing the iconic film "The Godfather," which received critical acclaim and won multiple Academy Awards.'),
+    ('Steven Spielberg', 'Cincinnati', 'American', 'Steven Spielberg is an American filmmaker born in Cincinnati, Ohio. A pioneer in the film industry, Spielberg has directed numerous blockbuster films, including "Jurassic Park" and "E.T. the Extra-Terrestrial."');
+
 
 --------------------------------------------------------------------
 
-INSERT INTO PRODUCTION_COMPANY (NAME)
+INSERT INTO PRODUCTION_COMPANY (NAME, LOCATION, BIOGRAPHY)
 VALUES
-    ('Castle Rock Entertainment'),
-    ('Warner Bros. Pictures'),
-    ('Paramount Pictures'),
-    ('20th Century Fox'),
-    ('New Line Cinema'),
-    ('Universal Pictures');
+    ('Castle Rock Entertainment', 'Burbank', 'Castle Rock Entertainment is a film and television production company headquartered in Burbank. Founded by Martin Shafer and Rob Reiner, the company has been involved in the production of numerous successful films and TV shows.'),
+    ('Warner Bros. Pictures', 'Burbank', 'Warner Bros. Pictures is a major film studio based in Burbank. Founded in 1923, it has been a leading player in the entertainment industry, producing iconic films such as "The Dark Knight" and "Harry Potter" series.'),
+    ('Paramount Pictures', 'Hollywood', 'Paramount Pictures, headquartered in Hollywood, is one of the oldest film studios in the world. Established in 1912, Paramount has played a significant role in shaping the history of cinema with classics like "The Godfather" and "Titanic."'),
+    ('20th Century Fox', 'Los Angeles', '20th Century Fox, based in Los Angeles, was one of the major film studios before being acquired by The Walt Disney Company. The studio produced classics like "Star Wars" and "The Sound of Music."'),
+    ('New Line Cinema', 'Burbank', 'New Line Cinema is a film studio headquartered in Burbank. Known for producing the "Nightmare on Elm Street" series and "The Lord of the Rings" trilogy, New Line Cinema has left a lasting impact on the horror and fantasy genres.'),
+    ('Universal Pictures', 'Universal City', 'Universal Pictures, based in Universal City, is one of the major film studios globally. Established in 1912, Universal has been involved in the production of iconic films like "Jurassic Park" and "E.T. the Extra-Terrestrial."');
+
 
 --------------------------------------------------------------------
 
@@ -110,18 +112,18 @@ VALUES
 
 
 --------------------------------------------------------------------
-INSERT INTO AUTHOR (NAME)
-VALUES
-    ('Harper Lee'),
-    ('George Orwell'),
-    ('F. Scott Fitzgerald'),
-    ('Jane Austen'),
-    ('J.D. Salinger'),
-    ('J.R.R. Tolkien'),
-    ('Gabriel García Márquez'),
-    ('Aldous Huxley'),
-    ('Virginia Woolf');
 
+INSERT INTO AUTHOR (NAME, HOMETOWN, NATIONALITY, BIOGRAPHY)
+VALUES
+    ('Harper Lee', 'Monroeville', 'American', 'Harper Lee (1926-2016) was an American author, famous for "To Kill a Mockingbird." Born in Monroeville, Alabama, Lee addressed racial injustice and moral growth.'),
+    ('George Orwell', 'Motihari', 'English', 'George Orwell (1903-1950) was a British writer known for "1984" and "Animal Farm," critiquing totalitarianism. Born in Motihari, British India.'),
+    ('F. Scott Fitzgerald', 'St. Paul', 'American', 'F. Scott Fitzgerald (1896-1940) was an iconic American novelist linked with the Jazz Age. Born in St. Paul, Minnesota, "The Great Gatsby" explores the American Dream.'),
+    ('Jane Austen', 'Steventon', 'English', 'Jane Austen (1775-1817) was an English novelist known for romantic fiction like "Pride and Prejudice." Born in Steventon, Hampshire, her works are celebrated for wit and social commentary.'),
+    ('J.D. Salinger', 'New York City', 'American', 'J.D. Salinger (1919-2010) wrote "The Catcher in the Rye." Born in NYC, his work explores struggles of adolescence and alienation.'),
+    ('J.R.R. Tolkien', 'Bloemfontein', 'British', 'J.R.R. Tolkien (1892-1973) was a British author known for fantasy works like "The Hobbit" and "The Lord of the Rings." Born in Bloemfontein, South Africa.'),
+    ('Gabriel García Márquez', 'Aracataca', 'Colombian', 'Gabriel García Márquez (1927-2014) was a Colombian Nobel laureate known for magical realism in works like "One Hundred Years of Solitude." Born in Aracataca, Colombia.'),
+    ('Aldous Huxley', 'Godalming', 'English', 'Aldous Huxley (1894-1963) was an English writer known for "Brave New World." Born in Godalming, Surrey, his work explores technology and totalitarianism.'),
+    ('Virginia Woolf', 'London', 'English', 'Virginia Woolf (1882-1941) was an influential English modernist writer. Born in London, known for "Mrs. Dalloway" and "Orlando."');
 
 --------------------------------------------------------------------
 

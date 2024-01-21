@@ -5,8 +5,8 @@
 
     <head/>
     <body>
-        <div th:each="movie : ${movies}" class="card hoverable" th:fragment="movieCards">
-            <a th:href="@{|/moviedetails/${movie.getId()}|}">
+        <div th:each="movie : ${movies}" class="card hoverable" th:fragment="movieCardsNotCentered">
+            <a th:href="@{|/moviedetails/${movie.getId()}|}" th:fragment="movieCards">
                 <div class="card-background" th:style="'background-image: url(' + ${movie.getImageUrl()} + ')'">
                     <div class="card-buttons" sec:authorize="isAuthenticated()">
                         <form th:action="@{|/enduser/wishlist/movie/${movie.getId()}|}" method="post">
@@ -33,8 +33,12 @@
             </a>
         </div>
 
-        <div th:each="book : ${books}" class="card hoverable" th:fragment="bookCards">
-            <a th:href="@{|/bookdetails/${book.getId()}|}">
+        <div th:each="movie : ${movies}" class="card hoverable justify-content-center" th:fragment="movieCardsCentered">
+            <div th:replace="~{fragments/cards :: movieCards}">movieCards</div>
+        </div>
+
+        <div th:each="book : ${books}" class="card hoverable" th:fragment="bookCardsNotCentered">
+            <a th:href="@{|/bookdetails/${book.getId()}|}" th:fragment="bookCards">
                 <div class="card-background" th:style="'background-image: url(' + ${book.getImageUrl()} + ')'">
                     <div class="card-buttons" sec:authorize="isAuthenticated()">
                         <form th:action="@{|/enduser/wishlist/book/${book.getId()}|}" method="post">
@@ -60,5 +64,10 @@
                 </div>
             </a>
         </div>
+
+        <div th:each="book : ${books}" class="card hoverable justify-content-center" th:fragment="bookCardsCentered">
+            <div th:replace="~{fragments/cards :: bookCards}">BookCards</div>
+        </div>
+
     </body>
 </html>

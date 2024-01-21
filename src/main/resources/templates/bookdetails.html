@@ -46,7 +46,7 @@
                                         <p><strong>Author(s): </strong>
                                             <span th:each="author, iterStat : ${book.getAuthors()}">
                                                 <!-- Add a span tag for each artist with a comma (except for the last one) -->
-                                                <span th:text="${author.name}"></span>
+                                                <a th:href="@{|/authordetails/${author.getId()}|}"> <span th:text="${author.name}"></span></a>
                                                 <span th:text="|-- |" th:if="${!iterStat.last}"></span>
                                             </span>
                                         </p>

@@ -34,10 +34,10 @@ public class BookController {
 
         if (bookFromDb.isPresent()){
             Optional<Book> nextbookFromDb = bookRepository.findFirstByIdGreaterThanOrderByIdAsc(id);
-            if (nextbookFromDb.isEmpty()) //if no Movie id is higher, get the Movie with the lowest id
+            if (nextbookFromDb.isEmpty())
                 nextbookFromDb = bookRepository.findFirstByOrderByIdAsc();
             Optional<Book> prevbookFromDb = bookRepository.findFirstByIdLessThanOrderByIdDesc(id);
-            if (prevbookFromDb.isEmpty()) //if no Movie id is lower, get the Movie with the highest id
+            if (prevbookFromDb.isEmpty())
                 prevbookFromDb = bookRepository.findFirstByOrderByIdDesc();
 
             model.addAttribute("nextId", nextbookFromDb.get().getId());

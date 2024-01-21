@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+
+    <head>
+        <div th:replace="~{fragments/initHeader :: initHeader}">initHeader</div>
+        <title>Authors</title>
+    </head>
+
+    <body>
+        <div th:replace="~{fragments/header :: header}">Header</div>
+
+        <div class="container text-center">
+            <div class="row">
+                <div class="col-md-10 mx-auto">
+                    <div class="row">
+                        <div class="col mx-auto">
+                            <a th:href="@{|/authordetails/${prevId}|}" th:classappend="${prevId == null} ? 'hidden'"
+                               class="btn btn-primary" tabindex="-1" role="button" aria-disabled="true">PREV</a>
+                        </div>
+
+                        <div class="col mx-auto">
+                            <a th:href="@{|/authordetails/${nextId}|}" th:classappend="${nextId == null} ? 'hidden'"
+                               class="btn btn-primary" tabindex="-1" role="button" aria-disabled="true">NEXT</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-10 mx-auto">
+                    <div class="row">
+                        <div class="col-md-10 mx-auto mt-3 detailsBlock text-center">
+                            <h1 th:text="${author.getName()}"/>
+                        </div>
+                    </div>
+                    <div class="row justify-content-center">
+                        <div class="col-md-10 mt-3 mb-3 detailsBlock text-center">
+                            <div class="col-md-4 text-center">
+                                <div class="DetailsInfo">
+                                    <p><strong>Hometown: </strong></p>
+                                    <p th:text="|${author.getHometown()}|"></p>
+                                    <p><strong>Nationality: </strong></p>
+                                    <p th:text="|${author.getNationality()}|"></p>
+                                </div>
+                            </div>
+                            <div class="col-md-6 text-center">
+                                <div class="DetailsInfo">
+                                    <p><strong>Description: </strong></p>
+                                    <p th:text="|${author.getBiography()}|"></p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row justify-content-center">
+                        <div th:replace="~{fragments/cards :: bookCardsCentered}">BookCards</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div th:replace="~{fragments/footer :: footer}">Footer</div>
+    </body>
+</html>

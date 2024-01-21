@@ -10,6 +10,8 @@ public class ProductionCompany {
         @Id
         private int id;
         private String name;
+        private String location;
+        private String biography;
         @ManyToMany(mappedBy = "productionCompanies")
         private Collection<Movie> movies;
 
@@ -27,6 +29,14 @@ public class ProductionCompany {
         }
         public void setName(String name) {
                 this.name = name;
+        }
+
+        public String getLocation() {
+                return location;
+        }
+
+        public String getBiography() {
+                return biography;
         }
 
         public Collection<Movie> getMovies() {

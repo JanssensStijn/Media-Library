@@ -55,7 +55,7 @@
                                     <p><strong>Year of release: </strong><span th:text="|${movie.getYearOfRelease()}|"></span></p>
                                     <p><strong>Producer(s): </strong>
                                         <span th:each="producer, iterStat : ${movie.getProducers()}">
-                                            <span th:text="${producer.getName()}"></span>
+                                            <a th:href="@{|/producerdetails/${producer.getId()}|}"> <span th:text="${producer.name}"></span></a>
                                             <span th:text="|-- |" th:if="${!iterStat.last}"></span>
                                         </span>
                                     </p>

@@ -3,7 +3,7 @@
 
     <head>
         <div th:replace="~{fragments/initHeader :: initHeader}">initHeader</div>
-        <title>Authors</title>
+        <title>Producer</title>
     </head>
 
     <body>
@@ -14,12 +14,12 @@
                 <div class="col-md-10 mx-auto">
                     <div class="row">
                         <div class="col mx-auto">
-                            <a th:href="@{|/authordetails/${prevId}|}" th:classappend="${prevId == null} ? 'hidden'"
+                            <a th:href="@{|/producerdetails/${prevId}|}" th:classappend="${prevId == null} ? 'hidden'"
                                class="btn btn-primary" tabindex="-1" role="button" aria-disabled="true">PREV</a>
                         </div>
 
                         <div class="col mx-auto">
-                            <a th:href="@{|/authordetails/${nextId}|}" th:classappend="${nextId == null} ? 'hidden'"
+                            <a th:href="@{|/producerdetails/${nextId}|}" th:classappend="${nextId == null} ? 'hidden'"
                                class="btn btn-primary" tabindex="-1" role="button" aria-disabled="true">NEXT</a>
                         </div>
                     </div>
@@ -29,7 +29,7 @@
                 <div class="col-md-10 mx-auto">
                     <div class="row">
                         <div class="col-md-10 mx-auto mt-3 detailsBlock text-center">
-                            <h1 th:text="${author.getName()}"/>
+                            <h1 th:text="${producer.getName()}"/>
                         </div>
                     </div>
                     <div class="row justify-content-center">
@@ -37,21 +37,21 @@
                             <div class="col-md-4 text-center">
                                 <div class="DetailsInfo">
                                     <p><strong>Hometown: </strong></p>
-                                    <p th:text="|${author.getHometown()}|"></p>
+                                    <p th:text="|${producer.getHometown()}|"></p>
                                     <p><strong>Nationality: </strong></p>
-                                    <p th:text="|${author.getNationality()}|"></p>
+                                    <p th:text="|${producer.getNationality()}|"></p>
                                 </div>
                             </div>
                             <div class="col-md-6 text-center">
                                 <div class="DetailsInfo">
                                     <p><strong>Biography: </strong></p>
-                                    <p th:text="|${author.getBiography()}|"></p>
+                                    <p th:text="|${producer.getBiography()}|"></p>
                                 </div>
                             </div>
                         </div>
                     </div>
                     <div class="row justify-content-center">
-                        <div th:replace="~{fragments/cards :: bookCardsCentered}">BookCards</div>
+                        <div th:replace="~{fragments/cards :: movieCardsCentered}">movieCards</div>
                     </div>
                 </div>
             </div>

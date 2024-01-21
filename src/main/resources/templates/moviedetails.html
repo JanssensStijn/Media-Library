@@ -61,7 +61,7 @@
                                     </p>
                                     <p><strong>Production company: </strong>
                                         <span th:each="productionCompany, iterStat : ${movie.getProductionCompanies()}">
-                                            <span th:text="${productionCompany.getName()}"></span>
+                                            <a th:href="@{|/productioncompanydetails/${productionCompany.getId()}|}"> <span th:text="${productionCompany.name}"></span></a>
                                             <span th:text="|-- |" th:if="${!iterStat.last}"></span>
                                         </span>
                                     </p>

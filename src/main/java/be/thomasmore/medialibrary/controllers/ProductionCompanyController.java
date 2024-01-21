@@ -20,10 +20,10 @@ public class ProductionCompanyController {
     @Autowired
     private EndUserRepository endUserRepository;
 
-    @GetMapping({"/productionCompanydetails/{id}", "/productionCompanydetails", "/productionCompanydetails/"})
+    @GetMapping({"/productioncompanydetails/{id}", "/productioncompanydetails", "/productioncompanydetails/"})
     public String productionCompanydetails(Model model, @PathVariable(required = false) Integer id, Principal principal) {
 
-        if (id == null) return "productionCompanydetails";
+        if (id == null) return "productioncompanydetails";
         Optional<ProductionCompany> productionCompanyFromDb = productionCompanyRepository.findById(id);
 
         if (productionCompanyFromDb.isPresent()){
@@ -41,7 +41,7 @@ public class ProductionCompanyController {
             if(principal != null) model.addAttribute("currentUser", endUserRepository.findByUsername(principal.getName()));
         }
 
-        return "productionCompanydetails";
+        return "productioncompanydetails";
     }
 
 }

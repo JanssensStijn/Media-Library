@@ -68,17 +68,28 @@ public class Book{
     public String getDescription() {
         return description;
     }
+    public void setDescription(String description) {
+        this.description = description;
+    }
 
     public Collection<Author> getAuthors() {
         return authors;
+    }
+    public void setAuthors(Collection<Author> authors) {
+        this.authors = authors;
     }
 
     public Collection<EndUser> getEndUsersWishlist() {
         return endUsersWishlist;
     }
+    public void setEndUsersWishlist(Collection<EndUser> endUsersWishlist) {
+        this.endUsersWishlist = endUsersWishlist;
+    }
 
     public Collection<EndUser> getEndUsersOwned() {
         return endUsersOwned;
+    } public void setEndUsersOwned(Collection<EndUser> endUsersOwned) {
+        this.endUsersOwned = endUsersOwned;
     }
 
     public Collection<Genre> getGenres() {

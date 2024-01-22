@@ -31,6 +31,10 @@ public class EndUser {
         this.name = name;
     }
 
+    public String getUsername() {
+        return username;
+    }
+
     public void setUsername(String username) {
         this.username = username;
     }
@@ -39,15 +43,31 @@ public class EndUser {
         return wishlistMovies;
     }
 
+    public void setWishlistMovies(Collection<Movie> wishlistMovies) {
+        this.wishlistMovies = wishlistMovies;
+    }
+
     public Collection<Movie> getOwnedMovies() {
         return ownedMovies;
+    }
+
+    public void setOwnedMovies(Collection<Movie> ownedMovies) {
+        this.ownedMovies = ownedMovies;
     }
 
     public Collection<Book> getWishlistBooks() {
         return wishlistBooks;
     }
 
+    public void setWishlistBooks(Collection<Book> wishlistBooks) {
+        this.wishlistBooks = wishlistBooks;
+    }
+
     public Collection<Book> getOwnedBooks() {
         return ownedBooks;
+    }
+
+    public void setOwnedBooks(Collection<Book> ownedBooks) {
+        this.ownedBooks = ownedBooks;
     }
 }

@@ -37,6 +37,10 @@ public class Genre {
                 return genreFor;
         }
 
+        public void setGenreFor(String genreFor) {
+                this.genreFor = genreFor;
+        }
+
         public Collection<Movie> getMovies() {
                 return movies;
         }

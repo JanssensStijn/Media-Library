@@ -35,8 +35,16 @@ public class ProductionCompany {
                 return location;
         }
 
+        public void setLocation(String location) {
+                this.location = location;
+        }
+
         public String getBiography() {
                 return biography;
+        }
+
+        public void setBiography(String biography) {
+                this.biography = biography;
         }
 
         public Collection<Movie> getMovies() {

@@ -34,11 +34,25 @@ public class Producer {
         public String getBiography() {
                 return biography;
         }
+
+        public void setBiography(String biography) {
+                this.biography = biography;
+        }
+
         public String getHometown() {
                 return hometown;
         }
+
+        public void setHometown(String hometown) {
+                this.hometown = hometown;
+        }
+
         public String getNationality() {
                 return nationality;
+        }
+
+        public void setNationality(String nationality) {
+                this.nationality = nationality;
         }
 
         public Collection<Movie> getMovies() {
